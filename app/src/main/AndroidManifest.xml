@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.eliorcohen1.synagogue"
+    android:versionCode="8"
+    android:versionName="1.0.0">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <compatible-screens>
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="normal" />
+
+        <!-- all large size screens -->
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="large" />
+
+        <!-- all xlarge size screens -->
+        <screen
+            android:screenDensity="ldpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="mdpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="hdpi"
+            android:screenSize="xlarge" />
+        <screen
+            android:screenDensity="xhdpi"
+            android:screenSize="xlarge" />
+
+        <!-- Special case for Nexus 7 -->
+        <screen
+            android:screenDensity="213"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="480"
+            android:screenSize="normal" />
+        <screen
+            android:screenDensity="480"
+            android:screenSize="large" />
+        <screen
+            android:screenDensity="480"
+            android:screenSize="xlarge" />
+    </compatible-screens>
+
+    <application
+        android:name="com.eliorcohen1.synagogue.StartPackage.ConApp"
+        android:allowBackup="true"
+        android:icon="@drawable/lamp"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/lamp"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme2">
+        <activity android:name="com.eliorcohen1.synagogue.StartPackage.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Responsible" />
+        <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Donates" />
+        <activity android:name="com.eliorcohen1.synagogue.StartPackage.MainActivity" />
+        <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.WinterClock" />
+        <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.SummerClock" />
+        <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Worshipers" />
+        <activity android:name="com.eliorcohen1.synagogue.StartPackage.MyCredits" />
+        <activity android:name="com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy" />
+        <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.MyAlarm" />
+        <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Events" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAwZJDYXqyOheZRqLEpSRuQxOYvRW5ll_c" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <receiver
+            android:name="com.eliorcohen1.synagogue.StartPackage.MyReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

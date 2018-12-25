@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/options"
+        android:icon="@drawable/ic_dehaze_red_24dp"
+        android:title=""
+        app:showAsAction="ifRoom">
+
+        <menu>
+
+            <item
+                android:id="@+id/shareIntent"
+                android:icon="@drawable/ic_share_lightblue_24dp"
+                android:title="שתף את האפליקציה"></item>
+
+            <item
+                android:id="@+id/credits"
+                android:icon="@drawable/ic_copyright_lightblue_24dp"
+                android:title="כל הזכויות שמורות"></item>
+
+            <item
+                android:id="@+id/exit"
+                android:icon="@drawable/ic_exit_to_app_lightblue_24dp"
+                android:title="יציאה מהאפליקציה"></item>
+        </menu>
+    </item>
+
+</menu>
