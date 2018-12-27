@@ -149,7 +149,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
                         //Execute Directions API request
                         GeoApiContext context = new GeoApiContext.Builder()
-                                .apiKey("AIzaSyBrPt88vvoPDDn_imh-RzCXl5Ha2F2LYig")
+                                .apiKey(getString(R.string.api_key_search))
                                 .build();
                         DirectionsApiRequest req = DirectionsApi.getDirections(context, lat1 + ", " + lng1, "31.742462, 34.985447");
                         try {

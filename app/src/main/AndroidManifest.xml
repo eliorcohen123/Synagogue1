@@ -102,7 +102,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAwZJDYXqyOheZRqLEpSRuQxOYvRW5ll_c" />
+            android:value="@string/api_key_map" />
 
         <uses-library
             android:name="org.apache.http.legacy"
