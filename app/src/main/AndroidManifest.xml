@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eliorcohen1.synagogue"
-    android:versionCode="10"
+    android:versionCode="11"
     android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,63 +16,6 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
-
-    <compatible-screens>
-        <screen
-            android:screenDensity="ldpi"
-            android:screenSize="normal" />
-        <screen
-            android:screenDensity="mdpi"
-            android:screenSize="normal" />
-        <screen
-            android:screenDensity="hdpi"
-            android:screenSize="normal" />
-        <screen
-            android:screenDensity="xhdpi"
-            android:screenSize="normal" />
-
-        <!-- all large size screens -->
-        <screen
-            android:screenDensity="ldpi"
-            android:screenSize="large" />
-        <screen
-            android:screenDensity="mdpi"
-            android:screenSize="large" />
-        <screen
-            android:screenDensity="hdpi"
-            android:screenSize="large" />
-        <screen
-            android:screenDensity="xhdpi"
-            android:screenSize="large" />
-
-        <!-- all xlarge size screens -->
-        <screen
-            android:screenDensity="ldpi"
-            android:screenSize="xlarge" />
-        <screen
-            android:screenDensity="mdpi"
-            android:screenSize="xlarge" />
-        <screen
-            android:screenDensity="hdpi"
-            android:screenSize="xlarge" />
-        <screen
-            android:screenDensity="xhdpi"
-            android:screenSize="xlarge" />
-
-        <!-- Special case for Nexus 7 -->
-        <screen
-            android:screenDensity="213"
-            android:screenSize="large" />
-        <screen
-            android:screenDensity="480"
-            android:screenSize="normal" />
-        <screen
-            android:screenDensity="480"
-            android:screenSize="large" />
-        <screen
-            android:screenDensity="480"
-            android:screenSize="xlarge" />
-    </compatible-screens>
 
     <application
         android:name="com.eliorcohen1.synagogue.StartPackage.ConApp"
