@@ -7,11 +7,18 @@ public class TotalModel implements Serializable {
     public String name;
     public String hyphen;
     public String phone;
+    private String distance;
+    private String imageView;
+
 
     public TotalModel(String name, String hyphen, String phone) {
         this.name = name;
         this.hyphen = hyphen;
         this.phone = phone;
+    }
+
+    public TotalModel() {
+
     }
 
     public String getName() {
@@ -36,6 +43,22 @@ public class TotalModel implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
+    public String getImageView() {
+        return imageView;
+    }
+
+    public void setImageView(String imageView) {
+        this.imageView = imageView;
     }
 
 }

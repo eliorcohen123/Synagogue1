@@ -1,23 +1,30 @@
 package com.eliorcohen1.synagogue.ButtonsPackage;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomInfoWindowGoogleMap;
 import com.eliorcohen1.synagogue.R;
+import com.eliorcohen1.synagogue.StartPackage.TotalModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -39,6 +46,8 @@ import com.google.maps.model.EncodedPolyline;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
@@ -116,13 +125,62 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     public void addMarker() {
-        marker = new MarkerOptions().position(new LatLng(31.742462, 34.985447)).title("בית הכנסת - נווה צדק").icon(BitmapDescriptorFactory
-                .defaultMarker(BitmapDescriptorFactory.HUE_VIOLET));
+        marker = new MarkerOptions().position(new LatLng(31.742462, 34.985447)).title("בית הכנסת - נווה צדק")
+                .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getContext(), R.drawable.pic_synagogue, "בית הכנסת - נווה צדק")));
         mGoogleMap.addMarker(marker);
         mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+                locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+                criteria = new Criteria();
+                String provider2 = locationManager.getBestProvider(criteria, true);
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION);
+                }// TODO: Consider calling
+//    ActivityCompat#requestPermissions
+// here to request the missing permissions, and then overriding
+//   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                                          int[] grantResults)
+// to handle the case where the user grants the permission. See the documentation
+// for ActivityCompat#requestPermissions for more details.
+                if (provider2 != null) {
+                    location = locationManager.getLastKnownLocation(provider2);
+                    if (location != null) {
+                        TotalModel info = new TotalModel();
+                        double distanceMe;
+                        android.location.Location locationA = new android.location.Location("Point A");
+                        locationA.setLatitude(31.742462);
+                        locationA.setLongitude(34.985447);
+                        android.location.Location locationB = new Location("Point B");
+                        locationB.setLatitude(location.getLatitude());
+                        locationB.setLongitude(location.getLongitude());
+                        distanceMe = locationA.distanceTo(locationB) / 1000;
+
+                        String distanceKm1;
+                        if (distanceMe < 1) {
+                            int dis = (int) (distanceMe * 1000);
+                            distanceKm1 = "\n" + "Meters: " + String.valueOf(dis);
+                            info.setName(info.getName());
+                            info.setImageView("pic_synagogue");
+                            info.setDistance(distanceKm1);
+                        } else if (distanceMe >= 1) {
+                            String disM = String.format("%.2f", distanceMe);
+                            distanceKm1 = "\n" + "Km: " + String.valueOf(disM);
+                            info.setName(info.getName());
+                            info.setImageView("pic_synagogue");
+                            info.setDistance(distanceKm1);
+                        }
+
+                        CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity());
+                        mGoogleMap.setInfoWindowAdapter(customInfoWindow);
+
+                        marker.setTag(info);
+                        marker.showInfoWindow();
+                    }
+                }
+
                 Toast.makeText(getContext(), "בית הכנסת - נווה צדק", Toast.LENGTH_SHORT).show();
+
                 locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
                 criteria = new Criteria();
                 String provider = locationManager.getBestProvider(criteria, true);
@@ -206,6 +264,26 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 return true;
             }
         });
+    }
+
+    public static Bitmap createCustomMarker(Context context, @DrawableRes int resource, String _name) {
+
+        View marker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_layout, null);
+
+        CircleImageView markerImage = marker.findViewById(R.id.user_dp);
+        markerImage.setImageResource(resource);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        marker.setLayoutParams(new ViewGroup.LayoutParams(52, ViewGroup.LayoutParams.WRAP_CONTENT));
+        marker.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        marker.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        marker.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(marker.getMeasuredWidth(), marker.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        marker.draw(canvas);
+
+        return bitmap;
     }
 
 }
