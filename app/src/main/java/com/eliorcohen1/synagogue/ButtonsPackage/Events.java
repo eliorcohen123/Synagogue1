@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
 import android.view.View;
@@ -29,8 +30,11 @@ public class Events extends AppCompatActivity {
         phone = findViewById(R.id.phone);
         textWant = findViewById(R.id.textWant);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("בית הכנסת נווה צדק");
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setTitle("בית הכנסת נווה צדק");
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         textWant.setText("על מנת לקבוע אירוע/אזכרה יש ליצור קשר עם האחראי\n - \n שלום נסים");
 

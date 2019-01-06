@@ -13,4 +13,5 @@
     <color name="pink">#FF6347</color>
     <color name="colorLightBlue">#E9FFFF</color>
     <color name="colorLightBlueDark">#A3CEDC</color>
+    <color name="colorBlack">#000000</color>
 </resources>

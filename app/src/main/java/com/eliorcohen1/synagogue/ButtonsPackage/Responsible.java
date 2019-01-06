@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,8 +36,11 @@ public class Responsible extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_responsible);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("בית הכנסת נווה צדק");
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setTitle("בית הכנסת נווה צדק");
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         backResponsible = findViewById(R.id.backResponsible);
 

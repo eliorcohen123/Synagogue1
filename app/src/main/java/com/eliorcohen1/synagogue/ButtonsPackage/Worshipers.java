@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.ContextMenu;
@@ -39,8 +40,11 @@ public class Worshipers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_worhipers);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("בית הכנסת נווה צדק");
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setTitle("בית הכנסת נווה צדק");
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         backWorshipers = findViewById(R.id.backWorshipers);
 

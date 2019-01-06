@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
@@ -22,10 +23,13 @@ public class SummerClock extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summer);
 
-        backSummer = findViewById(R.id.backSummer);
+        //        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setTitle("בית הכנסת נווה צדק");
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("בית הכנסת נווה צדק");
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        backSummer = findViewById(R.id.backSummer);
 
         clock = findViewById(R.id.clock);
         clock.setText("שעות תפילה נווה צדק");
