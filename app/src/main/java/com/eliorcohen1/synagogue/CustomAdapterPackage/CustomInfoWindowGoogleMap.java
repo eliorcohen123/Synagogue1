@@ -30,9 +30,7 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
                 .inflate(R.layout.map_custom_infowindow, null);
 
         TextView name = view.findViewById(R.id.nameInfo);
-
         ImageView img = view.findViewById(R.id.pic);
-
         TextView distance = view.findViewById(R.id.distanceInfo);
 
         name.setText(marker.getTitle());
@@ -42,7 +40,6 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
         int imageId = context.getResources().getIdentifier(infoWindowData.getImageView().toLowerCase(),
                 "drawable", context.getPackageName());
         img.setImageResource(imageId);
-
         distance.setText(infoWindowData.getDistance());
 
         return view;
