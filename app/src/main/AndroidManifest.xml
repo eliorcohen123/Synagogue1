@@ -25,7 +25,9 @@
         android:roundIcon="@drawable/lamp"
         android:supportsRtl="false"
         android:theme="@style/AppTheme2">
-        <activity android:name="com.eliorcohen1.synagogue.StartPackage.SplashActivity">
+        <activity
+            android:name=".StartPackage.WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,6 +44,9 @@
         <activity android:name="com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.MyAlarm" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Events" />
+        <activity
+            android:name=".StartPackage.SplashActivity"
+            android:label="@string/title_activity_welcome" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
