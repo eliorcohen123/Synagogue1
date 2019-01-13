@@ -296,7 +296,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.shareIntent) {
+        if (id == R.id.tutorial) {
+            Intent intentCredits = new Intent(MainActivity.this, WelcomeActivityTutorial.class);
+            startActivity(intentCredits);
+        } else if (id == R.id.shareIntent) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_TEXT,
