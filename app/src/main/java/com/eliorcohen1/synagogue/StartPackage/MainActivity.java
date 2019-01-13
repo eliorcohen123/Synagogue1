@@ -297,8 +297,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         int id = item.getItemId();
 
         if (id == R.id.tutorial) {
-            Intent intentCredits = new Intent(MainActivity.this, WelcomeActivityTutorial.class);
-            startActivity(intentCredits);
+            Intent intentTutorial = new Intent(MainActivity.this, WelcomeActivityTutorial.class);
+            startActivity(intentTutorial);
         } else if (id == R.id.shareIntent) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
