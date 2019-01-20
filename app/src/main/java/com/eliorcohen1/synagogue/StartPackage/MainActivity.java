@@ -287,6 +287,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 }
             }
         });
+
+        AppRater.app_launched(this);
     }
 
 
