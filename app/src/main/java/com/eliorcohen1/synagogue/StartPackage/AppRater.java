@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class AppRater {
 
-    private final static String APP_TITLE = "Lovely Favorites Places";// App Name
+    private final static String APP_TITLE = "בית הכנסת - נווה צדק";// App Name
     private final static String APP_PNAME = "com.eliorcohen12345.locationproject";// Package Name
 
     private final static int MILLISECONDS_UNTIL_PROMPT = 1;//Min number of milliSeconds
@@ -57,13 +57,13 @@ public class AppRater {
         ll.setOrientation(LinearLayout.VERTICAL);
 
         TextView tv = new TextView(mContext);
-        tv.setText("If you enjoy using " + APP_TITLE + ", please take a moment to rate it. Thanks for your support!");
+        tv.setText("אם אתה נהנה להשתשמש באפליקציית '" + APP_TITLE + "'" + ", בבקשה קח רגע לדרג את האפליקציה. תודה על התמיכה!");
         tv.setWidth(240);
         tv.setPadding(20, 50, 20, 50);
         ll.addView(tv);
 
         Button b1 = new Button(mContext);
-        b1.setText("Rate " + APP_TITLE);
+        b1.setText("דרג את אפליקציית '" + APP_TITLE + "'");
         b1.setTextColor(Color.BLUE);
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -74,7 +74,7 @@ public class AppRater {
         ll.addView(b1);
 
         Button b2 = new Button(mContext);
-        b2.setText("Remind me later");
+        b2.setText("הזכר לי מאוחר יותר");
         b2.setTextColor(Color.BLUE);
         b2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -84,7 +84,7 @@ public class AppRater {
         ll.addView(b2);
 
         Button b3 = new Button(mContext);
-        b3.setText("No, thanks");
+        b3.setText("לא, תודה");
         b3.setTextColor(Color.BLUE);
         b3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
