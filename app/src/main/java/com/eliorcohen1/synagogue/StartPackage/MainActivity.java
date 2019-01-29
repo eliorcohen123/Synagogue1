@@ -541,7 +541,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         if (anim != null && anim.isRunning()) {
             anim.stop();
         }
-//        stopLocationUpdates();
     }
 
 }
