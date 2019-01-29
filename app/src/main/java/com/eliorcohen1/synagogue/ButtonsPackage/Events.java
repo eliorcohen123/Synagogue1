@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
@@ -30,9 +29,6 @@ public class Events extends AppCompatActivity {
         phone = findViewById(R.id.phone);
         textWant = findViewById(R.id.textWant);
 
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setTitle("בית הכנסת נווה צדק");
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -57,7 +53,7 @@ public class Events extends AppCompatActivity {
         });
     }
 
-    public void openWhatsApp(View view) {
+    private void openWhatsApp(View view) {
         try {
             String text = "היי שלום, ברצוני לקבוע אירוע/אזכרה באולם בית הכנסת, נא צור עימי קשר";// Replace with your message.
             String toNumber = "+9720529426607"; // Replace with mobile phone number without +Sign or leading zeros.

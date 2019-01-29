@@ -117,7 +117,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void launchHomeScreen() {
-        prefManager.setFirstTimeLaunch(false);
+        prefManager.setFirstTimeLaunch();
         startActivity(new Intent(WelcomeActivity.this, SplashActivity.class));
         finish();
     }
@@ -167,7 +167,7 @@ public class WelcomeActivity extends AppCompatActivity {
     public class MyViewPagerAdapter extends PagerAdapter {
         private LayoutInflater layoutInflater;
 
-        public MyViewPagerAdapter() {
+        MyViewPagerAdapter() {
         }
 
         @Override

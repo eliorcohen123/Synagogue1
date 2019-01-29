@@ -149,7 +149,7 @@ public class MyAlarm extends AppCompatActivity {
     }
 
 
-    public class InputFilterMinMax implements InputFilter {
+    private class InputFilterMinMax implements InputFilter {
 
         private int min, max;
 

@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class AppRater {
+class AppRater {
 
     private final static String APP_TITLE = "בית הכנסת - נווה צדק";// App Name
     private final static String APP_PNAME = "com.eliorcohen12345.locationproject";// Package Name
@@ -19,7 +19,7 @@ public class AppRater {
     private final static int MILLISECONDS_UNTIL_PROMPT = 1;//Min number of milliSeconds
     private final static int LAUNCHES_UNTIL_PROMPT = 3;//Min number of launches
 
-    public static void app_launched(Context mContext) {
+    static void app_launched(Context mContext) {
         SharedPreferences prefs = mContext.getSharedPreferences("apprater", 0);
         if (prefs.getBoolean("dontshowagain", false)) {
             return;
@@ -49,7 +49,7 @@ public class AppRater {
         editor.commit();
     }
 
-    public static void showRateDialog(final Context mContext, final SharedPreferences.Editor editor) {
+    private static void showRateDialog(final Context mContext, final SharedPreferences.Editor editor) {
         final Dialog dialog = new Dialog(mContext);
         dialog.setTitle(APP_TITLE);
 

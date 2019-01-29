@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
@@ -30,9 +29,6 @@ public class Donates extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setTitle("בית הכנסת נווה צדק");
-
         backDonates = findViewById(R.id.backDonates);
         phone = findViewById(R.id.phone);
 
@@ -56,7 +52,7 @@ public class Donates extends AppCompatActivity {
         });
     }
 
-    public void openWhatsApp(View view) {
+    private void openWhatsApp(View view) {
         try {
             String text = "היי מוטי, ברצוני לדווח על העברה בנקאית עבור נדר/תרומה על סך *** שקלים לכבוד בית הכנסת";// Replace with your message.
             String toNumber = "+9720544917147"; // Replace with mobile phone number without +Sign or leading zeros.

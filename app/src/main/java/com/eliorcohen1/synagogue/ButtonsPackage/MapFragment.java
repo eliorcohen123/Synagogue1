@@ -124,7 +124,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    public void addMarker() {
+    private void addMarker() {
         marker = new MarkerOptions().position(new LatLng(31.742462, 34.985447)).title("בית הכנסת - נווה צדק")
                 .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getContext(), R.drawable.pic_synagogue, "בית הכנסת - נווה צדק")));
         mGoogleMap.addMarker(marker);
@@ -266,7 +266,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    public static Bitmap createCustomMarker(Context context, @DrawableRes int resource, String _name) {
+    private static Bitmap createCustomMarker(Context context, @DrawableRes int resource, String _name) {
 
         View marker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_layout, null);
 
