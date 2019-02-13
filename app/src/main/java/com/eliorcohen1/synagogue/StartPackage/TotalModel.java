@@ -9,7 +9,7 @@ public class TotalModel implements Serializable {
     public String phone;
     private String distance;
     private String imageView;
-
+    private int image_drawable;
 
     public TotalModel(String name, String hyphen, String phone) {
         this.name = name;
@@ -59,6 +59,14 @@ public class TotalModel implements Serializable {
 
     public void setImageView(String imageView) {
         this.imageView = imageView;
+    }
+
+    public int getImage_drawable() {
+        return image_drawable;
+    }
+
+    public void setImage_drawable(int image_drawable) {
+        this.image_drawable = image_drawable;
     }
 
 }

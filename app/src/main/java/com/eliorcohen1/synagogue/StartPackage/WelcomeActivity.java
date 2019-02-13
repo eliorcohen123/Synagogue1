@@ -168,6 +168,7 @@ public class WelcomeActivity extends AppCompatActivity {
         private LayoutInflater layoutInflater;
 
         MyViewPagerAdapter() {
+
         }
 
         @Override
