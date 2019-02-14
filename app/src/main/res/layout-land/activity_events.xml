@@ -93,8 +93,8 @@
                     android:id="@+id/viewPager"
                     android:layout_width="350dp"
                     android:layout_height="190dp"
-                    android:layout_marginLeft="180dp"
-                    android:layout_marginRight="180dp" />
+                    android:layout_marginLeft="200dp"
+                    android:layout_marginRight="200dp" />
 
                 <com.viewpagerindicator.CirclePageIndicator
                     android:id="@+id/indicator"
