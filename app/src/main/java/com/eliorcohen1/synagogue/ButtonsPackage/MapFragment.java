@@ -2,7 +2,9 @@ package com.eliorcohen1.synagogue.ButtonsPackage;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -10,6 +12,7 @@ import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -20,6 +23,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomInfoWindowGoogleMap;
@@ -58,11 +62,55 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private Location location;
     private LocationManager locationManager;
     private Criteria criteria;
+    private ImageView moovit, gett, waze;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.activity_maps, container, false);
+
+        moovit = mView.findViewById(R.id.imageViewMoovit);
+        moovit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    PackageManager pm = getActivity().getPackageManager();
+                    pm.getPackageInfo("com.tranzmate", PackageManager.GET_ACTIVITIES);
+                    String uri = "moovit://directions?dest_lat=31.742462&dest_lon=34.985447&dest_name=Your destination&orig_lat=" + location.getLatitude() + "&orig_lon=" + location.getLongitude() + "&orig_name=Your current location&auto_run=true&partner_id=Lovely Favorites Places";
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(uri));
+                    startActivity(intent);
+                } catch (PackageManager.NameNotFoundException e) {
+                    String url = "http://app.appsflyer.com/com.tranzmate?pid=DL&c=Lovely Favorites Places";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }
+            }
+        });
+
+        gett = mView.findViewById(R.id.imageViewGett);
+        gett.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deepLinkIntoGett();
+            }
+        });
+
+        waze = mView.findViewById(R.id.imageViewWaze);
+        waze.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String url = "https://www.waze.com/ul?ll=31.742462%2C34.985447&navigate=yes&zoom=17";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
+                } catch (ActivityNotFoundException ex) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze"));
+                    startActivity(intent);
+                }
+            }
+        });
         return mView;
     }
 
@@ -284,6 +332,31 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         marker.draw(canvas);
 
         return bitmap;
+    }
+
+    private void deepLinkIntoGett() {
+        if (isPackageInstalled(getContext(), "com.gettaxi.android")) {
+            openLink((getActivity()), "gett://order?pickup=my_location&dropoff_latitude=31.742462&dropoff_longitude=34.985447&product_id=0c1202f8-6c43-4330-9d8a-3b4fa66505fd");
+        } else {
+            openLink(getActivity(), "https://play.google.com/store/apps/details?id=" + "com.gettaxi.android");
+        }
+    }
+
+    private static void openLink(Activity activity, String link) {
+        Intent playStoreIntent = new Intent(Intent.ACTION_VIEW);
+        playStoreIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        playStoreIntent.setData(Uri.parse(link));
+        activity.startActivity(playStoreIntent);
+    }
+
+    private static boolean isPackageInstalled(Context context, String packageId) {
+        PackageManager pm = context.getPackageManager();
+        try {
+            pm.getPackageInfo(packageId, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        return false;
     }
 
 }
