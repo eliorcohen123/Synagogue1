@@ -76,7 +76,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 try {
                     PackageManager pm = getActivity().getPackageManager();
                     pm.getPackageInfo("com.tranzmate", PackageManager.GET_ACTIVITIES);
-                    String uri = "moovit://directions?dest_lat=31.742462&dest_lon=34.985447&dest_name=Your destination&orig_lat=" + location.getLatitude() + "&orig_lon=" + location.getLongitude() + "&orig_name=Your current location&auto_run=true&partner_id=Lovely Favorites Places";
+                    String uri = "moovit://directions?dest_lat=31.742462&dest_lon=34.985447&dest_name=בית הכנסת נווה צדק&orig_lat=" + location.getLatitude() + "&orig_lon=" + location.getLongitude() + "&orig_name=מיקומך הנוכחי&auto_run=true&partner_id=Lovely Favorites Places";
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(uri));
                     startActivity(intent);
