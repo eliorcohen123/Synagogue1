@@ -25,6 +25,7 @@ public class MyReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
         final int NOTIFY_ID = 1; // ID of notification
         String id = "1"; // default_channel_id
         String title = "מתפלל"; // Default Channel
@@ -81,7 +82,6 @@ public class MyReceiver extends BroadcastReceiver {
         calendar.add(Calendar.MINUTE, 1440);
         Date date = calendar.getTime();
         alarmManagerSnooze.set(AlarmManager.RTC_WAKEUP, date.getTime(), pendingIntentSnooze);
-
     }
 
 }
