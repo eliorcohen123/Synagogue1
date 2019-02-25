@@ -196,10 +196,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     if (location != null) {
                         TotalModel info = new TotalModel();
                         double distanceMe;
-                        android.location.Location locationA = new android.location.Location("Point A");
+                        Location locationA = new Location("Point A");
                         locationA.setLatitude(31.742462);
                         locationA.setLongitude(34.985447);
-                        android.location.Location locationB = new Location("Point B");
+                        Location locationB = new Location("Point B");
                         locationB.setLatitude(location.getLatitude());
                         locationB.setLongitude(location.getLongitude());
                         distanceMe = locationA.distanceTo(locationB) / 1000;
