@@ -107,6 +107,11 @@ public class MyAlarm extends AppCompatActivity {
                 PackageManager pm = getPackageManager();
                 pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
+                SharedPreferences.Editor editor = getSharedPreferences("elior", MODE_PRIVATE).edit();
+                editor.putInt("idName", 0);
+                editor.putInt("idNum", 0);
+                editor.apply();
+
                 Intent alarmIntent = new Intent(MyAlarm.this, MyReceiver.class); // AlarmReceiver1 = broadcast receiver
                 pendingIntent = PendingIntent.getBroadcast(MyAlarm.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -132,7 +137,7 @@ public class MyAlarm extends AppCompatActivity {
                 PackageManager pm2 = getPackageManager();
                 pm2.setComponentEnabledSetting(receiver2, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
-                Toast.makeText(MyAlarm.this, "ההתראה שלך בוטלה.\nיש להתעלם מהמספר הרשום ב'שעת התזכורת' לאחר לחיצה על כפתור זה.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MyAlarm.this, "ההתראה שלך בוטלה.", Toast.LENGTH_SHORT).show();
 
                 finish();
                 startActivity(getIntent());
