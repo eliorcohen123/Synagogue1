@@ -60,43 +60,51 @@ public class MyAlarm extends AppCompatActivity {
         okAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int myHourMy = Integer.parseInt(myHour.getText().toString());
-                int myMinuteMy = Integer.parseInt(myMinute.getText().toString());
+                if (myHour.getText().toString().isEmpty() && myMinute.getText().toString().isEmpty()) {
+                    Toast.makeText(MyAlarm.this, "נא הקלד שעה ודקה.", Toast.LENGTH_LONG).show();
+                } else if (myHour.getText().toString().isEmpty()) {
+                    Toast.makeText(MyAlarm.this, "נא הקלד שעה.", Toast.LENGTH_LONG).show();
+                } else if (myMinute.getText().toString().isEmpty()) {
+                    Toast.makeText(MyAlarm.this, "נא הקלד דקה.", Toast.LENGTH_LONG).show();
+                } else {
+                    int myHourMy = Integer.parseInt(myHour.getText().toString());
+                    int myMinuteMy = Integer.parseInt(myMinute.getText().toString());
 
-                SharedPreferences.Editor editor = getSharedPreferences("elior", MODE_PRIVATE).edit();
-                editor.putInt("idName", myHourMy);
-                editor.putInt("idNum", myMinuteMy);
-                editor.apply();
+                    SharedPreferences.Editor editor = getSharedPreferences("elior", MODE_PRIVATE).edit();
+                    editor.putInt("idName", myHourMy);
+                    editor.putInt("idNum", myMinuteMy);
+                    editor.apply();
 
-                ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiver.class);
-                PackageManager pm = getPackageManager();
+                    ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiver.class);
+                    PackageManager pm = getPackageManager();
 
-                pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                    pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 
-                Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
 
-                Intent alarmIntent = new Intent(MyAlarm.this, MyReceiver.class); // AlarmReceiver1 = broadcast receiver
-                pendingIntent = PendingIntent.getBroadcast(MyAlarm.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
+                    Intent alarmIntent = new Intent(MyAlarm.this, MyReceiver.class); // AlarmReceiver1 = broadcast receiver
+                    pendingIntent = PendingIntent.getBroadcast(MyAlarm.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
-                Calendar alarmStartTime = Calendar.getInstance();
-                Calendar now = Calendar.getInstance();
-                alarmStartTime.set(Calendar.HOUR_OF_DAY, myHourMy);
-                alarmStartTime.set(Calendar.MINUTE, myMinuteMy);
-                alarmStartTime.set(Calendar.SECOND, 0);
-                if (now.after(alarmStartTime)) {
-                    alarmStartTime.add(Calendar.DATE, 1);
+                    Calendar alarmStartTime = Calendar.getInstance();
+                    Calendar now = Calendar.getInstance();
+                    alarmStartTime.set(Calendar.HOUR_OF_DAY, myHourMy);
+                    alarmStartTime.set(Calendar.MINUTE, myMinuteMy);
+                    alarmStartTime.set(Calendar.SECOND, 0);
+                    if (now.after(alarmStartTime)) {
+                        alarmStartTime.add(Calendar.DATE, 1);
+                    }
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+                    ComponentName receiver2 = new ComponentName(MyAlarm.this, MyReceiver.class);
+                    PackageManager pm2 = getPackageManager();
+
+                    pm2.setComponentEnabledSetting(receiver2, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+
+                    finish();
+                    startActivity(getIntent());
                 }
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
-                ComponentName receiver2 = new ComponentName(MyAlarm.this, MyReceiver.class);
-                PackageManager pm2 = getPackageManager();
-
-                pm2.setComponentEnabledSetting(receiver2, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-
-                finish();
-                startActivity(getIntent());
             }
         });
 
