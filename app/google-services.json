@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "451670612448",
+    "firebase_url": "https://synagogue-4ab60.firebaseio.com",
+    "project_id": "synagogue-4ab60",
+    "storage_bucket": "synagogue-4ab60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451670612448:android:77ca2c5ed74078a2",
+        "android_client_info": {
+          "package_name": "com.eliorcohen1.synagogue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451670612448-hhs7el6b0gf84pfif3okrj7d5256qjcr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpPcGswuzGEc-FPurnjDgYDlTHCFSDiak"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
