@@ -26,6 +26,11 @@
                 android:title="כל הזכויות שמורות"></item>
 
             <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_person_outline_black_24dp"
+                android:title="התנתק מהמשתמש"></item>
+
+            <item
                 android:id="@+id/exit"
                 android:icon="@drawable/ic_exit_to_app_lightblue_24dp"
                 android:title="יציאה מהאפליקציה"></item>

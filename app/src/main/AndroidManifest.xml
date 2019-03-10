@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eliorcohen1.synagogue"
-    android:versionCode="25"
+    android:versionCode="27"
     android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,7 +26,7 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme2">
         <activity
-            android:name=".StartPackage.WelcomeActivity"
+            android:name=".StartPackage.singin_activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +54,15 @@
         <activity android:name="com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.MyAlarm" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Events" />
-        <activity android:name=".StartPackage.WelcomeActivityTutorial" />
+        <activity
+            android:name=".StartPackage.WelcomeActivityTutorial"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StartPackage.WelcomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StartPackage.singup_activity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".StartPackage.SplashActivity"
             android:label="@string/title_activity_welcome" />

@@ -54,6 +54,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener {
@@ -72,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private static final String TAG = "MyLocation";
     private GoogleApiClient mGoogleApiClient;
     private DrawerLayout drawer;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,6 +167,16 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 startActivity(intent);
             }
         });
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListner = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if (firebaseAuth.getCurrentUser() == null) {
+                    startActivity(new Intent(MainActivity.this, singin_activity.class));
+                }
+            }
+        };
 
         drawer = findViewById(R.id.drawer_layout);
 
@@ -306,6 +319,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         } else if (id == R.id.credits) {
             Intent intentCredits = new Intent(MainActivity.this, MyCredits.class);
             startActivity(intentCredits);
+        } else if (id == R.id.logout) {
+            mAuth.signOut();
         } else if (id == R.id.exit) {
             ActivityCompat.finishAffinity(this);
         }
@@ -517,6 +532,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     public void onStart() {
         super.onStart();
+        mAuth.addAuthStateListener(mAuthListner);
         if (!checkPermissions()) {
             Log.i(TAG, "Inside onStart function; requesting permission when permission is not available");
             requestPermissions();

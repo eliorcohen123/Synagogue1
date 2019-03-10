@@ -17,4 +17,11 @@
     <string name="slide_3_desc">Make your diet chart by the help of health experts</string>
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
+    <string name="default_notification_channel_id">2</string>
+    <string name="email_id">אימייל</string>
+    <string name="password">סיסמא</string>
+    <string name="login">התחבר</string>
+    <string name="failed">האימות נכשל</string>
+    <string name="image">image</string>
+    <string name="create_a_new_account">צור משתמש חדש</string>
 </resources>
