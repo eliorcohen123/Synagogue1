@@ -4,9 +4,9 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.eliorcohen1.synagogue"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 28
-        versionCode 28
+        versionCode 29
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -37,6 +37,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.7'
     implementation 'com.google.firebase:firebase-messaging:17.4.0'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.facebook.android:facebook-android-sdk:4.41.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

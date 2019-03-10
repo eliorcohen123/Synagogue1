@@ -24,4 +24,6 @@
     <string name="failed">האימות נכשל</string>
     <string name="image">image</string>
     <string name="create_a_new_account">צור משתמש חדש</string>
+    <string name="facebook_app_id">293546268008808</string>
+    <string name="fb_login_protocol_scheme">fb293546268008808</string>
 </resources>

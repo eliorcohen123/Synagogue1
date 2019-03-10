@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eliorcohen1.synagogue"
-    android:versionCode="28"
+    android:versionCode="29"
     android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,10 +23,10 @@
         android:icon="@drawable/lamp"
         android:label="@string/app_name"
         android:roundIcon="@drawable/lamp"
-        android:supportsRtl="false"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme2">
         <activity
-            android:name=".StartPackage.singin_activity"
+            android:name=".StartPackage.SignIn_activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,11 +61,25 @@
             android:name=".StartPackage.WelcomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StartPackage.singup_activity"
+            android:name=".StartPackage.SignUp_activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".StartPackage.SplashActivity"
             android:label="@string/title_activity_welcome" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider293546268008808"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
