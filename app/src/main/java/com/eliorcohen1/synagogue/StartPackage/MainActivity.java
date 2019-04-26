@@ -202,7 +202,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         buildGoogleApiClient();
 
