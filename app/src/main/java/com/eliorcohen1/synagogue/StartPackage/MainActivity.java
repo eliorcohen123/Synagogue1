@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private GoogleApiClient mGoogleApiClient;
     private DrawerLayout drawer;
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListner;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         });
 
         mAuth = FirebaseAuth.getInstance();
-        mAuthListner = new FirebaseAuth.AuthStateListener() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() == null) {
@@ -533,7 +533,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     public void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListner);
+        mAuth.addAuthStateListener(mAuthListener);
         if (!checkPermissions()) {
             Log.i(TAG, "Inside onStart function; requesting permission when permission is not available");
             requestPermissions();

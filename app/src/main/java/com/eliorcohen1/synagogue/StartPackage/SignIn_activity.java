@@ -48,12 +48,12 @@ public class SignIn_activity extends AppCompatActivity {
     SignInButton buttonSignIn;
     private final static int RC_SIGN_IN = 123;
     GoogleSignInClient mGoogleSignInClient;
-    FirebaseAuth.AuthStateListener mAuthListner;
+    FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListner);
+        mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
@@ -162,7 +162,7 @@ public class SignIn_activity extends AppCompatActivity {
 
         });
 
-        mAuthListner = new FirebaseAuth.AuthStateListener() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null) {
