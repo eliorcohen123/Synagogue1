@@ -44,11 +44,10 @@ public class SignIn_activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     private CallbackManager mCallbackManager;
-
-    SignInButton buttonSignIn;
+    private SignInButton buttonSignIn;
     private final static int RC_SIGN_IN = 123;
-    GoogleSignInClient mGoogleSignInClient;
-    FirebaseAuth.AuthStateListener mAuthListener;
+    private GoogleSignInClient mGoogleSignInClient;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onStart() {
