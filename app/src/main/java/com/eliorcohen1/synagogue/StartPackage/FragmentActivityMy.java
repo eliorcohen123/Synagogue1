@@ -13,7 +13,7 @@ import com.eliorcohen1.synagogue.R;
 
 public class FragmentActivityMy extends AppCompatActivity {
 
-    Button backMap;
+    private Button backMap;
     private CoordinatorLayout coordinatorLayout;
 
     @Override
