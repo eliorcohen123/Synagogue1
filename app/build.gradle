@@ -6,7 +6,7 @@ android {
         applicationId "com.eliorcohen1.synagogue"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 33
+        versionCode 35
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -31,7 +31,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'com.google.maps:google-maps-services:0.2.5'
-    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'android.arch.navigation:navigation-ui:1.0.0'
     implementation "com.github.JakeWharton:ViewPagerIndicator:2.4.1"
     implementation 'com.google.firebase:firebase-core:16.0.8'
