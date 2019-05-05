@@ -24,6 +24,8 @@
     <string name="failed">האימות נכשל</string>
     <string name="image">image</string>
     <string name="create_a_new_account">צור משתמש חדש</string>
-    <string name="facebook_app_id">FACEBOOK_APP_ID</string>
-    <string name="fb_login_protocol_scheme">FB_LOGIN</string>
+    <string name="facebook_app_id">API_KEY</string>
+    <string name="fb_login_protocol_scheme">API_KEY</string>
+    <string name="item_removed_message">Please click on one of the markers to use the info you want…</string>
+    <string name="undo">OK</string>
 </resources>
