@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.StartPackage.MainActivity;
-import com.eliorcohen1.synagogue.StartPackage.MyReceiver;
+import com.eliorcohen1.synagogue.StartPackage.MyReceiverAlarm;
 
 import java.util.Calendar;
 
@@ -52,7 +52,7 @@ public class MyAlarm extends AppCompatActivity {
         myHour.setFilters(new InputFilter[]{new InputFilterMinMax("0", "24")});
         myMinute.setFilters(new InputFilter[]{new InputFilterMinMax("0", "60")});
 
-        SharedPreferences prefs = getSharedPreferences("elior", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("textTime", MODE_PRIVATE);
         int idName = prefs.getInt("idName", 0);
         int idNum = prefs.getInt("idNum", 0);
         myText.setText(String.valueOf(idName + ":" + String.valueOf(idNum)));
@@ -75,14 +75,14 @@ public class MyAlarm extends AppCompatActivity {
                     editor.putInt("idNum", myMinuteMy);
                     editor.apply();
 
-                    ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiver.class);
+                    ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
                     PackageManager pm = getPackageManager();
 
                     pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 
                     Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
 
-                    Intent alarmIntent = new Intent(MyAlarm.this, MyReceiver.class); // AlarmReceiver1 = broadcast receiver
+                    Intent alarmIntent = new Intent(MyAlarm.this, MyReceiverAlarm.class); // AlarmReceiver1 = broadcast receiver
                     pendingIntent = PendingIntent.getBroadcast(MyAlarm.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                     alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                     alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
@@ -97,7 +97,7 @@ public class MyAlarm extends AppCompatActivity {
                     }
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
-                    ComponentName receiver2 = new ComponentName(MyAlarm.this, MyReceiver.class);
+                    ComponentName receiver2 = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
                     PackageManager pm2 = getPackageManager();
 
                     pm2.setComponentEnabledSetting(receiver2, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
@@ -111,16 +111,16 @@ public class MyAlarm extends AppCompatActivity {
         cancelAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiver.class);
+                ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
                 PackageManager pm = getPackageManager();
                 pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
-                SharedPreferences.Editor editor = getSharedPreferences("elior", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
                 editor.putInt("idName", 0);
                 editor.putInt("idNum", 0);
                 editor.apply();
 
-                Intent alarmIntent = new Intent(MyAlarm.this, MyReceiver.class); // AlarmReceiver1 = broadcast receiver
+                Intent alarmIntent = new Intent(MyAlarm.this, MyReceiverAlarm.class); // AlarmReceiver1 = broadcast receiver
                 pendingIntent = PendingIntent.getBroadcast(MyAlarm.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                 alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
@@ -141,7 +141,7 @@ public class MyAlarm extends AppCompatActivity {
                     notificationManager.deleteNotificationChannel(id);
                 }
 
-                ComponentName receiver2 = new ComponentName(MyAlarm.this, MyReceiver.class);
+                ComponentName receiver2 = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
                 PackageManager pm2 = getPackageManager();
                 pm2.setComponentEnabledSetting(receiver2, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 

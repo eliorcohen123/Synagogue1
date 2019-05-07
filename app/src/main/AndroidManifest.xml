@@ -116,7 +116,7 @@
             android:required="false" />
 
         <receiver
-            android:name="com.eliorcohen1.synagogue.StartPackage.MyReceiver"
+            android:name="com.eliorcohen1.synagogue.StartPackage.MyReceiverAlarm"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />

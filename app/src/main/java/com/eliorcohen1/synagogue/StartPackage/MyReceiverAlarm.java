@@ -17,7 +17,7 @@ import com.eliorcohen1.synagogue.R;
 import java.util.Calendar;
 import java.util.Date;
 
-public class MyReceiver extends BroadcastReceiver {
+public class MyReceiverAlarm extends BroadcastReceiver {
 
     private NotificationManager notificationManager;
     private static PendingIntent pendingIntentSnooze;
@@ -75,7 +75,7 @@ public class MyReceiver extends BroadcastReceiver {
         Notification notification = builder.build();
         notificationManager.notify(NOTIFY_ID, notification);
 
-        Intent intentSnooze = new Intent(context, MyReceiver.class);
+        Intent intentSnooze = new Intent(context, MyReceiverAlarm.class);
         pendingIntentSnooze = PendingIntent.getBroadcast(context, 1, intentSnooze, 0);
         alarmManagerSnooze = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Calendar calendar = Calendar.getInstance();
