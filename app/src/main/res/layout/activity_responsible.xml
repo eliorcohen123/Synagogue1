@@ -64,11 +64,16 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/line" />
 
-            <ListView
-                android:id="@+id/listResponsible"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:layout_marginTop="7dp" />
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listResponsible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="match_parent"

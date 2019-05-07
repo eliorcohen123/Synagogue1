@@ -57,25 +57,23 @@
                     android:textSize="30sp" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/etSearch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:background="@color/colorLightBlue"
-                android:textColor="@color/red" />
-
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/line" />
 
-            <ListView
-                android:id="@+id/listWorshipers"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="7dp" />
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/listWorshipers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <ImageView
                 android:layout_width="match_parent"

@@ -28,4 +28,5 @@
     <string name="fb_login_protocol_scheme">API_KEY</string>
     <string name="item_removed_message">בבקשה לחץ על הסמן במפה על מנת לקבל מידע…</string>
     <string name="undo">בסדר</string>
+    <string name="hint">חפש מתפלל ברשימה…</string>
 </resources>
