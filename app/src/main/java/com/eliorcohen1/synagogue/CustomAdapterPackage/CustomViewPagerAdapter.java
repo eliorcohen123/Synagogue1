@@ -19,7 +19,6 @@ public class CustomViewPagerAdapter extends PagerAdapter {
     private LayoutInflater inflater;
     private Context context;
 
-
     public CustomViewPagerAdapter(Context context, ArrayList<TotalModel> imageModelArrayList) {
         this.context = context;
         this.imageModelArrayList = imageModelArrayList;
