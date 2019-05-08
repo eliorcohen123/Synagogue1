@@ -70,7 +70,7 @@ public class MyAlarm extends AppCompatActivity {
                     int myHourMy = Integer.parseInt(myHour.getText().toString());
                     int myMinuteMy = Integer.parseInt(myMinute.getText().toString());
 
-                    SharedPreferences.Editor editor = getSharedPreferences("elior", MODE_PRIVATE).edit();
+                    SharedPreferences.Editor editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
                     editor.putInt("idName", myHourMy);
                     editor.putInt("idNum", myMinuteMy);
                     editor.apply();
