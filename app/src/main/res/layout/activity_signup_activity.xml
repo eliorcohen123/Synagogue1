@@ -18,6 +18,7 @@
             android:id="@+id/input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:hint="אימייל"
             android:inputType="textEmailAddress" />
 
@@ -26,6 +27,7 @@
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:hint="סיסמא"
             android:inputType="textPassword" />
 
