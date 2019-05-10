@@ -42,8 +42,6 @@ public class Worshipers extends AppCompatActivity {
         rv = findViewById(R.id.listWorshipers);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        arrayList = new ArrayList<>();
-        adapter = new AdapterWorshipers(arrayList, this);
 
         backWorshipers.setOnClickListener(new View.OnClickListener() {
             @Override

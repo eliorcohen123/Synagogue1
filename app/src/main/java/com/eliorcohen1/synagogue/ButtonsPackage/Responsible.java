@@ -36,8 +36,6 @@ public class Responsible extends AppCompatActivity {
         rv = findViewById(R.id.listResponsible);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        arrayList = new ArrayList<>();
-        adapter = new AdapterResponsible(arrayList, this);
 
         backResponsible.setOnClickListener(new View.OnClickListener() {
             @Override
