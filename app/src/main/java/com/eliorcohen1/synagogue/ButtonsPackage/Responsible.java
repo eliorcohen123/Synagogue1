@@ -56,4 +56,5 @@ public class Responsible extends AppCompatActivity {
         adapter = new AdapterResponsible(arrayList, this);
         rv.setAdapter(adapter);
     }
+
 }
