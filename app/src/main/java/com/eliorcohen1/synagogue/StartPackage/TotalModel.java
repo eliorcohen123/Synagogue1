@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class TotalModel implements Serializable {
 
-    public String name;
-    public String hyphen;
-    public String phone;
+    private String name;
+    private String hyphen;
+    private String phone;
     private String distance;
     private String imageView;
     private int image_drawable;
