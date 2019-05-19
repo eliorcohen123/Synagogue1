@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/kodesh"
+    android:background="@drawable/background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -33,9 +33,9 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="210dp"
-            android:background="@drawable/custom_button2"
+            android:background="@drawable/custom_button"
             android:text="חזור לתפריט הראשי"
-            android:textColor="@color/colorLightBlue" />
+            android:textColor="@color/white" />
 
         <TextView
             android:layout_width="wrap_content"

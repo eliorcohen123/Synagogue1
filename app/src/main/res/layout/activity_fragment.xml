@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/kodesh"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".StartPackage.FragmentActivityMy">
 
@@ -35,6 +35,21 @@
                 android:minHeight="?attr/actionBarSize"
                 android:theme="@style/AppTheme.AppBarOverlay" />
         </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/backMap"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_arrow_back_white_24dp"
+                android:gravity="center" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,29 +95,6 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_marginBottom="2dp"
-                    android:background="@color/colorLightBlueDark"
-                    android:gravity="center"
-                    android:text=" התראה: לא בכל המכשירים עובד המיקום הנוכחי והניווט "
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@color/navy"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginBottom="2dp"
                     android:background="@color/colorLightBlue"
                     android:gravity="center"
                     android:text=" כתובת: בית שמש, דוד רזיאל 5 "
@@ -123,15 +115,6 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/backMap"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/custom_button2"
-                    android:text="חזור לתפריט הראשי"
-                    android:textColor="@color/navy" />
 
                 <TextView
                     android:layout_width="wrap_content"

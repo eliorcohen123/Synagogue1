@@ -31,13 +31,12 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
 
-        private TextView textName, textHyphen, textPhone;
+        private TextView textName, textPhone;
         private RelativeLayout relativeLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.name);
-            textHyphen = itemView.findViewById(R.id.hyphen);
             textPhone = itemView.findViewById(R.id.phone);
             relativeLayout = itemView.findViewById(R.id.relative1);
             itemView.setOnCreateContextMenuListener(this);
@@ -91,7 +90,6 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final TotalModel listData = adapterListFiltered.get(position);
         holder.textName.setText(listData.getName());
-        holder.textHyphen.setText(listData.getHyphen());
         holder.textPhone.setText(listData.getPhone());
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override

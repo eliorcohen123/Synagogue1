@@ -50,9 +50,9 @@ public class Responsible extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         arrayList = new ArrayList<TotalModel>();
-        arrayList.add(new TotalModel("אבי קריאף", "|", "054-4807328"));
-        arrayList.add(new TotalModel("שלום נסים", "|", "052-9426607"));
-        arrayList.add(new TotalModel("מוטי כהן", "|", "054-4917147"));
+        arrayList.add(new TotalModel("אבי קריאף", "054-4807328"));
+        arrayList.add(new TotalModel("שלום נסים", "052-9426607"));
+        arrayList.add(new TotalModel("מוטי כהן", "054-4917147"));
         adapter = new AdapterResponsible(arrayList, this);
         rv.setAdapter(adapter);
     }

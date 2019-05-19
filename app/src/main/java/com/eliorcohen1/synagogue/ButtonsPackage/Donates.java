@@ -18,7 +18,7 @@ import com.eliorcohen1.synagogue.StartPackage.MainActivity;
 public class Donates extends AppCompatActivity {
 
     private Button backDonates;
-    private TextView phone;
+    private TextView phone, textWant;
     private View view;
 
     @Override
@@ -31,10 +31,13 @@ public class Donates extends AppCompatActivity {
 
         backDonates = findViewById(R.id.backDonates);
         phone = findViewById(R.id.phone);
+        textWant = findViewById(R.id.textWant);
 
         SpannableString str = new SpannableString("054-4917147");
-        str.setSpan(new BackgroundColorSpan(Color.RED), 0, 11, 0);
+        str.setSpan(new BackgroundColorSpan(Color.WHITE), 0, 11, 0);
         phone.setText(str);
+
+        textWant.setText("לאחר ההעברה נא לעדכן בהודעה את הגזבר\n - \nמוטי כהן");
 
         backDonates.setOnClickListener(new View.OnClickListener() {
             @Override

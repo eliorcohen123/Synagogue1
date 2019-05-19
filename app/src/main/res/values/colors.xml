@@ -6,7 +6,8 @@
     <color name="navy">#000080</color>
     <color name="brown">#231709</color>
     <color name="black">#040406</color>
-    <color name="white">#F5F5F0</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorBrown">#FFEA54</color>
     <color name="red">#610C04</color>
     <color name="lightBrown">#9A7B4F</color>
     <color name="green">#7CFC00</color>

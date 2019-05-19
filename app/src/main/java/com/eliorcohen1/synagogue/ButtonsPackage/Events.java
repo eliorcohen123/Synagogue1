@@ -51,10 +51,10 @@ public class Events extends AppCompatActivity {
 
         init();
 
-        textWant.setText("על מנת לקבוע אירוע/אזכרה יש ליצור קשר עם האחראי\n - \n שלום נסים");
+        textWant.setText("על מנת לקבוע אירוע/אזכרה יש ליצור קשר עם האחראי\n - \nשלום נסים");
 
         SpannableString str = new SpannableString("052-9426607");
-        str.setSpan(new BackgroundColorSpan(Color.RED), 0, 11, 0);
+        str.setSpan(new BackgroundColorSpan(Color.WHITE), 0, 11, 0);
         phone.setText(str);
 
         backDonates.setOnClickListener(new View.OnClickListener() {

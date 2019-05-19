@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.eliorcohen1.synagogue"
-    android:versionCode="39"
+    android:versionCode="40"
     android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -24,8 +25,9 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@drawable/lamp"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme2">
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme2"
+        tools:replace="android:supportsRtl">
         <activity
             android:name=".StartPackage.SignIn_activity"
             android:screenOrientation="portrait">

@@ -18,7 +18,7 @@ public class MyCredits extends AppCompatActivity {
         setContentView(R.layout.activity_credits);
 
         textMe = findViewById(R.id.textView25);
-        textMe.setText("כל הזכויות שמורות למפתח האפליקציה \n - \n אליאור כהן \n\n טלפון: \n 050-3332696 \n\n אימייל: \n elior123456123123@gmail.com");
+        textMe.setText("כל הזכויות שמורות למפתח האפליקציה \n - \n אליאור כהן \n\n טלפון: \n 050-3332696 \n\n אימייל: \n eliorjobcohen@gmail.com");
 
         // Button are back to the previous activity
         Button button1 = findViewById(R.id.button21);

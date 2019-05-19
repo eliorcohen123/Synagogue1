@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/kodesh"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".ButtonsPackage.Donates">
 
@@ -28,6 +28,21 @@
                 android:minHeight="?attr/actionBarSize"
                 android:theme="@style/AppTheme.AppBarOverlay" />
         </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/backDonates"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_arrow_back_white_24dp"
+                android:gravity="center" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:background="@color/navy"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -86,15 +101,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
-                android:background="@color/lightBrown"
-                android:gravity="right"
+                android:background="@color/white"
+                android:gravity="end"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
-                    android:src="@drawable/line" />
+                    android:src="@drawable/line2" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -153,18 +168,18 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
-                android:background="@color/brown"
+                android:background="@drawable/timg"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textWant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text=" לאחר ההעברה נא לעדכן בהודעה את הגזבר-מוטי כהן "
                     android:textColor="@color/colorLightBlue"
                     android:textSize="15sp" />
 
@@ -177,7 +192,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorLightBlueDark"
                     android:textSize="15sp" />
             </LinearLayout>
 
@@ -187,16 +202,6 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/backDonates"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="65dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/custom_button2"
-                    android:text="חזור לתפריט הראשי"
-                    android:textColor="@color/navy" />
 
                 <TextView
                     android:layout_width="wrap_content"

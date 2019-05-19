@@ -4,37 +4,34 @@
 
     <item
         android:id="@+id/options"
-        android:icon="@drawable/ic_dehaze_red_24dp"
+        android:icon="@drawable/ic_dehaze_lightblue_24dp"
         android:title=""
         app:showAsAction="ifRoom">
-
         <menu>
-
             <item
                 android:id="@+id/tutorial"
                 android:icon="@drawable/ic_book_black_24dp"
-                android:title="הדרכה"></item>
+                android:title="הדרכה" />
 
             <item
                 android:id="@+id/shareIntent"
                 android:icon="@drawable/ic_share_lightblue_24dp"
-                android:title="שתף את האפליקציה"></item>
+                android:title="שתף את האפליקציה" />
 
             <item
                 android:id="@+id/credits"
                 android:icon="@drawable/ic_copyright_lightblue_24dp"
-                android:title="כל הזכויות שמורות"></item>
+                android:title="כל הזכויות שמורות" />
 
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/ic_person_outline_black_24dp"
-                android:title="התנתק מהמשתמש"></item>
+                android:title="התנתק מהמשתמש" />
 
             <item
                 android:id="@+id/exit"
                 android:icon="@drawable/ic_exit_to_app_lightblue_24dp"
-                android:title="יציאה מהאפליקציה"></item>
+                android:title="יציאה מהאפליקציה" />
         </menu>
     </item>
-
 </menu>

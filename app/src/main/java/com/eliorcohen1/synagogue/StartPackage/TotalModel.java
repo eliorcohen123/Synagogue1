@@ -5,15 +5,13 @@ import java.io.Serializable;
 public class TotalModel implements Serializable {
 
     private String name;
-    private String hyphen;
     private String phone;
     private String distance;
     private String imageView;
     private int image_drawable;
 
-    public TotalModel(String name, String hyphen, String phone) {
+    public TotalModel(String name, String phone) {
         this.name = name;
-        this.hyphen = hyphen;
         this.phone = phone;
     }
 
@@ -27,14 +25,6 @@ public class TotalModel implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getHyphen() {
-        return hyphen;
-    }
-
-    public void setHyphen(String hyphen) {
-        this.hyphen = hyphen;
     }
 
     public String getPhone() {
