@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "451670612448-47qn2u4n7t7hmp7s1lhtihef50r3h1j5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eliorcohen1.synagogue",
+            "certificate_hash": "761d81e72981310e1eca8cf6ec7a1dc2851d9c91"
+          }
+        },
+        {
+          "client_id": "451670612448-u9dtn97kpbon70b61fj0thd3np7ncv3o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eliorcohen1.synagogue",
+            "certificate_hash": "fe7d36b396f100f29db8cb775bd8d127816b8a1b"
+          }
+        },
+        {
           "client_id": "451670612448-6jj4smdmuhgoojrin7005a9rjklqhsfr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -33,20 +49,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "451670612448-hhs7el6b0gf84pfif3okrj7d5256qjcr.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
