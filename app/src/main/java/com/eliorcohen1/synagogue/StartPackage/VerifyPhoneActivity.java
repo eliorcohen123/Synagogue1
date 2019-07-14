@@ -35,11 +35,18 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        initUI();
+        doTasks();
+    }
+
+    private void initUI() {
         progressBar = findViewById(R.id.progressbar);
         editText = findViewById(R.id.editTextCode);
+    }
 
-        String phonenumber = getIntent().getStringExtra("phonenumber");
-        sendVerificationCode(phonenumber);
+    private void doTasks() {
+        String phoneNumber = getIntent().getStringExtra("phoneNumber");
+        sendVerificationCode(phoneNumber);
 
         findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
             @Override

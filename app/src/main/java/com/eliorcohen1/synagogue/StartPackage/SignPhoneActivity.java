@@ -21,11 +21,18 @@ public class SignPhoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_phone);
 
-        spinner = findViewById(R.id.spinnerCountries);
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
+        initUI();
+        doTasks();
+    }
 
+    private void initUI() {
         editText = findViewById(R.id.editTextPhone);
 
+        spinner = findViewById(R.id.spinnerCountries);
+        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
+    }
+
+    private void doTasks() {
         findViewById(R.id.buttonContinue).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +45,7 @@ public class SignPhoneActivity extends AppCompatActivity {
                 }
                 String phoneNumber = "+" + code + number;
                 Intent intent = new Intent(SignPhoneActivity.this, VerifyPhoneActivity.class);
-                intent.putExtra("phonenumber", phoneNumber);
+                intent.putExtra("phoneNumber", phoneNumber);
                 startActivity(intent);
             }
         });

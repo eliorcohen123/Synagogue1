@@ -22,5 +22,7 @@
     <string name="undo">בסדר</string>
     <string name="hint">חפש מתפלל ברשימה…</string>
     <string name="CodeWait1">המתן לקוד שנשלח אליך…</string>
-    <string name="CodeWait2">שלחתי לך קוד, זה יזוהה באופן אוטומטי, אבל אם זה לא זוהה אתה יכול לרשום את הקוד מתחת באופן ידני…</string>
+    <string name="CodeWait2">נשלח אליך קוד, הקוד יזוהה באופן אוטומטי, אם הקוד לא זוהה אתה יכול לרשום את הקוד באופן ידני…</string>
+    <string name="codeWrite1">הקלד את מס\' הנייד שלך…</string>
+    <string name="codeWrite2">…הכנס את מס\' הנייד שלך</string>
 </resources>
