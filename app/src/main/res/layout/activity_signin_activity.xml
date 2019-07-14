@@ -80,6 +80,15 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:text="התחבר עם פייסבוק" />
+
+        <Button
+            android:id="@+id/btnPhone"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/bg_slider_screen2"
+            android:text="SMS"
+            android:textColor="@color/colorLightBlue" />
     </LinearLayout>
 
     <ProgressBar

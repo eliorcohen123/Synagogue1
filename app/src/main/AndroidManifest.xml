@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eliorcohen1.synagogue"
-    android:versionCode="40"
+    android:versionCode="41"
     android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -66,6 +66,12 @@
         <activity android:name="com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.MyAlarm" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Events" />
+        <activity
+            android:name=".StartPackage.VerifyPhoneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StartPackage.SignPhoneActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".StartPackage.WelcomeActivityTutorial"
             android:screenOrientation="portrait" />

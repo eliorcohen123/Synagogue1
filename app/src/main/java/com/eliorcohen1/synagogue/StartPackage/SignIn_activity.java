@@ -48,7 +48,7 @@ public class SignIn_activity extends AppCompatActivity {
     private final static int RC_SIGN_IN = 123;
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private Button btnLogin;
+    private Button btnLogin, btnPhone;
     private TextView btnSignIn;
 
     @Override
@@ -107,6 +107,7 @@ public class SignIn_activity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         btnSignIn = findViewById(R.id.sign_in_button);
         buttonSignIn = findViewById(R.id.sign_in_google);
+        btnPhone = findViewById(R.id.btnPhone);
 
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +120,14 @@ public class SignIn_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignIn_activity.this, SignUp_activity.class));
+            }
+        });
+
+        btnPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignIn_activity.this, SignPhoneActivity.class);
+                startActivity(intent);
             }
         });
 
