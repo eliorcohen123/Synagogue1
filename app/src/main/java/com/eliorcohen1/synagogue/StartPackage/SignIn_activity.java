@@ -48,6 +48,8 @@ public class SignIn_activity extends AppCompatActivity {
     private final static int RC_SIGN_IN = 123;
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private Button btnLogin;
+    private TextView btnSignIn;
 
     @Override
     protected void onStart() {
@@ -101,9 +103,9 @@ public class SignIn_activity extends AppCompatActivity {
 
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
-        Button ahlogin = findViewById(R.id.ah_login);
+        btnLogin = findViewById(R.id.ah_login);
         progressBar = findViewById(R.id.progressBar);
-        TextView btnSignIn = findViewById(R.id.sign_in_button);
+        btnSignIn = findViewById(R.id.sign_in_button);
         buttonSignIn = findViewById(R.id.sign_in_google);
 
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +125,7 @@ public class SignIn_activity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         // Checking the email id and password is Empty
-        ahlogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = inputEmail.getText().toString();

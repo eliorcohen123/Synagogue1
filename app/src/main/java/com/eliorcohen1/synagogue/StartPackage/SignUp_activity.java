@@ -26,13 +26,15 @@ public class SignUp_activity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = "";
     private ProgressBar progressBar;
+    private Button myBtnSignUp;
+    private TextView btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_activity);
 
-        TextView btnSignUp = findViewById(R.id.login_page);
+        btnSignUp = findViewById(R.id.login_page);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,9 +49,9 @@ public class SignUp_activity extends AppCompatActivity {
         email_id = findViewById(R.id.input_email);
         progressBar = findViewById(R.id.progressBar);
         passwordcheck = findViewById(R.id.input_password);
-        Button ahsignup = findViewById(R.id.btn_signup);
+        myBtnSignUp = findViewById(R.id.btn_signup);
 
-        ahsignup.setOnClickListener(new View.OnClickListener() {
+        myBtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = email_id.getText().toString();
@@ -69,9 +71,7 @@ public class SignUp_activity extends AppCompatActivity {
                         .addOnCompleteListener(SignUp_activity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-
                                 progressBar.setVisibility(View.GONE);
-
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "createUserWithEmail:success");
