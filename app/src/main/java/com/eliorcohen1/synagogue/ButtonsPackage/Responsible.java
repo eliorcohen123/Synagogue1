@@ -28,6 +28,11 @@ public class Responsible extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_responsible);
 
+        initUI();
+        btnBack();
+    }
+
+    private void initUI() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -37,6 +42,10 @@ public class Responsible extends AppCompatActivity {
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
+        arrayList = new ArrayList<TotalModel>();
+    }
+
+    private void btnBack() {
         backResponsible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +58,6 @@ public class Responsible extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        arrayList = new ArrayList<TotalModel>();
         arrayList.add(new TotalModel("אבי קריאף", "054-4807328"));
         arrayList.add(new TotalModel("שלום נסים", "052-9426607"));
         arrayList.add(new TotalModel("מוטי כהן", "054-4917147"));

@@ -39,6 +39,13 @@ public class MyAlarm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
 
+        initUI();
+        tasks();
+        okAlarm();
+        cancelAlarm();
+    }
+
+    private void initUI() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,12 +58,24 @@ public class MyAlarm extends AppCompatActivity {
 
         myHour.setFilters(new InputFilter[]{new InputFilterMinMax("0", "24")});
         myMinute.setFilters(new InputFilter[]{new InputFilterMinMax("0", "60")});
+    }
 
+    private void tasks() {
         SharedPreferences prefs = getSharedPreferences("textTime", MODE_PRIVATE);
         int idName = prefs.getInt("idName", 0);
         int idNum = prefs.getInt("idNum", 0);
         myText.setText(String.valueOf(idName + ":" + String.valueOf(idNum)));
 
+        backAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyAlarm.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void okAlarm() {
         okAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +126,9 @@ public class MyAlarm extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void cancelAlarm() {
         cancelAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,16 +172,7 @@ public class MyAlarm extends AppCompatActivity {
                 startActivity(getIntent());
             }
         });
-
-        backAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MyAlarm.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
-
 
     private class InputFilterMinMax implements InputFilter {
 

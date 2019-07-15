@@ -34,6 +34,11 @@ public class Worshipers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_worshipers);
 
+        initUI();
+        btnBack();
+    }
+
+    private void initUI() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -43,6 +48,10 @@ public class Worshipers extends AppCompatActivity {
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
+        arrayList = new ArrayList<TotalModel>();
+    }
+
+    private void btnBack() {
         backWorshipers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +64,6 @@ public class Worshipers extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        arrayList = new ArrayList<TotalModel>();
         arrayList.add(new TotalModel("צבי נעמת", "052-8345360"));
         arrayList.add(new TotalModel("אבי קריאף", "054-4807328"));
         arrayList.add(new TotalModel("אברהם כהנא", "054-7684689"));

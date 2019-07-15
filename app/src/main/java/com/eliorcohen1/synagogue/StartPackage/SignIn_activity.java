@@ -50,6 +50,7 @@ public class SignIn_activity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Button btnLogin, btnPhone;
     private TextView btnSignIn;
+    private LoginButton loginButton;
 
     @Override
     protected void onStart() {
@@ -71,11 +72,26 @@ public class SignIn_activity extends AppCompatActivity {
 
         setContentView(R.layout.activity_signin_activity);
 
+        initUI();
+        btnTasks();
+    }
+
+    private void initUI() {
+        loginButton = findViewById(R.id.login_button_facebook);
+        inputEmail = findViewById(R.id.email);
+        inputPassword = findViewById(R.id.password);
+        btnLogin = findViewById(R.id.ah_login);
+        progressBar = findViewById(R.id.progressBar);
+        btnSignIn = findViewById(R.id.sign_in_button);
+        buttonSignIn = findViewById(R.id.sign_in_google);
+        btnPhone = findViewById(R.id.btnPhone);
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
+    }
 
+    private void btnTasks() {
         mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = findViewById(R.id.login_button_facebook);
         loginButton.setReadPermissions("email", "public_profile");
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -100,14 +116,6 @@ public class SignIn_activity extends AppCompatActivity {
                 // [END_EXCLUDE]
             }
         });
-
-        inputEmail = findViewById(R.id.email);
-        inputPassword = findViewById(R.id.password);
-        btnLogin = findViewById(R.id.ah_login);
-        progressBar = findViewById(R.id.progressBar);
-        btnSignIn = findViewById(R.id.sign_in_button);
-        buttonSignIn = findViewById(R.id.sign_in_google);
-        btnPhone = findViewById(R.id.btnPhone);
 
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override

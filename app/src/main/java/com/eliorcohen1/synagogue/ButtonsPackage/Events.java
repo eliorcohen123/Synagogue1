@@ -39,18 +39,24 @@ public class Events extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
 
+        initUI();
+        init();
+        tasks();
+    }
+
+    private void initUI() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         backDonates = findViewById(R.id.backEvents);
         phone = findViewById(R.id.phone);
         textWant = findViewById(R.id.textWant);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         imageModelArrayList = new ArrayList<>();
         imageModelArrayList = populateList();
+    }
 
-        init();
-
+    private void tasks() {
         textWant.setText("על מנת לקבוע אירוע/אזכרה יש ליצור קשר עם האחראי\n - \nשלום נסים");
 
         SpannableString str = new SpannableString("052-9426607");

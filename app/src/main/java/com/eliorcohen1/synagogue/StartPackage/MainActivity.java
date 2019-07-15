@@ -298,7 +298,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         AppRater.app_launched(this);
     }
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignUp_activity extends AppCompatActivity {
 
-    private EditText email_id, passwordcheck;
+    private EditText email_id, passwordCheck;
     private FirebaseAuth mAuth;
     private static final String TAG = "";
     private ProgressBar progressBar;
@@ -34,8 +34,19 @@ public class SignUp_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_activity);
 
-        btnSignUp = findViewById(R.id.login_page);
+        initUI();
+        btnTasks();
+    }
 
+    private void initUI() {
+        btnSignUp = findViewById(R.id.login_page);
+        email_id = findViewById(R.id.input_email);
+        progressBar = findViewById(R.id.progressBar);
+        passwordCheck = findViewById(R.id.input_password);
+        myBtnSignUp = findViewById(R.id.btn_signup);
+    }
+
+    private void btnTasks() {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,16 +57,11 @@ public class SignUp_activity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        email_id = findViewById(R.id.input_email);
-        progressBar = findViewById(R.id.progressBar);
-        passwordcheck = findViewById(R.id.input_password);
-        myBtnSignUp = findViewById(R.id.btn_signup);
-
         myBtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = email_id.getText().toString();
-                String password = passwordcheck.getText().toString();
+                String password = passwordCheck.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "נא הכנס אימייל", Toast.LENGTH_SHORT).show();

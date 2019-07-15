@@ -26,13 +26,20 @@ public class Donates extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donates);
 
+        initUI();
+        tasks();
+    }
+
+    private void initUI() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         backDonates = findViewById(R.id.backDonates);
         phone = findViewById(R.id.phone);
         textWant = findViewById(R.id.textWant);
+    }
 
+    private void tasks() {
         SpannableString str = new SpannableString("054-4917147");
         str.setSpan(new BackgroundColorSpan(Color.WHITE), 0, 11, 0);
         phone.setText(str);

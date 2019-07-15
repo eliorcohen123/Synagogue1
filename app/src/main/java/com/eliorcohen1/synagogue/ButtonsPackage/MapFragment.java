@@ -164,7 +164,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 location = locationManager.getLastKnownLocation(provider2);
                 if (location != null) {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));
-
                 }
             }
         } catch (Exception e) {
