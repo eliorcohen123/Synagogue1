@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private Button responsible, worshipers, donates, winterClock, summerClock, mapMe, alarms, events;
     private LinearLayout container;
     private AnimationDrawable anim;
+    private Toolbar toolbar;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION = 33;
     private static final int REQUEST_CHECK_SETTINGS = 77;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         setContentView(R.layout.activity_main);
 
         initUI();
+        drawerLayout();
         showUI();
         getMyLocation();
     }
@@ -103,7 +105,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         stripe = findViewById(R.id.stripe);
         drawer = findViewById(R.id.drawer_layout);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
+
+        AppRater.app_launched(this);
+    }
+
+    private void drawerLayout() {
         setSupportActionBar(toolbar);
 
         findViewById(R.id.myButton).setOnClickListener(new View.OnClickListener() {
@@ -127,8 +134,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        AppRater.app_launched(this);
     }
 
     private void showUI() {
