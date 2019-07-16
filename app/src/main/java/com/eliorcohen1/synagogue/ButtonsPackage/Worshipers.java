@@ -35,6 +35,7 @@ public class Worshipers extends AppCompatActivity {
         setContentView(R.layout.activity_worshipers);
 
         initUI();
+        showUI();
         btnBack();
     }
 
@@ -51,19 +52,7 @@ public class Worshipers extends AppCompatActivity {
         arrayList = new ArrayList<TotalModel>();
     }
 
-    private void btnBack() {
-        backWorshipers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Worshipers.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+    private void showUI() {
         arrayList.add(new TotalModel("צבי נעמת", "052-8345360"));
         arrayList.add(new TotalModel("אבי קריאף", "054-4807328"));
         arrayList.add(new TotalModel("אברהם כהנא", "054-7684689"));
@@ -114,6 +103,16 @@ public class Worshipers extends AppCompatActivity {
         arrayList.add(new TotalModel("חנן דדון", "050-8107336"));
         adapter = new AdapterWorshipers(arrayList, this);
         rv.setAdapter(adapter);
+    }
+
+    private void btnBack() {
+        backWorshipers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Worshipers.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

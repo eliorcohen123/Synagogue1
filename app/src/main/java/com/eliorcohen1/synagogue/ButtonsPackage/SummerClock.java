@@ -22,54 +22,47 @@ public class SummerClock extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summer);
 
+        initUI();
+        showUI();
+    }
+
+    private void initUI() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         backSummer = findViewById(R.id.backSummer);
-
         clock = findViewById(R.id.clock);
-        clock.setText("שעות תפילה נווה צדק");
-
         formula = findViewById(R.id.formula);
-        formula.setText(" נוסח: ספרדי ");
-
         summer = findViewById(R.id.summer);
-        summer.setText(" שעון קיץ ");
-
         sunsetText = findViewById(R.id.sunsetText);
-        sunsetText.setText("לינק לבדיקת שעת השקיעה ועוד...");
-
         sunset = findViewById(R.id.sunset);
-        sunset.setMovementMethod(LinkMovementMethod.getInstance());
-
         simpleDay = findViewById(R.id.simpleDay);
-        simpleDay.setText(" יום חול ");
-
         morning1 = findViewById(R.id.morning1);
-        morning1.setText("תפילת שחרית(ספר תורה): " + "\n (06:15)06:30" + "\n שישי: " + "\n 07:00");
-
         noon1 = findViewById(R.id.noon1);
-        noon1.setText("תפילת מנחה: " + "\n 20 דקות לפני השקיעה ");
-
         evening1 = findViewById(R.id.evening1);
-        evening1.setText("תפילת ערבית: " + "\n 25 דקות אחרי השקיעה ");
-
         shabat = findViewById(R.id.shabat);
-        shabat.setText(" שבת קודש ");
-
         evening2 = findViewById(R.id.evening2);
-        evening2.setText(" מנחה וערבית של שבת: " + "\n 5 דקות לפני כניסת השבת ");
-
         morning2 = findViewById(R.id.morning2);
-        morning2.setText(" שחרית של שבת: " + "\n 08:00 ");
-
         noon2 = findViewById(R.id.noon2);
-        noon2.setText(" מנחה גדולה: " + "\n 13:15 ");
-
         noon3 = findViewById(R.id.noon3);
-        noon3.setText(" מנחה קטנה: " + "\n שעה וחצי לפני ערבית של מוצ''ש ");
-
         evening3 = findViewById(R.id.evening3);
+    }
+
+    private void showUI() {
+        clock.setText("שעות תפילה נווה צדק");
+        formula.setText(" נוסח: ספרדי ");
+        summer.setText(" שעון קיץ ");
+        sunsetText.setText("לינק לבדיקת שעת השקיעה ועוד...");
+        sunset.setMovementMethod(LinkMovementMethod.getInstance());
+        simpleDay.setText(" יום חול ");
+        morning1.setText("תפילת שחרית(ספר תורה): " + "\n (06:15)06:30" + "\n שישי: " + "\n 07:00");
+        noon1.setText("תפילת מנחה: " + "\n 20 דקות לפני השקיעה ");
+        evening1.setText("תפילת ערבית: " + "\n 25 דקות אחרי השקיעה ");
+        shabat.setText(" שבת קודש ");
+        evening2.setText(" מנחה וערבית של שבת: " + "\n 5 דקות לפני כניסת השבת ");
+        morning2.setText(" שחרית של שבת: " + "\n 08:00 ");
+        noon2.setText(" מנחה גדולה: " + "\n 13:15 ");
+        noon3.setText(" מנחה קטנה: " + "\n שעה וחצי לפני ערבית של מוצ''ש ");
         evening3.setText(" ערבית של מוצ''ש: " + "\n 6 דקות לפני צאת השבת ");
 
         backSummer.setOnClickListener(new View.OnClickListener() {

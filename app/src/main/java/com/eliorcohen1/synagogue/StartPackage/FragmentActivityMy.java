@@ -21,12 +21,19 @@ public class FragmentActivityMy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
 
+        initUI();
+        showUI();
+    }
+
+    private void initUI() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         backMap = findViewById(R.id.backMap);
         coordinatorLayout = findViewById(R.id.myContent);
+    }
 
+    private void showUI() {
         Snackbar.make(coordinatorLayout, R.string.item_removed_message, Snackbar.LENGTH_LONG)
                 .setAction(R.string.undo, new View.OnClickListener() {
                     @Override

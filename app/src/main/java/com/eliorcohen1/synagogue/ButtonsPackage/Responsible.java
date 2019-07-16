@@ -29,6 +29,7 @@ public class Responsible extends AppCompatActivity {
         setContentView(R.layout.activity_responsible);
 
         initUI();
+        showUI();
         btnBack();
     }
 
@@ -45,6 +46,14 @@ public class Responsible extends AppCompatActivity {
         arrayList = new ArrayList<TotalModel>();
     }
 
+    private void showUI() {
+        arrayList.add(new TotalModel("אבי קריאף", "054-4807328"));
+        arrayList.add(new TotalModel("שלום נסים", "052-9426607"));
+        arrayList.add(new TotalModel("מוטי כהן", "054-4917147"));
+        adapter = new AdapterResponsible(arrayList, this);
+        rv.setAdapter(adapter);
+    }
+
     private void btnBack() {
         backResponsible.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,16 +62,6 @@ public class Responsible extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        arrayList.add(new TotalModel("אבי קריאף", "054-4807328"));
-        arrayList.add(new TotalModel("שלום נסים", "052-9426607"));
-        arrayList.add(new TotalModel("מוטי כהן", "054-4917147"));
-        adapter = new AdapterResponsible(arrayList, this);
-        rv.setAdapter(adapter);
     }
 
 }

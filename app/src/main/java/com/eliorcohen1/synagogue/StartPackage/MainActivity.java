@@ -81,9 +81,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        initUI();
+        showUI();
+        getMyLocation();
+    }
 
+    private void initUI() {
         checkLocationPermission();
 
         responsible = findViewById(R.id.responsible);
@@ -97,11 +100,42 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         container = findViewById(R.id.container);
 
+        stripe = findViewById(R.id.stripe);
+        drawer = findViewById(R.id.drawer_layout);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        findViewById(R.id.myButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // open right drawer
+
+                if (drawer.isDrawerOpen(GravityCompat.END)) {
+                    drawer.closeDrawer(GravityCompat.END);
+                } else
+                    drawer.openDrawer(GravityCompat.END);
+            }
+        });
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.setDrawerIndicatorEnabled(false);
+        drawer.addDrawerListener(toggle);
+
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        AppRater.app_launched(this);
+    }
+
+    private void showUI() {
         anim = (AnimationDrawable) container.getBackground();
         anim.setEnterFadeDuration(6000);
         anim.setExitFadeDuration(2000);
 
-        stripe = findViewById(R.id.stripe);
         stripe.setText("יְבָרֶכְךָ יְהוָה נְוֵה צֶדֶק הַר הַקֹּדֶשׁ");
 
         summerClock.setOnClickListener(new View.OnClickListener() {
@@ -177,31 +211,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 }
             }
         };
+    }
 
-        drawer = findViewById(R.id.drawer_layout);
-
-        findViewById(R.id.myButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // open right drawer
-
-                if (drawer.isDrawerOpen(GravityCompat.END)) {
-                    drawer.closeDrawer(GravityCompat.END);
-                } else
-                    drawer.openDrawer(GravityCompat.END);
-            }
-        });
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        toggle.setDrawerIndicatorEnabled(false);
-        drawer.addDrawerListener(toggle);
-
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
+    private void getMyLocation() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         buildGoogleApiClient();
 
@@ -294,8 +306,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 }
             }
         });
-
-        AppRater.app_launched(this);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
