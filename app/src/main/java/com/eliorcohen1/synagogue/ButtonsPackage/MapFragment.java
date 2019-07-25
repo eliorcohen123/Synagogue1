@@ -180,7 +180,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             public boolean onMarkerClick(Marker marker) {
                 locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
                 criteria = new Criteria();
-                String provider2 = locationManager.getBestProvider(criteria, true);
+                String provider = locationManager.getBestProvider(criteria, true);
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION);
                 }// TODO: Consider calling
@@ -190,8 +190,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 //                                          int[] grantResults)
 // to handle the case where the user grants the permission. See the documentation
 // for ActivityCompat#requestPermissions for more details.
-                if (provider2 != null) {
-                    location = locationManager.getLastKnownLocation(provider2);
+                if (provider != null) {
+                    location = locationManager.getLastKnownLocation(provider);
                     if (location != null) {
                         TotalModel info = new TotalModel();
                         double distanceMe;
@@ -228,9 +228,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
                 Toast.makeText(getContext(), "בית הכנסת - נווה צדק", Toast.LENGTH_SHORT).show();
 
-                locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-                criteria = new Criteria();
-                String provider = locationManager.getBestProvider(criteria, true);
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                         ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
