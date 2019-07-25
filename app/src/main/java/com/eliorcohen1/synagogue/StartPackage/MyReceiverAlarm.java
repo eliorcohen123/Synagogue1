@@ -20,17 +20,15 @@ import java.util.Date;
 public class MyReceiverAlarm extends BroadcastReceiver {
 
     private NotificationManager notificationManager;
-    private static PendingIntent pendingIntentSnooze;
+    private NotificationCompat.Builder builder;
+    private static PendingIntent pendingIntentSnooze, pendingIntent;
     private static AlarmManager alarmManagerSnooze;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
         final int NOTIFY_ID = 1; // ID of notification
         String id = "1"; // default_channel_id
         String title = "מתפלל"; // Default Channel
-        PendingIntent pendingIntent;
-        NotificationCompat.Builder builder;
         if (notificationManager == null) {
             notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         }
@@ -43,34 +41,9 @@ public class MyReceiverAlarm extends BroadcastReceiver {
                 mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
                 notificationManager.createNotificationChannel(mChannel);
             }
-            builder = new NotificationCompat.Builder(context, id);
-            intent = new Intent(context, MyAlarm.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            pendingIntent = PendingIntent.getActivity(context, 1, intent, 0);
-            builder.setContentTitle("תפילה")
-                    .setContentText("היי מתפלל יקר, הגיע הזמן לצאת לתפילה :)")  // required
-                    .setSmallIcon(R.drawable.lamp)  // required
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .setAutoCancel(true)
-                    .setContentIntent(pendingIntent)
-                    .setTicker("תפילה")
-                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
-                    .addAction(R.drawable.lamp, context.getString(R.string.snooze), pendingIntentSnooze);
+            getBuilder(context, id);
         } else {
-            builder = new NotificationCompat.Builder(context, id);
-            intent = new Intent(context, MyAlarm.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            pendingIntent = PendingIntent.getActivity(context, 1, intent, 0);
-            builder.setContentTitle("תפילה")
-                    .setContentText("היי מתפלל יקר, הגיע הזמן לצאת לתפילה :)")  // required
-                    .setSmallIcon(R.drawable.lamp)  // required
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .setAutoCancel(true)
-                    .setContentIntent(pendingIntent)
-                    .setTicker("תפילה")
-                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
-                    .setPriority(Notification.PRIORITY_HIGH)
-                    .addAction(R.drawable.lamp, context.getString(R.string.snooze), pendingIntentSnooze);
+            getBuilder(context, id);
         }
         Notification notification = builder.build();
         notificationManager.notify(NOTIFY_ID, notification);
@@ -82,6 +55,23 @@ public class MyReceiverAlarm extends BroadcastReceiver {
         calendar.add(Calendar.MINUTE, 1440);
         Date date = calendar.getTime();
         alarmManagerSnooze.set(AlarmManager.RTC_WAKEUP, date.getTime(), pendingIntentSnooze);
+    }
+
+    private void getBuilder(Context context, String id) {
+        builder = new NotificationCompat.Builder(context, id);
+        Intent intent = new Intent(context, MyAlarm.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        pendingIntent = PendingIntent.getActivity(context, 1, intent, 0);
+        builder.setContentTitle("תפילה")
+                .setContentText("היי מתפלל יקר, הגיע הזמן לצאת לתפילה :)")  // required
+                .setSmallIcon(R.drawable.lamp)  // required
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .setTicker("תפילה")
+                .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
+                .setPriority(Notification.PRIORITY_HIGH)
+                .addAction(R.drawable.lamp, context.getString(R.string.snooze), pendingIntentSnooze);
     }
 
 }
