@@ -128,7 +128,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
-
         try {
             MapsInitializer.initialize(getContext());
             mGoogleMap = googleMap;
@@ -351,6 +350,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             pm.getPackageInfo(packageId, PackageManager.GET_ACTIVITIES);
             return true;
         } catch (PackageManager.NameNotFoundException e) {
+
         }
         return false;
     }
