@@ -93,7 +93,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         gett.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deepLinkIntoGett();
+                getGetTaxi();
             }
         });
 
@@ -329,22 +329,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         return bitmap;
     }
 
-    private void deepLinkIntoGett() {
-        if (isPackageInstalled(getContext(), "com.gettaxi.android")) {
-            openLink((getActivity()), "gett://order?pickup=my_location&dropoff_latitude=31.742462&dropoff_longitude=34.985447&product_id=0c1202f8-6c43-4330-9d8a-3b4fa66505fd");
+    private void getGetTaxi() {
+        if (isPackageInstalledGetTaxi(getContext(), "com.gettaxi.android")) {
+            openLinkGetTaxi((getActivity()), "gett://order?pickup=my_location&dropoff_latitude=31.742462&dropoff_longitude=34.985447&product_id=0c1202f8-6c43-4330-9d8a-3b4fa66505fd");
         } else {
-            openLink(getActivity(), "https://play.google.com/store/apps/details?id=" + "com.gettaxi.android");
+            openLinkGetTaxi(getActivity(), "https://play.google.com/store/apps/details?id=" + "com.gettaxi.android");
         }
     }
 
-    private static void openLink(Activity activity, String link) {
+    private static void openLinkGetTaxi(Activity activity, String link) {
         Intent playStoreIntent = new Intent(Intent.ACTION_VIEW);
         playStoreIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         playStoreIntent.setData(Uri.parse(link));
         activity.startActivity(playStoreIntent);
     }
 
-    private static boolean isPackageInstalled(Context context, String packageId) {
+    private static boolean isPackageInstalledGetTaxi(Context context, String packageId) {
         PackageManager pm = context.getPackageManager();
         try {
             pm.getPackageInfo(packageId, PackageManager.GET_ACTIVITIES);
