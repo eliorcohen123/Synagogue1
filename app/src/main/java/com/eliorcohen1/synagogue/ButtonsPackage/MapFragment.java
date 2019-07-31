@@ -62,6 +62,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private Location location;
     private LocationManager locationManager;
     private Criteria criteria;
+    private String provider;
     private ImageView moovit, gett, waze;
 
     @Nullable
@@ -69,6 +70,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.activity_maps, container, false);
 
+        initLocation();
+        getClicks();
+
+        return mView;
+    }
+
+
+    private void initLocation() {
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, true);
+    }
+
+    private void getClicks() {
         moovit = mView.findViewById(R.id.imageViewMoovit);
         moovit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +126,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 }
             }
         });
-        return mView;
     }
 
     @Override
@@ -146,9 +160,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
             googleMap.setMyLocationEnabled(true);
             googleMap.getUiSettings().setZoomControlsEnabled(true);
-            locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-            criteria = new Criteria();
-            String provider2 = locationManager.getBestProvider(criteria, true);
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                     ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
@@ -159,8 +170,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
             }
-            if (provider2 != null) {
-                location = locationManager.getLastKnownLocation(provider2);
+            if (provider != null) {
+                location = locationManager.getLastKnownLocation(provider);
                 if (location != null) {
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));
                 }
@@ -177,9 +188,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-                criteria = new Criteria();
-                String provider = locationManager.getBestProvider(criteria, true);
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION);
                 }// TODO: Consider calling
