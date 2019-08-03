@@ -138,7 +138,6 @@ public class SignIn_activity extends AppCompatActivity {
                             }
                         });
             }
-
         });
     }
 
