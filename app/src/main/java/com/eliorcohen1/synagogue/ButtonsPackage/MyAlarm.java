@@ -62,9 +62,18 @@ public class MyAlarm extends AppCompatActivity {
 
     private void tasks() {
         SharedPreferences prefs = getSharedPreferences("textTime", MODE_PRIVATE);
-        int idName = prefs.getInt("idName", 0);
-        int idNum = prefs.getInt("idNum", 0);
-        myText.setText(String.valueOf(idName + ":" + String.valueOf(idNum)));
+        int idHour = prefs.getInt("idHour", 0);
+        int idMinute = prefs.getInt("idMinute", 0);
+
+        if (idHour <= 9 && idMinute <= 9) {
+            myText.setText(String.valueOf("0" + idHour + ":" + String.valueOf("0" + idMinute)));
+        } else if (idHour <= 9 && idMinute > 9) {
+            myText.setText(String.valueOf("0" + idHour + ":" + String.valueOf(idMinute)));
+        } else if (idHour > 9 && idMinute > 9) {
+            myText.setText(String.valueOf(idHour + ":" + String.valueOf(idMinute)));
+        } else if (idHour > 9 && idMinute <= 9) {
+            myText.setText(String.valueOf(idHour + ":" + String.valueOf("0" + idMinute)));
+        }
 
         backAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,16 +99,19 @@ public class MyAlarm extends AppCompatActivity {
                     int myMinuteMy = Integer.parseInt(myMinute.getText().toString());
 
                     SharedPreferences.Editor editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
-                    editor.putInt("idName", myHourMy);
-                    editor.putInt("idNum", myMinuteMy);
+                    editor.putInt("idHour", myHourMy);
+                    editor.putInt("idMinute", myMinuteMy);
                     editor.apply();
 
-                    ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
-                    PackageManager pm = getPackageManager();
-
-                    pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-
-                    Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
+                    if (myHourMy <= 9 && myMinuteMy <= 9) {
+                        Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf("0" + myHourMy) + ":" + String.valueOf("0" + myMinuteMy), Toast.LENGTH_SHORT).show();
+                    } else if (myHourMy <= 9 && myMinuteMy > 9) {
+                        Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf("0" + myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
+                    } else if (myHourMy > 9 && myMinuteMy > 9) {
+                        Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
+                    } else if (myHourMy > 9 && myMinuteMy <= 9) {
+                        Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf("" + myMinuteMy), Toast.LENGTH_SHORT).show();
+                    }
 
                     Intent alarmIntent = new Intent(MyAlarm.this, MyReceiverAlarm.class); // AlarmReceiver1 = broadcast receiver
                     pendingIntent = PendingIntent.getBroadcast(MyAlarm.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -116,10 +128,10 @@ public class MyAlarm extends AppCompatActivity {
                     }
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
-                    ComponentName receiver2 = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
-                    PackageManager pm2 = getPackageManager();
+                    ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
+                    PackageManager pm = getPackageManager();
 
-                    pm2.setComponentEnabledSetting(receiver2, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+                    pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 
                     finish();
                     startActivity(getIntent());
@@ -137,8 +149,8 @@ public class MyAlarm extends AppCompatActivity {
                 pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
                 SharedPreferences.Editor editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
-                editor.putInt("idName", 0);
-                editor.putInt("idNum", 0);
+                editor.putInt("idHour", 0);
+                editor.putInt("idMinute", 0);
                 editor.apply();
 
                 Intent alarmIntent = new Intent(MyAlarm.this, MyReceiverAlarm.class); // AlarmReceiver1 = broadcast receiver
@@ -161,10 +173,6 @@ public class MyAlarm extends AppCompatActivity {
                     String id = "1";
                     notificationManager.deleteNotificationChannel(id);
                 }
-
-                ComponentName receiver2 = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
-                PackageManager pm2 = getPackageManager();
-                pm2.setComponentEnabledSetting(receiver2, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
                 Toast.makeText(MyAlarm.this, "ההתראה שלך בוטלה.", Toast.LENGTH_SHORT).show();
 
@@ -190,6 +198,7 @@ public class MyAlarm extends AppCompatActivity {
                 if (isInRange(min, max, input))
                     return null;
             } catch (NumberFormatException nfe) {
+
             }
             return "";
         }

@@ -44,6 +44,8 @@ public class SignUp_activity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         passwordCheck = findViewById(R.id.input_password);
         myBtnSignUp = findViewById(R.id.btn_signup);
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     private void btnTasks() {
@@ -54,8 +56,6 @@ public class SignUp_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        mAuth = FirebaseAuth.getInstance();
 
         myBtnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +82,7 @@ public class SignUp_activity extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "createUserWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    Intent intent = new Intent(SignUp_activity.this, WelcomeActivity.class);
+                                    Intent intent = new Intent(SignUp_activity.this, SignIn_activity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
