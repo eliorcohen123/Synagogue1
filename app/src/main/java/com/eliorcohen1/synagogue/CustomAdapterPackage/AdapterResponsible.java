@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
@@ -108,11 +109,19 @@ public class AdapterResponsible extends RecyclerView.Adapter<AdapterResponsible.
                 return obj1.getName().compareToIgnoreCase(obj2.getName());
             }
         });
+
+        setFadeAnimation(holder.itemView);
     }
 
     @Override
     public int getItemCount() {
         return list_data.size();
+    }
+
+    private void setFadeAnimation(View view) {
+        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(1500);
+        view.startAnimation(anim);
     }
 
 }

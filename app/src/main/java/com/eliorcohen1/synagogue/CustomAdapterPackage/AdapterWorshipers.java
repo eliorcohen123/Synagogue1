@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RelativeLayout;
@@ -110,6 +111,8 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
                 return obj1.getName().compareToIgnoreCase(obj2.getName());
             }
         });
+
+        setFadeAnimation(holder.itemView);
     }
 
     @Override
@@ -148,6 +151,12 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
                 notifyDataSetChanged();
             }
         };
+    }
+
+    private void setFadeAnimation(View view) {
+        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(1500);
+        view.startAnimation(anim);
     }
 
 }
