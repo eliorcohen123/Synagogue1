@@ -23,7 +23,9 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomInfoWindowGoogleMap;
@@ -63,19 +65,35 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private LocationManager locationManager;
     private Criteria criteria;
     private String provider;
-    private ImageView moovit, gett, waze;
+    private ImageView moovit, gett, waze, btnOpenList;
+    private LinearLayout linearList;
+    private boolean isClicked;
+    private AlphaAnimation anim;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.activity_maps, container, false);
 
+        initUI();
         initLocation();
         getClicks();
 
         return mView;
     }
 
+    private void initUI() {
+        moovit = mView.findViewById(R.id.imageViewMoovit);
+        gett = mView.findViewById(R.id.imageViewGett);
+        waze = mView.findViewById(R.id.imageViewWaze);
+        btnOpenList = mView.findViewById(R.id.btnOpenList);
+
+        linearList = mView.findViewById(R.id.listAll);
+
+        linearList.setVisibility(View.GONE);
+
+        isClicked = true;
+    }
 
     private void initLocation() {
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -84,7 +102,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void getClicks() {
-        moovit = mView.findViewById(R.id.imageViewMoovit);
         moovit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +121,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        gett = mView.findViewById(R.id.imageViewGett);
         gett.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +128,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        waze = mView.findViewById(R.id.imageViewWaze);
         waze.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +138,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 } catch (ActivityNotFoundException ex) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze"));
                     startActivity(intent);
+                }
+            }
+        });
+
+        btnOpenList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isClicked) {
+                    linearList.setVisibility(View.VISIBLE);
+                    setFadeAnimationTrue(linearList);
+                    isClicked = false;
+                } else {
+                    linearList.setVisibility(View.GONE);
+                    setFadeAnimationFalse(linearList);
+                    isClicked = true;
                 }
             }
         });
@@ -318,12 +348,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private static Bitmap createCustomMarker(Context context, @DrawableRes int resource, String _name) {
-
         View marker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_layout, null);
-
         CircleImageView markerImage = marker.findViewById(R.id.user_dp);
         markerImage.setImageResource(resource);
-
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         marker.setLayoutParams(new ViewGroup.LayoutParams(52, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -361,6 +388,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         }
         return false;
+    }
+
+    private void setFadeAnimationTrue(LinearLayout linearList) {
+        anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(1500);
+        linearList.startAnimation(anim);
+    }
+
+    private void setFadeAnimationFalse(LinearLayout linearList) {
+        anim = new AlphaAnimation(1.0f, 0.0f);
+        anim.setDuration(1500);
+        linearList.startAnimation(anim);
     }
 
 }
