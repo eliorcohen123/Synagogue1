@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.StartPackage.MainActivity;
 
-public class SummerClock extends AppCompatActivity {
+public class SummerClock extends AppCompatActivity implements View.OnClickListener {
 
     private TextView shabat, summer, morning1, noon1, evening1, morning2, noon2, evening2, clock, noon3, evening3, formula, simpleDay, sunset, sunsetText;
     private Button backSummer;
@@ -23,6 +23,7 @@ public class SummerClock extends AppCompatActivity {
         setContentView(R.layout.activity_summer);
 
         initUI();
+        initListeners();
         showUI();
     }
 
@@ -48,6 +49,10 @@ public class SummerClock extends AppCompatActivity {
         evening3 = findViewById(R.id.evening3);
     }
 
+    private void initListeners() {
+        backSummer.setOnClickListener(this);
+    }
+
     private void showUI() {
         clock.setText("שעות תפילה נווה צדק");
         formula.setText(" נוסח: ספרדי ");
@@ -64,14 +69,16 @@ public class SummerClock extends AppCompatActivity {
         noon2.setText(" מנחה גדולה: " + "\n 13:15 ");
         noon3.setText(" מנחה קטנה: " + "\n שעה וחצי לפני ערבית של מוצ''ש ");
         evening3.setText(" ערבית של מוצ''ש: " + "\n 6 דקות לפני צאת השבת ");
+    }
 
-        backSummer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.backSummer:
                 Intent intent = new Intent(SummerClock.this, MainActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
+        }
     }
 
 }

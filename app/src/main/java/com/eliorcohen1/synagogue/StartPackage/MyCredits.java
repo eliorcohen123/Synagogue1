@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 
-public class MyCredits extends AppCompatActivity {
+public class MyCredits extends AppCompatActivity implements View.OnClickListener {
 
     private TextView textMe;
     private Button btnBack;
@@ -19,23 +19,30 @@ public class MyCredits extends AppCompatActivity {
         setContentView(R.layout.activity_credits);
 
         initUI();
+        initListeners();
         showUI();
     }
 
     private void initUI() {
-        textMe = findViewById(R.id.textView25);
-        btnBack = findViewById(R.id.button21);
+        textMe = findViewById(R.id.textMe);
+        btnBack = findViewById(R.id.btnBack);
+    }
+
+    private void initListeners() {
+        btnBack.setOnClickListener(this);
     }
 
     private void showUI() {
         textMe.setText("כל הזכויות שמורות למפתח האפליקציה \n - \n אליאור כהן \n\n טלפון: \n 050-3332696 \n\n אימייל: \n eliorjobcohen@gmail.com");
+    }
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnBack:
                 onBackPressed();
-            }
-        });
+                break;
+        }
     }
 
 }

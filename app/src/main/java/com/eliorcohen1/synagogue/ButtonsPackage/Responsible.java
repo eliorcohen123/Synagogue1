@@ -16,7 +16,7 @@ import com.eliorcohen1.synagogue.StartPackage.TotalModel;
 
 import java.util.ArrayList;
 
-public class Responsible extends AppCompatActivity {
+public class Responsible extends AppCompatActivity implements View.OnClickListener {
 
     private Button backResponsible;
     private ArrayList<TotalModel> arrayList;
@@ -29,8 +29,8 @@ public class Responsible extends AppCompatActivity {
         setContentView(R.layout.activity_responsible);
 
         initUI();
+        initListeners();
         showUI();
-        btnBack();
     }
 
     private void initUI() {
@@ -46,6 +46,10 @@ public class Responsible extends AppCompatActivity {
         arrayList = new ArrayList<TotalModel>();
     }
 
+    private void initListeners() {
+        backResponsible.setOnClickListener(this);
+    }
+
     private void showUI() {
         arrayList.add(new TotalModel("אבי קריאף", "054-4807328"));
         arrayList.add(new TotalModel("שלום נסים", "052-9426607"));
@@ -54,14 +58,14 @@ public class Responsible extends AppCompatActivity {
         rv.setAdapter(adapter);
     }
 
-    private void btnBack() {
-        backResponsible.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.backResponsible:
                 Intent intent = new Intent(Responsible.this, MainActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
+        }
     }
 
 }

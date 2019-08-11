@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.StartPackage.MainActivity;
 
-public class WinterClock extends AppCompatActivity {
+public class WinterClock extends AppCompatActivity implements View.OnClickListener {
 
     private TextView shabat, winter, morning1, noon1, evening1, morning2, noon2, evening2, clock, noon3, evening3, formula, simpleDay, sunset, sunsetText;
     private Button backWinter;
@@ -23,6 +23,7 @@ public class WinterClock extends AppCompatActivity {
         setContentView(R.layout.activity_winter);
 
         initUI();
+        initListeners();
         showUI();
     }
 
@@ -47,6 +48,10 @@ public class WinterClock extends AppCompatActivity {
         evening3 = findViewById(R.id.evening3);
     }
 
+    private void initListeners() {
+        backWinter.setOnClickListener(this);
+    }
+
     private void showUI() {
         clock.setText("שעות תפילה נווה צדק");
         formula.setText(" נוסח: ספרדי ");
@@ -63,14 +68,16 @@ public class WinterClock extends AppCompatActivity {
         noon2.setText(" מנחה גדולה: " + "\n 12:30 ");
         noon3.setText(" מנחה קטנה: " + "\n שעה וחצי לפני ערבית של מוצ''ש ");
         evening3.setText(" ערבית של מוצ''ש: " + "\n 6 דקות לפני צאת השבת ");
+    }
 
-        backWinter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.backWinter:
                 Intent intent = new Intent(WinterClock.this, MainActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
+        }
     }
 
 }

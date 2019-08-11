@@ -55,7 +55,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback {
+public class MapFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mGoogleMap;
     private MapView mMapView;
@@ -76,8 +76,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mView = inflater.inflate(R.layout.activity_maps, container, false);
 
         initUI();
+        initListeners();
         initLocation();
-        getClicks();
 
         return mView;
     }
@@ -95,67 +95,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         isClicked = true;
     }
 
+    private void initListeners() {
+        moovit.setOnClickListener(this);
+        gett.setOnClickListener(this);
+        waze.setOnClickListener(this);
+        btnOpenList.setOnClickListener(this);
+    }
+
     private void initLocation() {
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
         criteria = new Criteria();
         provider = locationManager.getBestProvider(criteria, true);
-    }
-
-    private void getClicks() {
-        moovit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    PackageManager pm = getActivity().getPackageManager();
-                    pm.getPackageInfo("com.tranzmate", PackageManager.GET_ACTIVITIES);
-                    String uri = "moovit://directions?dest_lat=31.742462&dest_lon=34.985447&dest_name=בית הכנסת נווה צדק&orig_lat=" + location.getLatitude() + "&orig_lon=" + location.getLongitude() + "&orig_name=מיקומך הנוכחי&auto_run=true&partner_id=Lovely Favorites Places";
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(uri));
-                    startActivity(intent);
-                } catch (PackageManager.NameNotFoundException e) {
-                    String url = "http://app.appsflyer.com/com.tranzmate?pid=DL&c=Lovely Favorites Places";
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url));
-                    startActivity(i);
-                }
-            }
-        });
-
-        gett.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getGetTaxi();
-            }
-        });
-
-        waze.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    String url = "https://www.waze.com/ul?ll=31.742462%2C34.985447&navigate=yes&zoom=17";
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(intent);
-                } catch (ActivityNotFoundException ex) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze"));
-                    startActivity(intent);
-                }
-            }
-        });
-
-        btnOpenList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isClicked) {
-                    linearList.setVisibility(View.VISIBLE);
-                    setFadeAnimationTrue(linearList);
-                    isClicked = false;
-                } else {
-                    linearList.setVisibility(View.GONE);
-                    setFadeAnimationFalse(linearList);
-                    isClicked = true;
-                }
-            }
-        });
     }
 
     @Override
@@ -400,6 +350,50 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         anim = new AlphaAnimation(1.0f, 0.0f);
         anim.setDuration(1500);
         linearList.startAnimation(anim);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.imageViewMoovit:
+                try {
+                    PackageManager pm = getActivity().getPackageManager();
+                    pm.getPackageInfo("com.tranzmate", PackageManager.GET_ACTIVITIES);
+                    String uri = "moovit://directions?dest_lat=31.742462&dest_lon=34.985447&dest_name=בית הכנסת נווה צדק&orig_lat=" + location.getLatitude() + "&orig_lon=" + location.getLongitude() + "&orig_name=מיקומך הנוכחי&auto_run=true&partner_id=Lovely Favorites Places";
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(uri));
+                    startActivity(intent);
+                } catch (PackageManager.NameNotFoundException e) {
+                    String url = "http://app.appsflyer.com/com.tranzmate?pid=DL&c=Lovely Favorites Places";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }
+                break;
+            case R.id.imageViewGett:
+                getGetTaxi();
+                break;
+            case R.id.imageViewWaze:
+                try {
+                    String url = "https://www.waze.com/ul?ll=31.742462%2C34.985447&navigate=yes&zoom=17";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent);
+                } catch (ActivityNotFoundException ex) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze"));
+                    startActivity(intent);
+                }
+                break;
+            case R.id.btnOpenList:
+                if (isClicked) {
+                    linearList.setVisibility(View.VISIBLE);
+                    setFadeAnimationTrue(linearList);
+                    isClicked = false;
+                } else {
+                    linearList.setVisibility(View.GONE);
+                    setFadeAnimationFalse(linearList);
+                    isClicked = true;
+                }
+        }
     }
 
 }

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Events extends AppCompatActivity {
+public class Events extends AppCompatActivity implements View.OnClickListener {
 
     private Button backDonates;
     private TextView phone, textWant;
@@ -40,6 +40,7 @@ public class Events extends AppCompatActivity {
         setContentView(R.layout.activity_events);
 
         initUI();
+        initListeners();
         init();
         tasks();
     }
@@ -56,26 +57,29 @@ public class Events extends AppCompatActivity {
         imageModelArrayList = populateList();
     }
 
+    private void initListeners() {
+        backDonates.setOnClickListener(this);
+        phone.setOnClickListener(this);
+    }
+
     private void tasks() {
         textWant.setText("על מנת לקבוע אירוע/אזכרה יש ליצור קשר עם האחראי\n - \nשלום נסים");
 
         SpannableString str = new SpannableString("052-9426607");
         str.setSpan(new BackgroundColorSpan(Color.WHITE), 0, 11, 0);
         phone.setText(str);
+    }
 
-        backDonates.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.backDonates:
                 onBackPressed();
-            }
-        });
-
-        phone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.phone:
                 openWhatsApp(view);
-            }
-        });
+                break;
+        }
     }
 
     private void openWhatsApp(View view) {

@@ -37,7 +37,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class SignIn_activity extends AppCompatActivity {
+public class SignIn_activity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "";
     private EditText inputEmail, inputPassword;
@@ -73,11 +73,10 @@ public class SignIn_activity extends AppCompatActivity {
         setContentView(R.layout.activity_signin_activity);
 
         initUI();
+        initListeners();
         btnSignUpMethod();
         btnLoginGoogle();
         btnLoginFacebook();
-        btnSignInSMS();
-        btnLoginEmailPassword();
     }
 
     private void initUI() {
@@ -101,44 +100,10 @@ public class SignIn_activity extends AppCompatActivity {
         };
     }
 
-    private void btnLoginEmailPassword() {
-        // Checking the email id and password is Empty
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = inputEmail.getText().toString();
-                final String password = inputPassword.getText().toString();
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "נא הכנס אימייל", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "נא הכנס סיסמא", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                progressBar.setVisibility(View.VISIBLE);
-
-                //authenticate user
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignIn_activity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
-                                if (task.isSuccessful()) {
-                                    // there was an error
-                                    Log.d(TAG, "signInWithEmail:success");
-                                    Intent intent = new Intent(SignIn_activity.this, WelcomeActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Log.d(TAG, "singInWithEmail:Fail");
-                                    Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
-            }
-        });
+    private void initListeners() {
+        btnSignInGoogle.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
+        btnPhone.setOnClickListener(this);
     }
 
     private void btnSignUpMethod() {
@@ -151,16 +116,6 @@ public class SignIn_activity extends AppCompatActivity {
     }
 
     private void btnLoginGoogle() {
-        btnSignInGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-
-                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-            }
-        });
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("451670612448-hhs7el6b0gf84pfif3okrj7d5256qjcr.apps.googleusercontent.com")
                 .requestEmail()
@@ -268,14 +223,53 @@ public class SignIn_activity extends AppCompatActivity {
                 });
     }
 
-    private void btnSignInSMS() {
-        btnPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sign_in_google:
+                progressBar.setVisibility(View.VISIBLE);
+
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+                break;
+            case R.id.btn_login:
+                String email = inputEmail.getText().toString();
+                final String password = inputPassword.getText().toString();
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(getApplicationContext(), "נא הכנס אימייל", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "נא הכנס סיסמא", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                progressBar.setVisibility(View.VISIBLE);
+
+                //authenticate user
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(SignIn_activity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressBar.setVisibility(View.GONE);
+                                if (task.isSuccessful()) {
+                                    // there was an error
+                                    Log.d(TAG, "signInWithEmail:success");
+                                    Intent intent = new Intent(SignIn_activity.this, WelcomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Log.d(TAG, "singInWithEmail:Fail");
+                                    Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                break;
+            case R.id.btnPhone:
                 Intent intent = new Intent(SignIn_activity.this, SignPhoneActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
+        }
     }
 
 }

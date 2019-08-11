@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 
-public class WelcomeActivityTutorial extends AppCompatActivity {
+public class WelcomeActivityTutorial extends AppCompatActivity implements View.OnClickListener {
 
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
@@ -41,10 +41,10 @@ public class WelcomeActivityTutorial extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         initUI();
+        initListeners();
         addBottomDots(0);
         changeStatusBarColor();
         showUI();
-        btnTasks();
     }
 
     private void initUI() {
@@ -57,6 +57,11 @@ public class WelcomeActivityTutorial extends AppCompatActivity {
                 R.layout.slide_screen1,
                 R.layout.slide_screen2,
                 R.layout.slide_screen3};
+    }
+
+    private void initListeners() {
+        btnSkip.setOnClickListener(this);
+        btnNext.setOnClickListener(this);
     }
 
     private void addBottomDots(int currentPage) {
@@ -132,34 +137,11 @@ public class WelcomeActivityTutorial extends AppCompatActivity {
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
     }
 
-    private void btnTasks() {
-        btnSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchHomeScreen();
-            }
-        });
-
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // checking for last page
-                // if last page home screen will be launched
-                int current = getItem(+1);
-                if (current < layouts.length) {
-                    // move to next screen
-                    viewPager.setCurrentItem(current);
-                } else {
-                    launchHomeScreen();
-                }
-            }
-        });
-    }
-
     /**
      * View pager adapter
      */
     public class MyViewPagerAdapter extends PagerAdapter {
+
         private LayoutInflater layoutInflater;
 
         MyViewPagerAdapter() {
@@ -189,6 +171,24 @@ public class WelcomeActivityTutorial extends AppCompatActivity {
         public void destroyItem(ViewGroup container, int position, Object object) {
             View view = (View) object;
             container.removeView(view);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_skip:
+                launchHomeScreen();
+                break;
+            case R.id.btn_next:
+                int current = getItem(+1);
+                if (current < layouts.length) {
+                    // move to next screen
+                    viewPager.setCurrentItem(current);
+                } else {
+                    launchHomeScreen();
+                }
+                break;
         }
     }
 

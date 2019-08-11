@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.StartPackage.MainActivity;
 
-public class Donates extends AppCompatActivity {
+public class Donates extends AppCompatActivity implements View.OnClickListener {
 
     private Button backDonates;
     private TextView phone, textWant;
@@ -27,6 +27,7 @@ public class Donates extends AppCompatActivity {
         setContentView(R.layout.activity_donates);
 
         initUI();
+        initListeners();
         tasks();
     }
 
@@ -39,27 +40,30 @@ public class Donates extends AppCompatActivity {
         textWant = findViewById(R.id.textWant);
     }
 
+    private void initListeners() {
+        backDonates.setOnClickListener(this);
+        phone.setOnClickListener(this);
+    }
+
     private void tasks() {
         SpannableString str = new SpannableString("054-4917147");
         str.setSpan(new BackgroundColorSpan(Color.WHITE), 0, 11, 0);
         phone.setText(str);
 
         textWant.setText("לאחר ההעברה נא לעדכן בהודעה את הגזבר\n - \nמוטי כהן");
+    }
 
-        backDonates.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.backDonates:
                 Intent intent = new Intent(Donates.this, MainActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        phone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.phone:
                 openWhatsApp(view);
-            }
-        });
+                break;
+        }
     }
 
     private void openWhatsApp(View view) {

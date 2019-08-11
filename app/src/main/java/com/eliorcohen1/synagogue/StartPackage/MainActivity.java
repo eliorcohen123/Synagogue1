@@ -57,7 +57,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener {
+        GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private TextView stripe;
     private Button responsible, worshipers, donates, winterClock, summerClock, mapMe, alarms, events;
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         setContentView(R.layout.activity_main);
 
         initUI();
+        initListeners();
         drawerLayout();
         showUI();
         getMyLocation();
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         responsible = findViewById(R.id.responsible);
         worshipers = findViewById(R.id.worshipers);
-        donates = findViewById(R.id.donations);
+        donates = findViewById(R.id.donates);
         winterClock = findViewById(R.id.winterClock);
         summerClock = findViewById(R.id.summerClock);
         mapMe = findViewById(R.id.mapMe);
@@ -108,6 +109,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         toolbar = findViewById(R.id.toolbar);
 
         AppRater.app_launched(this);
+    }
+
+    private void initListeners() {
+        summerClock.setOnClickListener(this);
+        winterClock.setOnClickListener(this);
+        responsible.setOnClickListener(this);
+        worshipers.setOnClickListener(this);
+        donates.setOnClickListener(this);
+        mapMe.setOnClickListener(this);
+        alarms.setOnClickListener(this);
+        events.setOnClickListener(this);
     }
 
     private void drawerLayout() {
@@ -143,70 +155,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         stripe.setText("יְבָרֶכְךָ יְהוָה נְוֵה צֶדֶק הַר הַקֹּדֶשׁ");
 
-        summerClock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SummerClock.class);
-                startActivity(intent);
-            }
-        });
-
-        winterClock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WinterClock.class);
-                startActivity(intent);
-            }
-        });
-
-        responsible.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Responsible.class);
-                startActivity(intent);
-            }
-        });
-
-        worshipers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Worshipers.class);
-                startActivity(intent);
-            }
-        });
-
-        donates.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Donates.class);
-                startActivity(intent);
-            }
-        });
-
-        mapMe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FragmentActivityMy.class);
-                startActivity(intent);
-            }
-        });
-
-        alarms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MyAlarm.class);
-                startActivity(intent);
-            }
-        });
-
-        events.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Events.class);
-                startActivity(intent);
-            }
-        });
-
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -216,6 +164,44 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 }
             }
         };
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.summerClock:
+                Intent intent = new Intent(MainActivity.this, SummerClock.class);
+                startActivity(intent);
+                break;
+            case R.id.winterClock:
+                Intent intent2 = new Intent(MainActivity.this, WinterClock.class);
+                startActivity(intent2);
+                break;
+            case R.id.responsible:
+                Intent intent3 = new Intent(MainActivity.this, Responsible.class);
+                startActivity(intent3);
+                break;
+            case R.id.worshipers:
+                Intent intent4 = new Intent(MainActivity.this, Worshipers.class);
+                startActivity(intent4);
+                break;
+            case R.id.donates:
+                Intent intent5 = new Intent(MainActivity.this, Donates.class);
+                startActivity(intent5);
+                break;
+            case R.id.mapMe:
+                Intent intent6 = new Intent(MainActivity.this, FragmentActivityMy.class);
+                startActivity(intent6);
+                break;
+            case R.id.alarms:
+                Intent intent7 = new Intent(MainActivity.this, MyAlarm.class);
+                startActivity(intent7);
+                break;
+            case R.id.events:
+                Intent intent8 = new Intent(MainActivity.this, Events.class);
+                startActivity(intent8);
+                break;
+        }
     }
 
     private void getMyLocation() {

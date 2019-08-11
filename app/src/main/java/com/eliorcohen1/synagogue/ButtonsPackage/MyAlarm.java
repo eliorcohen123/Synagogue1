@@ -25,7 +25,7 @@ import com.eliorcohen1.synagogue.StartPackage.MyReceiverAlarm;
 
 import java.util.Calendar;
 
-public class MyAlarm extends AppCompatActivity {
+public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
 
     private PendingIntent pendingIntent;
     private EditText myHour, myMinute;
@@ -40,9 +40,8 @@ public class MyAlarm extends AppCompatActivity {
         setContentView(R.layout.activity_alarm);
 
         initUI();
+        initListeners();
         tasks();
-        okAlarm();
-        cancelAlarm();
     }
 
     private void initUI() {
@@ -60,6 +59,12 @@ public class MyAlarm extends AppCompatActivity {
         myMinute.setFilters(new InputFilter[]{new InputFilterMinMax("0", "60")});
     }
 
+    private void initListeners() {
+        okAlarm.setOnClickListener(this);
+        cancelAlarm.setOnClickListener(this);
+        backAlarm.setOnClickListener(this);
+    }
+
     private void tasks() {
         SharedPreferences prefs = getSharedPreferences("textTime", MODE_PRIVATE);
         int idHour = prefs.getInt("idHour", 0);
@@ -74,20 +79,38 @@ public class MyAlarm extends AppCompatActivity {
         } else if (idHour > 9 && idMinute <= 9) {
             myText.setText(String.valueOf(idHour + ":" + String.valueOf("0" + idMinute)));
         }
-
-        backAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MyAlarm.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
-    private void okAlarm() {
-        okAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    private class InputFilterMinMax implements InputFilter {
+
+        private int min, max;
+
+        public InputFilterMinMax(String min, String max) {
+            this.min = Integer.parseInt(min);
+            this.max = Integer.parseInt(max);
+        }
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            try {
+                int input = Integer.parseInt(dest.toString() + source.toString());
+                if (isInRange(min, max, input))
+                    return null;
+            } catch (NumberFormatException nfe) {
+
+            }
+            return "";
+        }
+
+        private boolean isInRange(int a, int b, int c) {
+            return b > a ? c >= a && c <= b : c >= b && c <= a;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.okAlarm:
                 if (myHour.getText().toString().isEmpty() && myMinute.getText().toString().isEmpty()) {
                     Toast.makeText(MyAlarm.this, "נא הקלד שעה ודקה.", Toast.LENGTH_LONG).show();
                 } else if (myHour.getText().toString().isEmpty()) {
@@ -136,14 +159,8 @@ public class MyAlarm extends AppCompatActivity {
                     finish();
                     startActivity(getIntent());
                 }
-            }
-        });
-    }
-
-    private void cancelAlarm() {
-        cancelAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.cancelAlarm:
                 ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
                 PackageManager pm = getPackageManager();
                 pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
@@ -178,33 +195,10 @@ public class MyAlarm extends AppCompatActivity {
 
                 finish();
                 startActivity(getIntent());
-            }
-        });
-    }
-
-    private class InputFilterMinMax implements InputFilter {
-
-        private int min, max;
-
-        public InputFilterMinMax(String min, String max) {
-            this.min = Integer.parseInt(min);
-            this.max = Integer.parseInt(max);
-        }
-
-        @Override
-        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-            try {
-                int input = Integer.parseInt(dest.toString() + source.toString());
-                if (isInRange(min, max, input))
-                    return null;
-            } catch (NumberFormatException nfe) {
-
-            }
-            return "";
-        }
-
-        private boolean isInRange(int a, int b, int c) {
-            return b > a ? c >= a && c <= b : c >= b && c <= a;
+                break;
+            case R.id.backAlarm:
+                Intent intent = new Intent(MyAlarm.this, MainActivity.class);
+                startActivity(intent);
         }
     }
 

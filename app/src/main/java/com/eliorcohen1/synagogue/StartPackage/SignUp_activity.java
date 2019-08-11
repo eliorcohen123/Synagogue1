@@ -20,7 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignUp_activity extends AppCompatActivity {
+public class SignUp_activity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText email_id, passwordCheck;
     private FirebaseAuth mAuth;
@@ -35,7 +35,7 @@ public class SignUp_activity extends AppCompatActivity {
         setContentView(R.layout.activity_signup_activity);
 
         initUI();
-        btnTasks();
+        initListeners();
     }
 
     private void initUI() {
@@ -48,18 +48,19 @@ public class SignUp_activity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void btnTasks() {
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    private void initListeners() {
+        myBtnSignUp.setOnClickListener(this);
+        btnSignUp.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.login_page:
                 Intent intent = new Intent(SignUp_activity.this, SignIn_activity.class);
                 startActivity(intent);
-            }
-        });
-
-        myBtnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case R.id.btn_signup:
                 String email = email_id.getText().toString();
                 String password = passwordCheck.getText().toString();
 
@@ -92,8 +93,8 @@ public class SignUp_activity extends AppCompatActivity {
                                 }
                             }
                         });
-            }
-        });
+                break;
+        }
     }
 
 }

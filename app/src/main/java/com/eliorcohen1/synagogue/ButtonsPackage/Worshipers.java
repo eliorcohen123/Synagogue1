@@ -21,7 +21,7 @@ import com.eliorcohen1.synagogue.StartPackage.TotalModel;
 
 import java.util.ArrayList;
 
-public class Worshipers extends AppCompatActivity {
+public class Worshipers extends AppCompatActivity implements View.OnClickListener {
 
     private Button backWorshipers;
     private ArrayList<TotalModel> arrayList;
@@ -35,8 +35,8 @@ public class Worshipers extends AppCompatActivity {
         setContentView(R.layout.activity_worshipers);
 
         initUI();
+        initListeners();
         showUI();
-        btnBack();
     }
 
     private void initUI() {
@@ -50,6 +50,10 @@ public class Worshipers extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         arrayList = new ArrayList<TotalModel>();
+    }
+
+    private void initListeners() {
+        backWorshipers.setOnClickListener(this);
     }
 
     private void showUI() {
@@ -105,14 +109,14 @@ public class Worshipers extends AppCompatActivity {
         rv.setAdapter(adapter);
     }
 
-    private void btnBack() {
-        backWorshipers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.backWorshipers:
                 Intent intent = new Intent(Worshipers.this, MainActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
+        }
     }
 
     @Override

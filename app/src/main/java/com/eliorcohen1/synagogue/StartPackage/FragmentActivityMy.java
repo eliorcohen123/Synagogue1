@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.eliorcohen1.synagogue.R;
 
-public class FragmentActivityMy extends AppCompatActivity {
+public class FragmentActivityMy extends AppCompatActivity implements View.OnClickListener {
 
     private Button backMap;
     private CoordinatorLayout coordinatorLayout;
@@ -22,6 +22,7 @@ public class FragmentActivityMy extends AppCompatActivity {
         setContentView(R.layout.activity_fragment);
 
         initUI();
+        initListeners();
         showUI();
     }
 
@@ -31,6 +32,10 @@ public class FragmentActivityMy extends AppCompatActivity {
 
         backMap = findViewById(R.id.backMap);
         coordinatorLayout = findViewById(R.id.myContent);
+    }
+
+    private void initListeners() {
+        backMap.setOnClickListener(this);
     }
 
     private void showUI() {
@@ -43,14 +48,16 @@ public class FragmentActivityMy extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
 
-        backMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.backMap:
                 Intent intent = new Intent(FragmentActivityMy.this, MainActivity.class);
                 startActivity(intent);
-            }
-        });
+                break;
+        }
     }
 
 }
