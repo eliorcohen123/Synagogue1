@@ -57,8 +57,7 @@ public class Donates extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.backDonates:
-                Intent intent = new Intent(Donates.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
                 break;
             case R.id.phone:
                 openWhatsApp(view);

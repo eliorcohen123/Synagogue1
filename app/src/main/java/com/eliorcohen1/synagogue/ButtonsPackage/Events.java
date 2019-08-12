@@ -25,7 +25,7 @@ import java.util.TimerTask;
 
 public class Events extends AppCompatActivity implements View.OnClickListener {
 
-    private Button backDonates;
+    private Button backEvents;
     private TextView phone, textWant;
     private View view;
     private static ViewPager mPager;
@@ -49,7 +49,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        backDonates = findViewById(R.id.backEvents);
+        backEvents = findViewById(R.id.backEvents);
         phone = findViewById(R.id.phone);
         textWant = findViewById(R.id.textWant);
 
@@ -58,7 +58,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void initListeners() {
-        backDonates.setOnClickListener(this);
+        backEvents.setOnClickListener(this);
         phone.setOnClickListener(this);
     }
 
@@ -73,7 +73,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.backDonates:
+            case R.id.backEvents:
                 onBackPressed();
                 break;
             case R.id.phone:
