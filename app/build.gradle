@@ -6,7 +6,7 @@ android {
         applicationId "com.eliorcohen1.synagogue"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 49
+        versionCode 50
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
