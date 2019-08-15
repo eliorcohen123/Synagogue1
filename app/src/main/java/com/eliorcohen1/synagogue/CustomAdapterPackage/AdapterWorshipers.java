@@ -95,8 +95,7 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) ==
-                        PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                     String phone = "tel:" + list_data.get(position).getPhone();
                     Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
                     context.startActivity(i);

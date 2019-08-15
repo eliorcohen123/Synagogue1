@@ -93,8 +93,7 @@ public class AdapterResponsible extends RecyclerView.Adapter<AdapterResponsible.
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) ==
-                        PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                     String phone = "tel:" + list_data.get(position).getPhone();
                     Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
                     context.startActivity(i);
