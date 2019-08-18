@@ -32,6 +32,7 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
     private Button okAlarm, cancelAlarm, backAlarm;
     private AlarmManager alarmManager;
     private NotificationManager notificationManager;
+    private Calendar alarmStartTime;
     private TextView myText;
 
     @Override
@@ -141,7 +142,7 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                     alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                     alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
-                    Calendar alarmStartTime = Calendar.getInstance();
+                     alarmStartTime = Calendar.getInstance();
                     Calendar now = Calendar.getInstance();
                     alarmStartTime.set(Calendar.HOUR_OF_DAY, myHourMy);
                     alarmStartTime.set(Calendar.MINUTE, myMinuteMy);
@@ -161,28 +162,11 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.cancelAlarm:
-                ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
-                PackageManager pm = getPackageManager();
-                pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-
                 SharedPreferences.Editor editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
                 editor.putInt("idHour", 0);
                 editor.putInt("idMinute", 0);
                 editor.apply();
 
-                Intent alarmIntent = new Intent(MyAlarm.this, MyReceiverAlarm.class); // AlarmReceiver1 = broadcast receiver
-                pendingIntent = PendingIntent.getBroadcast(MyAlarm.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
-
-                Calendar alarmStartTime = Calendar.getInstance();
-                Calendar now = Calendar.getInstance();
-                alarmStartTime.set(Calendar.HOUR_OF_DAY, 900000);
-                alarmStartTime.set(Calendar.MINUTE, 900000);
-                alarmStartTime.set(Calendar.SECOND, 900000);
-                if (now.after(alarmStartTime)) {
-                    alarmStartTime.add(Calendar.DATE, 1);
-                }
                 alarmManager.cancel(pendingIntent);
 
                 if (notificationManager != null) {
@@ -190,6 +174,11 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                     String id = "1";
                     notificationManager.deleteNotificationChannel(id);
                 }
+
+                ComponentName receiver = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
+                PackageManager pm = getPackageManager();
+
+                pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
                 Toast.makeText(MyAlarm.this, "ההתראה שלך בוטלה.", Toast.LENGTH_SHORT).show();
 
