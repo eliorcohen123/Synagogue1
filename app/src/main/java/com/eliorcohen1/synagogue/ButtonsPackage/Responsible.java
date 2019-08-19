@@ -55,6 +55,7 @@ public class Responsible extends AppCompatActivity implements View.OnClickListen
         arrayList.add(new TotalModel("שלום נסים", "052-9426607"));
         arrayList.add(new TotalModel("מוטי כהן", "054-4917147"));
         adapter = new AdapterResponsible(arrayList, this);
+        adapter.setNames(arrayList);
         rv.setAdapter(adapter);
     }
 

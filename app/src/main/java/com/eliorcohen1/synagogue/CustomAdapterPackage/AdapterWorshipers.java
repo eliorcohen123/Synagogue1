@@ -105,14 +105,19 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
             }
         });
 
+        setFadeAnimation(holder.itemView);
+    }
+
+    public void setNames(List<TotalModel> gameFavorites) {
+        list_data = gameFavorites;
         Collections.sort(list_data, new Comparator<TotalModel>() {
             public int compare(TotalModel obj1, TotalModel obj2) {
                 return obj1.getName().compareToIgnoreCase(obj2.getName());
             }
         });
-
-        setFadeAnimation(holder.itemView);
+        notifyDataSetChanged();
     }
+
 
     @Override
     public int getItemCount() {

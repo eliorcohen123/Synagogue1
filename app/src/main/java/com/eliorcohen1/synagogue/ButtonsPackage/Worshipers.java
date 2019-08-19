@@ -106,6 +106,7 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
         arrayList.add(new TotalModel("יוסף מרדכי", "050-3930719"));
         arrayList.add(new TotalModel("חנן דדון", "050-8107336"));
         adapter = new AdapterWorshipers(arrayList, this);
+        adapter.setNames(arrayList);
         rv.setAdapter(adapter);
     }
 
