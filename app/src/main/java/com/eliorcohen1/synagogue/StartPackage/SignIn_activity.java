@@ -117,7 +117,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
 
     private void btnLoginGoogle() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("451670612448-hhs7el6b0gf84pfif3okrj7d5256qjcr.apps.googleusercontent.com")
+                .requestIdToken(getString(R.string.googleSignInKey))
                 .requestEmail()
                 .build();
 

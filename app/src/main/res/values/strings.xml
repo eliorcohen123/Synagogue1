@@ -25,4 +25,5 @@
     <string name="CodeWait2">נשלח אליך קוד, הקוד יזוהה באופן אוטומטי, אם הקוד לא זוהה אתה יכול לרשום את הקוד באופן ידני…</string>
     <string name="codeWrite1">הקלד את מס\' הנייד שלך…</string>
     <string name="codeWrite2">…הכנס את מס\' הנייד שלך</string>
+    <string name="googleSignInKey">API_KEY</string>
 </resources>
