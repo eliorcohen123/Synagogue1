@@ -53,12 +53,6 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
     private LoginButton loginButtonFacebook;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -77,6 +71,12 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
         btnSignUpMethod();
         btnLoginGoogle();
         btnLoginFacebook();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
     }
 
     private void initUI() {

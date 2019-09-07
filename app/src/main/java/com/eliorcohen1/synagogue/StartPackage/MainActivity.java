@@ -89,6 +89,36 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         getMyLocation();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+        if (!checkPermissions()) {
+            Log.i(TAG, "Inside onStart function; requesting permission when permission is not available");
+            requestPermissions();
+        } else {
+            Log.i(TAG, "Inside onStart function; getting location when permission is already available");
+            getLastLocation();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (anim != null && !anim.isRunning()) {
+            anim.start();
+        }
+        startLocationUpdates();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (anim != null && anim.isRunning()) {
+            anim.stop();
+        }
+    }
+
     private void initUI() {
         checkLocationPermission();
 
@@ -527,36 +557,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         }
                     }
                 });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-        if (!checkPermissions()) {
-            Log.i(TAG, "Inside onStart function; requesting permission when permission is not available");
-            requestPermissions();
-        } else {
-            Log.i(TAG, "Inside onStart function; getting location when permission is already available");
-            getLastLocation();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (anim != null && !anim.isRunning()) {
-            anim.start();
-        }
-        startLocationUpdates();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (anim != null && anim.isRunning()) {
-            anim.stop();
-        }
     }
 
 }
