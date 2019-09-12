@@ -89,13 +89,10 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
         btnSignInGoogle = findViewById(R.id.sign_in_google);
         btnPhone = findViewById(R.id.btnPhone);
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if (firebaseAuth.getCurrentUser() != null) {
-                    startActivity(new Intent(SignIn_activity.this, WelcomeActivity.class));
-                    finish();
-                }
+        mAuthListener = firebaseAuth -> {
+            if (firebaseAuth.getCurrentUser() != null) {
+                startActivity(new Intent(SignIn_activity.this, WelcomeActivity.class));
+                finish();
             }
         };
     }
@@ -107,12 +104,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void btnSignUpMethod() {
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SignIn_activity.this, SignUp_activity.class));
-            }
-        });
+        btnSignUp.setOnClickListener(v -> startActivity(new Intent(SignIn_activity.this, SignUp_activity.class)));
     }
 
     private void btnLoginGoogle() {
@@ -151,20 +143,17 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(SignIn_activity.this, "Auth Fail", Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        //updateUI(user);
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+                        Toast.makeText(SignIn_activity.this, "Auth Fail", Toast.LENGTH_SHORT).show();
+                        //updateUI(null);
                     }
                 });
     }
@@ -207,18 +196,15 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
         // [END_EXCLUDE]
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(SignIn_activity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+                        Toast.makeText(SignIn_activity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -248,20 +234,17 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
 
                 //authenticate user
                 mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignIn_activity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
-                                if (task.isSuccessful()) {
-                                    // there was an error
-                                    Log.d(TAG, "signInWithEmail:success");
-                                    Intent intent = new Intent(SignIn_activity.this, WelcomeActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Log.d(TAG, "singInWithEmail:Fail");
-                                    Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_LONG).show();
-                                }
+                        .addOnCompleteListener(SignIn_activity.this, task -> {
+                            progressBar.setVisibility(View.GONE);
+                            if (task.isSuccessful()) {
+                                // there was an error
+                                Log.d(TAG, "signInWithEmail:success");
+                                Intent intent = new Intent(SignIn_activity.this, WelcomeActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Log.d(TAG, "singInWithEmail:Fail");
+                                Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_LONG).show();
                             }
                         });
                 break;

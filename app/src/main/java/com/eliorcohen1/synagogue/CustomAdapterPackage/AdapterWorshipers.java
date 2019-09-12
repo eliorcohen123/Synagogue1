@@ -92,16 +92,13 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
         final TotalModel listData = adapterListFiltered.get(position);
         holder.textName.setText(listData.getName());
         holder.textPhone.setText(listData.getPhone());
-        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                    String phone = "tel:" + list_data.get(position).getPhone();
-                    Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
-                    context.startActivity(i);
-                } else {
-                    ActivityCompat.requestPermissions((Activity) mInflater.getContext(), new String[]{Manifest.permission.CALL_PHONE}, 0);
-                }
+        holder.relativeLayout.setOnClickListener(v -> {
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                String phone = "tel:" + list_data.get(position).getPhone();
+                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
+                context.startActivity(i);
+            } else {
+                ActivityCompat.requestPermissions((Activity) mInflater.getContext(), new String[]{Manifest.permission.CALL_PHONE}, 0);
             }
         });
 
@@ -110,11 +107,7 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
 
     public void setNames(List<TotalModel> gameFavorites) {
         list_data = gameFavorites;
-        Collections.sort(list_data, new Comparator<TotalModel>() {
-            public int compare(TotalModel obj1, TotalModel obj2) {
-                return obj1.getName().compareToIgnoreCase(obj2.getName());
-            }
-        });
+        Collections.sort(list_data, (obj1, obj2) -> obj1.getName().compareToIgnoreCase(obj2.getName()));
         notifyDataSetChanged();
     }
 

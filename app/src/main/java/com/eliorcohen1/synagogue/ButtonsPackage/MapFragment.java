@@ -165,115 +165,112 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         marker = new MarkerOptions().position(new LatLng(31.742462, 34.985447)).title("בית הכנסת - נווה צדק")
                 .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getContext(), R.drawable.pic_synagogue, "בית הכנסת - נווה צדק")));
         mGoogleMap.addMarker(marker);
-        mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION);
-                }// TODO: Consider calling
+        mGoogleMap.setOnMarkerClickListener(marker -> {
+            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION);
+            }// TODO: Consider calling
 //    ActivityCompat#requestPermissions
 // here to request the missing permissions, and then overriding
 //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
 //                                          int[] grantResults)
 // to handle the case where the user grants the permission. See the documentation
 // for ActivityCompat#requestPermissions for more details.
-                if (provider != null) {
-                    location = locationManager.getLastKnownLocation(provider);
-                    if (location != null) {
-                        TotalModel info = new TotalModel();
-                        double distanceMe;
-                        Location locationA = new Location("Point A");
-                        locationA.setLatitude(31.742462);
-                        locationA.setLongitude(34.985447);
-                        Location locationB = new Location("Point B");
-                        locationB.setLatitude(location.getLatitude());
-                        locationB.setLongitude(location.getLongitude());
-                        distanceMe = locationA.distanceTo(locationB) / 1000;
+            if (provider != null) {
+                location = locationManager.getLastKnownLocation(provider);
+                if (location != null) {
+                    TotalModel info = new TotalModel();
+                    double distanceMe;
+                    Location locationA = new Location("Point A");
+                    locationA.setLatitude(31.742462);
+                    locationA.setLongitude(34.985447);
+                    Location locationB = new Location("Point B");
+                    locationB.setLatitude(location.getLatitude());
+                    locationB.setLongitude(location.getLongitude());
+                    distanceMe = locationA.distanceTo(locationB) / 1000;
 
-                        String distanceKm1;
-                        if (distanceMe < 1) {
-                            int dis = (int) (distanceMe * 1000);
-                            distanceKm1 = "\n" + "Meters: " + String.valueOf(dis);
-                            info.setName(info.getName());
-                            info.setImageView("pic_synagogue");
-                            info.setDistance(distanceKm1);
-                        } else if (distanceMe >= 1) {
-                            String disM = String.format("%.2f", distanceMe);
-                            distanceKm1 = "\n" + "Km: " + String.valueOf(disM);
-                            info.setName(info.getName());
-                            info.setImageView("pic_synagogue");
-                            info.setDistance(distanceKm1);
-                        }
-
-                        CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity());
-                        mGoogleMap.setInfoWindowAdapter(customInfoWindow);
-
-                        marker.setTag(info);
-                        marker.showInfoWindow();
+                    String distanceKm1;
+                    if (distanceMe < 1) {
+                        int dis = (int) (distanceMe * 1000);
+                        distanceKm1 = "\n" + "Meters: " + String.valueOf(dis);
+                        info.setName(info.getName());
+                        info.setImageView("pic_synagogue");
+                        info.setDistance(distanceKm1);
+                    } else if (distanceMe >= 1) {
+                        String disM = String.format("%.2f", distanceMe);
+                        distanceKm1 = "\n" + "Km: " + String.valueOf(disM);
+                        info.setName(info.getName());
+                        info.setImageView("pic_synagogue");
+                        info.setDistance(distanceKm1);
                     }
+
+                    CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(getActivity());
+                    mGoogleMap.setInfoWindowAdapter(customInfoWindow);
+
+                    marker.setTag(info);
+                    marker.showInfoWindow();
                 }
+            }
 
-                Toast.makeText(getContext(), "בית הכנסת - נווה צדק", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "בית הכנסת - נווה צדק", Toast.LENGTH_SHORT).show();
 
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                }
-                if (provider != null) {
-                    location = locationManager.getLastKnownLocation(provider);
-                    if (location != null) {
-                        double lat = location.getLatitude();
-                        double lng = location.getLongitude();
-                        String lat1 = String.valueOf(lat);
-                        String lng1 = String.valueOf(lng);
+            if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+            }
+            if (provider != null) {
+                location = locationManager.getLastKnownLocation(provider);
+                if (location != null) {
+                    double lat = location.getLatitude();
+                    double lng = location.getLongitude();
+                    String lat1 = String.valueOf(lat);
+                    String lng1 = String.valueOf(lng);
 
-                        //Define list to get all latLng for the route
-                        ArrayList<LatLng> path = new ArrayList<LatLng>();
+                    //Define list to get all latLng for the route
+                    ArrayList<LatLng> path = new ArrayList<LatLng>();
 
-                        //Execute Directions API request
-                        GeoApiContext context = new GeoApiContext.Builder()
-                                .apiKey(getString(R.string.api_key_search))
-                                .build();
-                        DirectionsApiRequest req = DirectionsApi.getDirections(context, lat1 + ", " + lng1, "31.742462, 34.985447");
-                        try {
-                            DirectionsResult res = req.await();
+                    //Execute Directions API request
+                    GeoApiContext context = new GeoApiContext.Builder()
+                            .apiKey(getString(R.string.api_key_search))
+                            .build();
+                    DirectionsApiRequest req = DirectionsApi.getDirections(context, lat1 + ", " + lng1, "31.742462, 34.985447");
+                    try {
+                        DirectionsResult res = req.await();
 
-                            //Loop through legs and steps to get encoded polyLines of each step
-                            if (res.routes != null && res.routes.length > 0) {
-                                DirectionsRoute route = res.routes[0];
+                        //Loop through legs and steps to get encoded polyLines of each step
+                        if (res.routes != null && res.routes.length > 0) {
+                            DirectionsRoute route = res.routes[0];
 
-                                if (route.legs != null) {
-                                    for (int i = 0; i < route.legs.length; i++) {
-                                        DirectionsLeg leg = route.legs[i];
-                                        if (leg.steps != null) {
-                                            for (int j = 0; j < leg.steps.length; j++) {
-                                                DirectionsStep step = leg.steps[j];
-                                                if (step.steps != null && step.steps.length > 0) {
-                                                    for (int k = 0; k < step.steps.length; k++) {
-                                                        DirectionsStep step1 = step.steps[k];
-                                                        EncodedPolyline points1 = step1.polyline;
-                                                        if (points1 != null) {
-                                                            //Decode polyline and add points to list of route coordinates
-                                                            List<com.google.maps.model.LatLng> coords1 = points1.decodePath();
-                                                            for (com.google.maps.model.LatLng coord1 : coords1) {
-                                                                path.add(new LatLng(coord1.lat, coord1.lng));
-                                                            }
+                            if (route.legs != null) {
+                                for (int i = 0; i < route.legs.length; i++) {
+                                    DirectionsLeg leg = route.legs[i];
+                                    if (leg.steps != null) {
+                                        for (int j = 0; j < leg.steps.length; j++) {
+                                            DirectionsStep step = leg.steps[j];
+                                            if (step.steps != null && step.steps.length > 0) {
+                                                for (int k = 0; k < step.steps.length; k++) {
+                                                    DirectionsStep step1 = step.steps[k];
+                                                    EncodedPolyline points1 = step1.polyline;
+                                                    if (points1 != null) {
+                                                        //Decode polyline and add points to list of route coordinates
+                                                        List<com.google.maps.model.LatLng> coords1 = points1.decodePath();
+                                                        for (com.google.maps.model.LatLng coord1 : coords1) {
+                                                            path.add(new LatLng(coord1.lat, coord1.lng));
                                                         }
                                                     }
-                                                } else {
-                                                    EncodedPolyline points = step.polyline;
-                                                    if (points != null) {
-                                                        //Decode polyline and add points to list of route coordinates
-                                                        List<com.google.maps.model.LatLng> coords = points.decodePath();
-                                                        for (com.google.maps.model.LatLng coord : coords) {
-                                                            path.add(new LatLng(coord.lat, coord.lng));
-                                                        }
+                                                }
+                                            } else {
+                                                EncodedPolyline points = step.polyline;
+                                                if (points != null) {
+                                                    //Decode polyline and add points to list of route coordinates
+                                                    List<com.google.maps.model.LatLng> coords = points.decodePath();
+                                                    for (com.google.maps.model.LatLng coord : coords) {
+                                                        path.add(new LatLng(coord.lat, coord.lng));
                                                     }
                                                 }
                                             }
@@ -281,19 +278,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                                     }
                                 }
                             }
-                        } catch (Exception e) {
-                            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                         }
+                    } catch (Exception e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
 
-                        //Draw the polyline
-                        if (path.size() > 0) {
-                            PolylineOptions opts = new PolylineOptions().addAll(path).color(Color.rgb(153, 153, 102)).width(5);
-                            mGoogleMap.addPolyline(opts);
-                        }
+                    //Draw the polyline
+                    if (path.size() > 0) {
+                        PolylineOptions opts = new PolylineOptions().addAll(path).color(Color.rgb(153, 153, 102)).width(5);
+                        mGoogleMap.addPolyline(opts);
                     }
                 }
-                return true;
             }
+            return true;
         });
     }
 

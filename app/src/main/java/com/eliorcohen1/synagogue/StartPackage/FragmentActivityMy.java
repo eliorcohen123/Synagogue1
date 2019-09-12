@@ -40,12 +40,9 @@ public class FragmentActivityMy extends AppCompatActivity implements View.OnClic
 
     private void showUI() {
         Snackbar.make(coordinatorLayout, R.string.item_removed_message, Snackbar.LENGTH_LONG)
-                .setAction(R.string.undo, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Respond to the click, such as by undoing the modification that caused
-                        // this message to be displayed
-                    }
+                .setAction(R.string.undo, v -> {
+                    // Respond to the click, such as by undoing the modification that caused
+                    // this message to be displayed
                 })
                 .show();
     }

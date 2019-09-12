@@ -75,22 +75,19 @@ public class SignUp_activity extends AppCompatActivity implements View.OnClickLi
                 progressBar.setVisibility(View.VISIBLE);
 
                 mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignUp_activity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "createUserWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Intent intent = new Intent(SignUp_activity.this, SignIn_activity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(SignUp_activity.this, "האימות נכשל.", Toast.LENGTH_SHORT).show();
-                                }
+                        .addOnCompleteListener(SignUp_activity.this, task -> {
+                            progressBar.setVisibility(View.GONE);
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "createUserWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Intent intent1 = new Intent(SignUp_activity.this, SignIn_activity.class);
+                                startActivity(intent1);
+                                finish();
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(SignUp_activity.this, "האימות נכשל.", Toast.LENGTH_SHORT).show();
                             }
                         });
                 break;

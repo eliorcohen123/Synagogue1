@@ -48,17 +48,14 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         String phoneNumber = getIntent().getStringExtra("phoneNumber");
         sendVerificationCode(phoneNumber);
 
-        findViewById(R.id.buttonSignIn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String code = editText.getText().toString().trim();
-                if (code.isEmpty() || code.length() < 6) {
-                    editText.setError("Enter code...");
-                    editText.requestFocus();
-                    return;
-                }
-                verifyCode(code);
+        findViewById(R.id.buttonSignIn).setOnClickListener(v -> {
+            String code = editText.getText().toString().trim();
+            if (code.isEmpty() || code.length() < 6) {
+                editText.setError("Enter code...");
+                editText.requestFocus();
+                return;
             }
+            verifyCode(code);
         });
     }
 

@@ -44,21 +44,18 @@ public class SignPhoneActivity extends AppCompatActivity {
     }
 
     private void doTasks() {
-        findViewById(R.id.buttonContinue).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
-                String number = editText.getText().toString().trim();
-                if (number.isEmpty() || number.length() < 10) {
-                    editText.setError("Valid number is required");
-                    editText.requestFocus();
-                    return;
-                }
-                String phoneNumber = "+" + code + number;
-                Intent intent = new Intent(SignPhoneActivity.this, VerifyPhoneActivity.class);
-                intent.putExtra("phoneNumber", phoneNumber);
-                startActivity(intent);
+        findViewById(R.id.buttonContinue).setOnClickListener(v -> {
+            String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
+            String number = editText.getText().toString().trim();
+            if (number.isEmpty() || number.length() < 10) {
+                editText.setError("Valid number is required");
+                editText.requestFocus();
+                return;
             }
+            String phoneNumber = "+" + code + number;
+            Intent intent = new Intent(SignPhoneActivity.this, VerifyPhoneActivity.class);
+            intent.putExtra("phoneNumber", phoneNumber);
+            startActivity(intent);
         });
     }
 
