@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.location.Location;
 import android.os.Handler;
@@ -56,6 +57,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import guy4444.smartrate.SmartRate;
+
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         initUI();
         initListeners();
+        initAppRater();
         drawerLayout();
         showUI();
         getMyLocation();
@@ -137,8 +141,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         drawer = findViewById(R.id.drawer_layout);
 
         toolbar = findViewById(R.id.toolbar);
-
-        AppRater.app_launched(this);
     }
 
     private void initListeners() {
@@ -150,6 +152,24 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mapMe.setOnClickListener(this);
         alarms.setOnClickListener(this);
         events.setOnClickListener(this);
+    }
+
+    private void initAppRater() {
+        SmartRate.Rate(MainActivity.this
+                , "Rate Us"
+                , "Tell others what you think about this app"
+                , "Continue"
+                , "Please take a moment and rate us on Google Play"
+                , "click here"
+                , "Ask me later"
+                , "Never ask again"
+                , "Cancel"
+                , "Thanks for the feedback"
+                , Color.parseColor("#2196F3")
+                , 5
+                , 1
+                , 1
+        );
     }
 
     private void drawerLayout() {
