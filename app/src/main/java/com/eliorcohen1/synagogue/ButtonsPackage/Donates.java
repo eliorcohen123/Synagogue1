@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.StartPackage.MainActivity;
 
 public class Donates extends AppCompatActivity implements View.OnClickListener {
 

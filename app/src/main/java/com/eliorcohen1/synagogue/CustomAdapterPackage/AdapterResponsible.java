@@ -15,17 +15,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.StartPackage.TotalModel;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class AdapterResponsible extends RecyclerView.Adapter<AdapterResponsible.ViewHolder> {
