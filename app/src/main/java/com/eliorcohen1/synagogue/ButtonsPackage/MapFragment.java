@@ -360,7 +360,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                     intent.setData(Uri.parse(uri));
                     startActivity(intent);
                 } catch (PackageManager.NameNotFoundException e) {
-                    String url = "http://app.appsflyer.com/com.tranzmate?pid=DL&c=Lovely Favorites Places";
+                    String url = "http://app.appsflyer.com/com.tranzmate?pid=DL&c=בית הכנסת - נווה צדק";
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     startActivity(i);

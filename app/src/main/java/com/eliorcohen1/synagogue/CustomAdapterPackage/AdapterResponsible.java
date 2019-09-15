@@ -99,8 +99,8 @@ public class AdapterResponsible extends RecyclerView.Adapter<AdapterResponsible.
         setFadeAnimation(holder.itemView);
     }
 
-    public void setNames(List<TotalModel> gameFavorites) {
-        list_data = gameFavorites;
+    public void setNames(List<TotalModel> names) {
+        list_data = names;
         Collections.sort(list_data, (obj1, obj2) -> obj1.getName().compareToIgnoreCase(obj2.getName()));
         notifyDataSetChanged();
     }
