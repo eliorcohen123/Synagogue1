@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.eliorcohen1.synagogue.R;
+import com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy;
 import com.eliorcohen1.synagogue.StartPackage.MainActivity;
 import com.eliorcohen1.synagogue.StartPackage.SignIn_activity;
 import com.google.android.gms.location.Geofence;
@@ -73,15 +74,15 @@ public class GeofenceTransitionsJobIntentService extends JobIntentService {
             mNotificationManager.createNotificationChannel(mChannel);
         }
 
-        Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent notificationIntent = new Intent(getApplicationContext(), FragmentActivityMy.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(MainActivity.class);
+        stackBuilder.addParentStack(FragmentActivityMy.class);
         stackBuilder.addNextIntent(notificationIntent);
         PendingIntent notificationPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
-        builder.setSmallIcon(R.drawable.pic_synagogue)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.pic_synagogue))
+        builder.setSmallIcon(R.drawable.lamp)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.lamp))
                 .setColor(Color.RED)
                 .setContentTitle(notificationDetails)
                 .setContentText(getString(R.string.geofence_transition_notification_text))
