@@ -24,12 +24,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomInfoWindowGoogleMap;
 import com.eliorcohen1.synagogue.R;
+import com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy;
+import com.eliorcohen1.synagogue.StartPackage.MainActivity;
 import com.eliorcohen1.synagogue.StartPackage.TotalModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -68,6 +71,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     private LinearLayout linearList;
     private boolean isClicked;
     private AlphaAnimation anim;
+    private static Button mAddGeofencesButton, mRemoveGeofencesButton;
 
     @Nullable
     @Override
@@ -77,6 +81,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         initUI();
         initListeners();
         initLocation();
+        setButtonsEnabledState();
 
         return mView;
     }
@@ -88,6 +93,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         btnOpenList = mView.findViewById(R.id.btnOpenList);
 
         linearList = mView.findViewById(R.id.listAll);
+
+        mAddGeofencesButton = mView.findViewById(R.id.btnYes);
+        mRemoveGeofencesButton = mView.findViewById(R.id.btnNo);
 
         linearList.setVisibility(View.GONE);
 
@@ -310,6 +318,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         return bitmap;
     }
 
+    public static void setButtonsEnabledState() {
+        if (FragmentActivityMy.getGeofencesAdded()) {
+            mAddGeofencesButton.setEnabled(false);
+            mRemoveGeofencesButton.setEnabled(true);
+        } else {
+            mAddGeofencesButton.setEnabled(true);
+            mRemoveGeofencesButton.setEnabled(false);
+        }
+    }
+
     private void getGetTaxi() {
         if (isPackageInstalledGetTaxi(getContext(), "com.gettaxi.android")) {
             openLinkGetTaxi((getActivity()), "gett://order?pickup=my_location&dropoff_latitude=31.742462&dropoff_longitude=34.985447&product_id=0c1202f8-6c43-4330-9d8a-3b4fa66505fd");
@@ -389,6 +407,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
                     setFadeAnimationFalse(linearList);
                     isClicked = true;
                 }
+                break;
         }
     }
 

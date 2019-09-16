@@ -81,17 +81,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getMyLocation();
         initUI();
         initListeners();
         initAppRater();
         drawerLayout();
         showUI();
-        getMyLocation();
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
         mAuth.addAuthStateListener(mAuthListener);
         if (!checkPermissions()) {
             Log.i(TAG, "Inside onStart function; requesting permission when permission is not available");
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     protected void onResume() {
         super.onResume();
+
         if (anim != null && !anim.isRunning()) {
             anim.start();
         }
@@ -114,9 +116,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @Override
     protected void onPause() {
         super.onPause();
+
         if (anim != null && anim.isRunning()) {
             anim.stop();
         }
+
+        startLocationUpdates();
     }
 
     private void initUI() {
@@ -385,8 +390,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000);
-        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setInterval(1000);
+        mLocationRequest.setFastestInterval(900);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
