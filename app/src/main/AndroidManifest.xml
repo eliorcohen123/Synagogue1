@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eliorcohen1.synagogue"
-    android:versionCode="56"
+    android:versionCode="57"
     android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -145,6 +145,10 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <service
+            android:name=".StartPackage.GoogleService"
+            android:exported="true" />
     </application>
 
 </manifest>
