@@ -40,6 +40,7 @@ public class WinterClock extends AppCompatActivity implements View.OnClickListen
         simpleDay = findViewById(R.id.simpleDay);
         morning1 = findViewById(R.id.morning1);
         noon1 = findViewById(R.id.noon1);
+        evening1 = findViewById(R.id.evening1);
         shabat = findViewById(R.id.shabat);
         evening2 = findViewById(R.id.evening2);
         morning2 = findViewById(R.id.morning2);
