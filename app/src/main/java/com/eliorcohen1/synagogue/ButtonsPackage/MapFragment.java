@@ -75,7 +75,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_maps, container, false);
+        mView = inflater.inflate(R.layout.fragment_map, container, false);
 
         initUI();
         initListeners();
