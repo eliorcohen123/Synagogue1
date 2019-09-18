@@ -24,7 +24,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -71,12 +70,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     private LinearLayout linearList;
     private boolean isClicked;
     private AlphaAnimation anim;
-    private static Button mAddGeofencesButton, mRemoveGeofencesButton;
+    private static LinearLayout linearLayoutYes, linearLayoutNo;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.activity_maps, container, false);
+        mView = inflater.inflate(R.layout.fragment_maps, container, false);
 
         initUI();
         initListeners();
@@ -94,8 +93,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
         linearList = mView.findViewById(R.id.listAll);
 
-        mAddGeofencesButton = mView.findViewById(R.id.btnYes);
-        mRemoveGeofencesButton = mView.findViewById(R.id.btnNo);
+        linearLayoutYes = mView.findViewById(R.id.linYes);
+        linearLayoutNo = mView.findViewById(R.id.linNo);
 
         linearList.setVisibility(View.GONE);
 
@@ -320,13 +319,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
     public static void setButtonsEnabledState() {
         if (FragmentActivityMy.getGeofencesAdded()) {
-            mAddGeofencesButton.setEnabled(false);
-            mRemoveGeofencesButton.setEnabled(true);
+            linearLayoutYes.setVisibility(View.GONE);
+            linearLayoutNo.setVisibility(View.VISIBLE);
         } else {
-            mAddGeofencesButton.setEnabled(true);
-            mRemoveGeofencesButton.setEnabled(false);
+            linearLayoutYes.setVisibility(View.VISIBLE);
+            linearLayoutNo.setVisibility(View.GONE);
         }
     }
+
 
     private void getGetTaxi() {
         if (isPackageInstalledGetTaxi(Objects.requireNonNull(getContext()))) {
