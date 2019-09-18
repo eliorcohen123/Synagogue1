@@ -34,9 +34,7 @@ public class WelcomeActivityTutorial extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
 
         // Making notification bar transparent
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        }
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
         setContentView(R.layout.activity_welcome);
 
@@ -83,8 +81,8 @@ public class WelcomeActivityTutorial extends AppCompatActivity implements View.O
             dots[currentPage].setTextColor(colorsActive[currentPage]);
     }
 
-    private int getItem(int i) {
-        return viewPager.getCurrentItem() + i;
+    private int getItem() {
+        return viewPager.getCurrentItem() + 1;
     }
 
     private void launchHomeScreen() {
@@ -124,11 +122,9 @@ public class WelcomeActivityTutorial extends AppCompatActivity implements View.O
      * Making notification bar transparent
      */
     private void changeStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.TRANSPARENT);
     }
 
     private void showUI() {
@@ -181,7 +177,7 @@ public class WelcomeActivityTutorial extends AppCompatActivity implements View.O
                 launchHomeScreen();
                 break;
             case R.id.btn_next:
-                int current = getItem(+1);
+                int current = getItem();
                 if (current < layouts.length) {
                     // move to next screen
                     viewPager.setCurrentItem(current);

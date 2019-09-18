@@ -101,6 +101,7 @@ public class GoogleService extends Service implements LocationListener {
 
             if (isGPSEnable) {
                 location = null;
+                assert locationManager != null;
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
                 if (locationManager != null) {
                     location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);

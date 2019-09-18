@@ -63,8 +63,7 @@ public class Responsible extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.backResponsible:
-                Intent intent = new Intent(Responsible.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
                 break;
         }
     }

@@ -75,8 +75,7 @@ public class SummerClock extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.backSummer:
-                Intent intent = new Intent(SummerClock.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
                 break;
         }
     }

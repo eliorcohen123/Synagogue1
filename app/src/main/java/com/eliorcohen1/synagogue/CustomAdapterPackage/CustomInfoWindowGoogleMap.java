@@ -37,6 +37,7 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
 
         TotalModel infoWindowData = (TotalModel) marker.getTag();
 
+        assert infoWindowData != null;
         int imageId = context.getResources().getIdentifier(infoWindowData.getImageView().toLowerCase(),
                 "drawable", context.getPackageName());
         img.setImageResource(imageId);

@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class FragmentActivityMy extends AppCompatActivity implements View.OnClickListener, OnCompleteListener<Void> {
 
@@ -192,7 +193,7 @@ public class FragmentActivityMy extends AppCompatActivity implements View.OnClic
         addGeofences();
 
         if (boolean_permission) {
-            if (mPref.getString("service", "").matches("")) {
+            if (Objects.requireNonNull(mPref.getString("service", "")).matches("")) {
                 mEdit.putString("service", "service").commit();
 
                 Intent intent = new Intent(getApplicationContext(), GoogleService.class);

@@ -74,8 +74,7 @@ public class WinterClock extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.backWinter:
-                Intent intent = new Intent(WinterClock.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
                 break;
         }
     }

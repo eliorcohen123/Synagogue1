@@ -18,7 +18,6 @@ public class Donates extends AppCompatActivity implements View.OnClickListener {
 
     private Button backDonates;
     private TextView phone, textWant;
-    private View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +58,12 @@ public class Donates extends AppCompatActivity implements View.OnClickListener {
                 onBackPressed();
                 break;
             case R.id.phone:
-                openWhatsApp(view);
+                openWhatsApp();
                 break;
         }
     }
 
-    private void openWhatsApp(View view) {
+    private void openWhatsApp() {
         try {
             String text = "היי מוטי, ברצוני לדווח על העברה בנקאית עבור נדר/תרומה על סך *** שקלים לכבוד בית הכנסת";// Replace with your message.
             String toNumber = "+9720544917147"; // Replace with mobile phone number without +Sign or leading zeros.

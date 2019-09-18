@@ -32,7 +32,6 @@ import android.widget.Toast;
 import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomInfoWindowGoogleMap;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy;
-import com.eliorcohen1.synagogue.StartPackage.MainActivity;
 import com.eliorcohen1.synagogue.StartPackage.TotalModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -54,6 +53,7 @@ import com.google.maps.model.EncodedPolyline;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -110,7 +110,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     }
 
     private void initLocation() {
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) Objects.requireNonNull(getActivity()).getSystemService(Context.LOCATION_SERVICE);
         criteria = new Criteria();
         provider = locationManager.getBestProvider(criteria, true);
     }
@@ -130,7 +130,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         try {
-            MapsInitializer.initialize(getContext());
+            MapsInitializer.initialize(Objects.requireNonNull(getContext()));
             mGoogleMap = googleMap;
             addMarker();
             googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
@@ -170,7 +170,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
 
     private void addMarker() {
         marker = new MarkerOptions().position(new LatLng(31.742462, 34.985447)).title("בית הכנסת - נווה צדק")
-                .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(getContext(), R.drawable.pic_synagogue, "בית הכנסת - נווה צדק")));
+                .icon(BitmapDescriptorFactory.fromBitmap(createCustomMarker(Objects.requireNonNull(getContext()), R.drawable.pic_synagogue)));
         mGoogleMap.addMarker(marker);
         mGoogleMap.setOnMarkerClickListener(marker -> {
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -301,7 +301,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         });
     }
 
-    private static Bitmap createCustomMarker(Context context, @DrawableRes int resource, String _name) {
+    private static Bitmap createCustomMarker(Context context, @DrawableRes int resource) {
         View marker = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.custom_marker_layout, null);
         CircleImageView markerImage = marker.findViewById(R.id.user_dp);
         markerImage.setImageResource(resource);
@@ -329,10 +329,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     }
 
     private void getGetTaxi() {
-        if (isPackageInstalledGetTaxi(getContext(), "com.gettaxi.android")) {
-            openLinkGetTaxi((getActivity()), "gett://order?pickup=my_location&dropoff_latitude=31.742462&dropoff_longitude=34.985447&product_id=0c1202f8-6c43-4330-9d8a-3b4fa66505fd");
+        if (isPackageInstalledGetTaxi(Objects.requireNonNull(getContext()))) {
+            openLinkGetTaxi((Objects.requireNonNull(getActivity())), "gett://order?pickup=my_location&dropoff_latitude=31.742462&dropoff_longitude=34.985447&product_id=0c1202f8-6c43-4330-9d8a-3b4fa66505fd");
         } else {
-            openLinkGetTaxi(getActivity(), "https://play.google.com/store/apps/details?id=" + "com.gettaxi.android");
+            openLinkGetTaxi(Objects.requireNonNull(getActivity()), "https://play.google.com/store/apps/details?id=" + "com.gettaxi.android");
         }
     }
 
@@ -343,10 +343,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         activity.startActivity(playStoreIntent);
     }
 
-    private static boolean isPackageInstalledGetTaxi(Context context, String packageId) {
+    private static boolean isPackageInstalledGetTaxi(Context context) {
         PackageManager pm = context.getPackageManager();
         try {
-            pm.getPackageInfo(packageId, PackageManager.GET_ACTIVITIES);
+            pm.getPackageInfo("com.gettaxi.android", PackageManager.GET_ACTIVITIES);
             return true;
         } catch (PackageManager.NameNotFoundException e) {
 
@@ -371,7 +371,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         switch (v.getId()) {
             case R.id.imageViewMoovit:
                 try {
-                    PackageManager pm = getActivity().getPackageManager();
+                    PackageManager pm = Objects.requireNonNull(getActivity()).getPackageManager();
                     pm.getPackageInfo("com.tranzmate", PackageManager.GET_ACTIVITIES);
                     String uri = "moovit://directions?dest_lat=31.742462&dest_lon=34.985447&dest_name=בית הכנסת - נווה צדק&orig_lat=" + location.getLatitude() + "&orig_lon=" + location.getLongitude() + "&orig_name=מיקומך הנוכחי&auto_run=true&partner_id=בית הכנסת - נווה צדק";
                     Intent intent = new Intent(Intent.ACTION_VIEW);

@@ -114,8 +114,7 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.backWorshipers:
-                Intent intent = new Intent(Worshipers.this, MainActivity.class);
-                startActivity(intent);
+                onBackPressed();
                 break;
         }
     }

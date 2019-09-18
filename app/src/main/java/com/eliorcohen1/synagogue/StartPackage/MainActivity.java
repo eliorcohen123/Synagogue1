@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         if (anim != null && !anim.isRunning()) {
             anim.start();
         }
+
         startLocationUpdates();
     }
 
@@ -285,14 +286,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
 //                Toast.makeText(MainActivity.this, "אני צריך את המיקום שלך בשביל להשתמש בתכני המיקום...", Toast.LENGTH_LONG).show();
                 final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        ActivityCompat.requestPermissions(MainActivity.this,
-                                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                                MY_PERMISSIONS_REQUEST_LOCATION);
-                    }
-                }, 3000);
+                handler.postDelayed(() -> ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION), 3000);
             } else {
                 // No explanation needed; request the permission
                 ActivityCompat.requestPermissions(MainActivity.this,

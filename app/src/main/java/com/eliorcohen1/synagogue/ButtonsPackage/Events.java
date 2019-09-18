@@ -27,7 +27,6 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
 
     private Button backEvents;
     private TextView phone, textWant;
-    private View view;
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
@@ -77,12 +76,12 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
                 onBackPressed();
                 break;
             case R.id.phone:
-                openWhatsApp(view);
+                openWhatsApp();
                 break;
         }
     }
 
-    private void openWhatsApp(View view) {
+    private void openWhatsApp() {
         try {
             String text = "היי שלום, ברצוני לקבוע אירוע/אזכרה באולם בית הכנסת, נא צור עימי קשר";// Replace with your message.
             String toNumber = "+9720529426607"; // Replace with mobile phone number without +Sign or leading zeros.
