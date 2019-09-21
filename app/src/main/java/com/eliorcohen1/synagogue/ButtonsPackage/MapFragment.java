@@ -312,7 +312,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
         }
     }
 
-
     private void getGetTaxi() {
         if (isPackageInstalledGetTaxi(Objects.requireNonNull(getContext()))) {
             openLinkGetTaxi((Objects.requireNonNull(getActivity())), "gett://order?pickup=my_location&dropoff_latitude=31.742462&dropoff_longitude=34.985447&product_id=0c1202f8-6c43-4330-9d8a-3b4fa66505fd");
