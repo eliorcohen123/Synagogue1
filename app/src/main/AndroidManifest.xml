@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eliorcohen1.synagogue"
-    android:versionCode="63"
+    android:versionCode="64"
     android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -68,7 +68,8 @@
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.SummerClock" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Worshipers" />
         <activity android:name="com.eliorcohen1.synagogue.StartPackage.MyCredits" />
-        <activity android:name="com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy" />
+        <activity android:name="com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.MyAlarm" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Events" />
         <activity
