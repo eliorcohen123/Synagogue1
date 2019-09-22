@@ -22,8 +22,7 @@ class PreferenceManager {
     }
 
     void setFirstTimeLaunch() {
-        editor.putBoolean(IS_FIRST_TIME_LAUNCH, false);
-        editor.commit();
+        editor.putBoolean(IS_FIRST_TIME_LAUNCH, false).commit();
     }
 
     boolean isFirstTimeLaunch() {
