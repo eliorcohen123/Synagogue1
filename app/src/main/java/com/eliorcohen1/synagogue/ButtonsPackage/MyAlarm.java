@@ -34,6 +34,7 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
     private NotificationManager notificationManager;
     private Calendar alarmStartTime;
     private TextView myText;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,10 +123,8 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                     int myHourMy = Integer.parseInt(myHour.getText().toString());
                     int myMinuteMy = Integer.parseInt(myMinute.getText().toString());
 
-                    SharedPreferences.Editor editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
-                    editor.putInt("idHour", myHourMy);
-                    editor.putInt("idMinute", myMinuteMy);
-                    editor.apply();
+                    editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
+                    editor.putInt("idHour", myHourMy).putInt("idMinute", myMinuteMy).apply();
 
                     if (myHourMy <= 9 && myMinuteMy <= 9) {
                         Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf("0" + myHourMy) + ":" + String.valueOf("0" + myMinuteMy), Toast.LENGTH_SHORT).show();
@@ -142,7 +141,7 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                     alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                     alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
-                     alarmStartTime = Calendar.getInstance();
+                    alarmStartTime = Calendar.getInstance();
                     Calendar now = Calendar.getInstance();
                     alarmStartTime.set(Calendar.HOUR_OF_DAY, myHourMy);
                     alarmStartTime.set(Calendar.MINUTE, myMinuteMy);
@@ -162,10 +161,8 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.cancelAlarm:
-                SharedPreferences.Editor editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
-                editor.putInt("idHour", 0);
-                editor.putInt("idMinute", 0);
-                editor.apply();
+                editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
+                editor.putInt("idHour", 0).putInt("idMinute", 0).apply();
 
                 alarmManager.cancel(pendingIntent);
 
