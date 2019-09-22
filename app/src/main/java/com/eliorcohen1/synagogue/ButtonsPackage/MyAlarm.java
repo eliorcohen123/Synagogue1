@@ -59,6 +59,8 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
 
         myHour.setFilters(new InputFilter[]{new InputFilterMinMax("0", "24")});
         myMinute.setFilters(new InputFilter[]{new InputFilterMinMax("0", "60")});
+
+        editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
     }
 
     private void initListeners() {
@@ -123,7 +125,6 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                     int myHourMy = Integer.parseInt(myHour.getText().toString());
                     int myMinuteMy = Integer.parseInt(myMinute.getText().toString());
 
-                    editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
                     editor.putInt("idHour", myHourMy).putInt("idMinute", myMinuteMy).apply();
 
                     if (myHourMy <= 9 && myMinuteMy <= 9) {
@@ -161,7 +162,6 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.cancelAlarm:
-                editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
                 editor.putInt("idHour", 0).putInt("idMinute", 0).apply();
 
                 alarmManager.cancel(pendingIntent);
