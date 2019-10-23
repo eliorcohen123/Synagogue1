@@ -287,7 +287,7 @@ public class FragmentActivityMy extends AppCompatActivity implements View.OnClic
                     .setCircularRegion(
                             entry.getValue().latitude,
                             entry.getValue().longitude,
-                            300
+                            500
                     )
                     .setExpirationDuration(Constants.GEOFENCE_EXPIRATION_IN_MILLISECONDS)
                     .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER |
