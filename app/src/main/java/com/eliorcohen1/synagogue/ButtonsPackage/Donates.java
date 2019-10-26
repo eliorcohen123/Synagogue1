@@ -34,7 +34,7 @@ public class Donates extends AppCompatActivity implements View.OnClickListener {
         setSupportActionBar(toolbar);
 
         backDonates = findViewById(R.id.backDonates);
-        phone = findViewById(R.id.phone);
+        phone = findViewById(R.id.numPhone);
         textWant = findViewById(R.id.textWant);
     }
 
@@ -57,7 +57,7 @@ public class Donates extends AppCompatActivity implements View.OnClickListener {
             case R.id.backDonates:
                 onBackPressed();
                 break;
-            case R.id.phone:
+            case R.id.numPhone:
                 openWhatsApp();
                 break;
         }

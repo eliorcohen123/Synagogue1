@@ -49,7 +49,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
         setSupportActionBar(toolbar);
 
         backEvents = findViewById(R.id.backEvents);
-        phone = findViewById(R.id.phone);
+        phone = findViewById(R.id.numPhone);
         textWant = findViewById(R.id.textWant);
 
         imageModelArrayList = new ArrayList<>();
@@ -75,7 +75,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
             case R.id.backEvents:
                 onBackPressed();
                 break;
-            case R.id.phone:
+            case R.id.numPhone:
                 openWhatsApp();
                 break;
         }

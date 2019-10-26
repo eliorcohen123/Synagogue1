@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class TotalModel implements Serializable {
 
     private String name;
-    private String phone;
+    private String numPhone;
     private String distance;
     private String imageView;
     private int image_drawable;
 
-    public TotalModel(String name, String phone) {
+    public TotalModel(String name, String numPhone) {
         this.name = name;
-        this.phone = phone;
+        this.numPhone = numPhone;
     }
 
     public TotalModel() {
@@ -27,12 +27,12 @@ public class TotalModel implements Serializable {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getNumPhone() {
+        return numPhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setNumPhone(String numPhone) {
+        this.numPhone = numPhone;
     }
 
     public String getDistance() {

@@ -34,7 +34,7 @@ public class AdapterResponsible extends RecyclerView.Adapter<AdapterResponsible.
         public ViewHolder(View itemView) {
             super(itemView);
             textName = itemView.findViewById(R.id.name);
-            textPhone = itemView.findViewById(R.id.phone);
+            textPhone = itemView.findViewById(R.id.numPhone);
             relativeLayout = itemView.findViewById(R.id.relative1);
             itemView.setOnCreateContextMenuListener(this);
         }
@@ -53,7 +53,7 @@ public class AdapterResponsible extends RecyclerView.Adapter<AdapterResponsible.
                 TotalModel current = list_data.get(getAdapterPosition());
                 if (item.getItemId() == 1) {
                     String name = current.getName();
-                    String phone = current.getPhone();
+                    String phone = current.getNumPhone();
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
                     sendIntent.putExtra(Intent.EXTRA_TEXT, "שם: " + name + "\nטלפון: " + phone);
@@ -85,10 +85,10 @@ public class AdapterResponsible extends RecyclerView.Adapter<AdapterResponsible.
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final TotalModel listData = list_data.get(position);
         holder.textName.setText(listData.getName());
-        holder.textPhone.setText(listData.getPhone());
+        holder.textPhone.setText(listData.getNumPhone());
         holder.relativeLayout.setOnClickListener(v -> {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                String phone = "tel:" + list_data.get(position).getPhone();
+                String phone = "tel:" + list_data.get(position).getNumPhone();
                 Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
                 context.startActivity(i);
             } else {

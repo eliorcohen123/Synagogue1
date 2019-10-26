@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.eliorcohen1.synagogue"
         minSdkVersion 23
-        targetSdkVersion 28
-        versionCode 66
+        targetSdkVersion 29
+        versionCode 67
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -41,6 +41,8 @@ dependencies {
     implementation "com.github.JakeWharton:ViewPagerIndicator:2.4.1"
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.firebase:firebase-messaging:17.6.0'
+    implementation 'com.google.firebase:firebase-database:17.0.0'
+    implementation 'com.firebase:firebase-client-android:2.5.2'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.facebook.android:facebook-android-sdk:4.41.0'
     implementation 'com.github.guy-4444:SmartRateUsDialog-Android:1.00.08'

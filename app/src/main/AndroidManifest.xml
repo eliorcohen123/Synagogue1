@@ -68,10 +68,14 @@
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.SummerClock" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Worshipers" />
         <activity android:name="com.eliorcohen1.synagogue.StartPackage.MyCredits" />
-        <activity android:name="com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:name="com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.MyAlarm" />
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Events" />
+        <activity
+            android:name=".ButtonsPackage.AddWorshipers"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".StartPackage.VerifyPhoneActivity"
             android:screenOrientation="portrait" />
