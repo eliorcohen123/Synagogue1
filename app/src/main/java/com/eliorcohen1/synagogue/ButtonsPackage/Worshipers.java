@@ -128,7 +128,11 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
 
             @Override
             public boolean onQueryTextChange(String query) {
-                adapter.getFilter().filter(query);
+                try {
+                    adapter.getFilter().filter(query);
+                } catch (Exception e) {
+
+                }
                 return false;
             }
         });
