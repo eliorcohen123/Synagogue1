@@ -102,7 +102,8 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 assert currentFirebaseUser != null;
                 if (Objects.requireNonNull(currentFirebaseUser.getEmail()).equals(getString(R.string.API_KEY_Email1)) ||
-                        currentFirebaseUser.getEmail().equals(getString(R.string.API_KEY_Email2))) {
+                        currentFirebaseUser.getEmail().equals(getString(R.string.API_KEY_Email2)) ||
+                        currentFirebaseUser.getEmail().equals(getString(R.string.API_KEY_Email3))) {
                     Intent intent = new Intent(this, AddWorshipers.class);
                     startActivity(intent);
                 } else {
