@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Worshipers extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,9 +56,6 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
 
         rv = findViewById(R.id.listWorshipers);
 
-        rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-
         arrayList = new ArrayList<TotalModel>();
 
         Firebase.setAndroidContext(this);
@@ -70,6 +68,9 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
     }
 
     private void getReadFirebase() {
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
         firebase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -100,7 +101,8 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
             case R.id.btnWrite:
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 assert currentFirebaseUser != null;
-                if (currentFirebaseUser.getUid().equals(getString(R.string.API_KEY_Res1))) {
+                if (Objects.requireNonNull(currentFirebaseUser.getEmail()).equals(getString(R.string.API_KEY_Email1)) ||
+                        currentFirebaseUser.getEmail().equals(getString(R.string.API_KEY_Email2))) {
                     Intent intent = new Intent(this, AddWorshipers.class);
                     startActivity(intent);
                 } else {

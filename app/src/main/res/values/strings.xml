@@ -43,5 +43,6 @@
     <string name="permission_rationale">יש צורך בהרשאת מיקום לפונקציונליות הליבה</string>
     <string name="permission_denied_explanation">ההרשאה נדחתה, אך היא נדרשת לפונקציונליות הליבה.</string>
     <string name="API_KEY_Firebase">API_KEY</string>
-    <string name="API_KEY_Res1">API_KEY</string>
+    <string name="API_KEY_Email1">API_KEY</string>
+    <string name="API_KEY_Email2">API_KEY</string>
 </resources>
