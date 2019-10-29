@@ -3,8 +3,8 @@
     <string name="snooze">היי מתפלל יקר, הגיע הזמן לצאת לתפילה :)</string>
     <string name="navigation_drawer_open">פתח את התפריט</string>
     <string name="navigation_drawer_close">סגור את התפריט</string>
-    <string name="api_key_geo">API_KEY</string>
-    <string name="api_key_map">API_KEY</string>
+    <string name="api_key_geo">AP_KEY</string>
+    <string name="api_key_map">AP_KEY</string>
     <string name="title_activity_welcome">מסך בית</string>
     <string name="next">הבא</string>
     <string name="skip">דלג</string>
@@ -16,8 +16,8 @@
     <string name="failed">האימות נכשל</string>
     <string name="image">תמונה</string>
     <string name="create_a_new_account">צור משתמש חדש</string>
-    <string name="facebook_app_id">API_KEY</string>
-    <string name="fb_login_protocol_scheme">API_KEY</string>
+    <string name="facebook_app_id">AP_KEY</string>
+    <string name="fb_login_protocol_scheme">AP_KEY</string>
     <string name="item_removed_message">בבקשה לחץ על הסמן במפה על מנת לקבל מידע…</string>
     <string name="undo">בסדר</string>
     <string name="hint">חפש מתפלל ברשימה…</string>
@@ -25,7 +25,7 @@
     <string name="CodeWait2">נשלח אליך קוד, הקוד יזוהה באופן אוטומטי, אם הקוד לא זוהה אתה יכול לרשום את הקוד באופן ידני…</string>
     <string name="codeWrite1">הקלד את מס\' הנייד שלך…</string>
     <string name="codeWrite2">הכנס את מס\' הנייד שלך…</string>
-    <string name="googleSignInKey">API_KEY</string>
+    <string name="googleSignInKey">AP_KEY</string>
     <string name="add_geofences">הוספת התראת קרבה</string>
     <string name="remove_geofences">הסרת התראת קרבה</string>
     <string name="geofences_added">התראת קרבה הופעלה</string>
@@ -42,8 +42,10 @@
     <string name="insufficient_permissions">ההרשאות לא מספיקות.</string>
     <string name="permission_rationale">יש צורך בהרשאת מיקום לפונקציונליות הליבה</string>
     <string name="permission_denied_explanation">ההרשאה נדחתה, אך היא נדרשת לפונקציונליות הליבה.</string>
-    <string name="API_KEY_Firebase">API_KEY</string>
-    <string name="API_KEY_Email1">API_KEY</string>
-    <string name="API_KEY_Email2">API_KEY</string>
-    <string name="API_KEY_Email3">API_KEY</string>
+    <string name="API_KEY_Firebase">AP_KEY</string>
+    <string name="API_KEY_Email1">AP_KEY</string>
+    <string name="API_KEY_Email2">AP_KEY</string>
+    <string name="API_KEY_Email3">AP_KEY</string>
+    <string name="worshipers_name">worshipers_name</string>
+    <string name="worshipers_numPhone">worshipers_numPhone</string>
 </resources>
