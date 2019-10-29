@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eliorcohen1.synagogue"
-    android:versionCode="69"
+    android:versionCode="70"
     android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -75,6 +75,9 @@
         <activity android:name="com.eliorcohen1.synagogue.ButtonsPackage.Events" />
         <activity
             android:name=".ButtonsPackage.AddWorshipers"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ButtonsPackage.EditWorshipers"
             android:screenOrientation="portrait" />
         <activity
             android:name=".StartPackage.VerifyPhoneActivity"

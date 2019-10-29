@@ -54,15 +54,16 @@ public class AddWorshipers extends AppCompatActivity implements View.OnClickList
                 String name1 = name.getText().toString();  // GetText of the name
                 String numPhone1 = num_phone.getText().toString();  // GetText of the name
 
-                if (TextUtils.isEmpty(name1)) {  // If the text are empty the textViewNumPhone will not be approved
-                    name.setError("דרוש שם");  // Print text of error if the text are empty
+                if (TextUtils.isEmpty(name1) && TextUtils.isEmpty(numPhone1)) {  // If the text are empty the textViewNumPhone will not be approved
+                    name.setError("דרוש שם");  // Print text of error if the text is empty
+                    num_phone.setError("דרוש מס' נייד");  // Print text of error if the text is empty
+                } else if (TextUtils.isEmpty(name1)) {  // If the text are empty the textViewNumPhone will not be approved
+                    name.setError("דרוש שם");  // Print text of error if the text is empty
                 } else if (TextUtils.isEmpty(numPhone1)) {  // If the text are empty the textViewNumPhone will not be approved
-                    num_phone.setError("דרוש מס' נייד");  // Print text of error if the text are empty
+                    num_phone.setError("דרוש מס' נייד");  // Print text of error if the text is empty
                 } else {
-                    Date date = new Date();
-                    String time = date.toString();
-                    firebase.child(time).child("name").setValue(name1);
-                    firebase.child(time).child("numPhone").setValue(numPhone1);
+                    firebase.child(numPhone1).child("name").setValue(name1);
+                    firebase.child(numPhone1).child("numPhone").setValue(numPhone1);
 
                     // Pass from AddWorshipers to Worshipers
                     Intent intentAddInternetToMain = new Intent(AddWorshipers.this, Worshipers.class);

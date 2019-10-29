@@ -116,6 +116,10 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
         return adapterListFiltered.size();
     }
 
+    public TotalModel getPlaceAtPosition(int position) {
+        return list_data.get(position);
+    }
+
     @Override
     public Filter getFilter() {
         return new Filter() {
