@@ -53,7 +53,7 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
         private final MenuItem.OnMenuItemClickListener onChange = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                TotalModel current = list_data.get(getAdapterPosition());
+                TotalModel current = adapterListFiltered.get(getAdapterPosition());
                 if (item.getItemId() == 1) {
                     String name = current.getName();
                     String phone = current.getNumPhone();
@@ -93,7 +93,7 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
         holder.textPhone.setText(listData.getNumPhone());
         holder.relativeLayout.setOnClickListener(v -> {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                String phone = "tel:" + list_data.get(position).getNumPhone();
+                String phone = "tel:" + listData.getNumPhone();
                 Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
                 context.startActivity(i);
             } else {
@@ -105,8 +105,8 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
     }
 
     public void setNames(List<TotalModel> names) {
-        list_data = names;
-        Collections.sort(list_data, (obj1, obj2) -> obj1.getName().compareToIgnoreCase(obj2.getName()));
+        adapterListFiltered = names;
+        Collections.sort(adapterListFiltered, (obj1, obj2) -> obj1.getName().compareToIgnoreCase(obj2.getName()));
         notifyDataSetChanged();
     }
 
@@ -117,7 +117,7 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
     }
 
     public TotalModel getPlaceAtPosition(int position) {
-        return list_data.get(position);
+        return adapterListFiltered.get(position);
     }
 
     @Override
