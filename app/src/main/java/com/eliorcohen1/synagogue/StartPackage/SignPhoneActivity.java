@@ -47,7 +47,7 @@ public class SignPhoneActivity extends AppCompatActivity {
             String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
             String number = editText.getText().toString().trim();
             if (number.isEmpty() || number.length() < 10) {
-                editText.setError("Valid number is required");
+                editText.setError("דרוש מס' נייד חוקי");
                 editText.requestFocus();
                 return;
             }

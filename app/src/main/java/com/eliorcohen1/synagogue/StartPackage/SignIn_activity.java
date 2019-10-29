@@ -65,7 +65,6 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
 
         initUI();
         initListeners();
-        btnSignUpMethod();
         btnLoginGoogle();
         btnLoginFacebook();
     }
@@ -98,10 +97,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
         btnSignInGoogle.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         btnPhone.setOnClickListener(this);
-    }
-
-    private void btnSignUpMethod() {
-        btnSignUp.setOnClickListener(v -> startActivity(new Intent(SignIn_activity.this, SignUp_activity.class)));
+        btnSignUp.setOnClickListener(this);
     }
 
     private void btnLoginGoogle() {
@@ -132,7 +128,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
-                Toast.makeText(SignIn_activity.this, "Google sign in falied", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignIn_activity.this, "ההתחברות דרך גוגל נכשלה", Toast.LENGTH_LONG).show();
                 // ...
             }
         }
@@ -150,7 +146,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
-                        Toast.makeText(SignIn_activity.this, "Auth Fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                         //updateUI(null);
                     }
                 });
@@ -202,7 +198,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
-                        Toast.makeText(SignIn_activity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -245,6 +241,9 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
                                 Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_LONG).show();
                             }
                         });
+                break;
+            case R.id.sign_up_button:
+                startActivity(new Intent(SignIn_activity.this, SignUp_activity.class));
                 break;
             case R.id.btnPhone:
                 Intent intent = new Intent(SignIn_activity.this, SignPhoneActivity.class);
