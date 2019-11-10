@@ -1,21 +1,23 @@
 package com.eliorcohen1.synagogue.ButtonsPackage;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.StartPackage.MainActivity;
 
 public class SummerClock extends AppCompatActivity implements View.OnClickListener {
 
     private TextView shabat, summer, morning1, noon1, evening1, morning2, noon2, evening2, clock, noon3, evening3, formula, simpleDay, sunset, sunsetText;
-    private Button backSummer;
+    private Button backSummer, backSummerWeb;
+    private LinearLayout myLinear;
+    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class SummerClock extends AppCompatActivity implements View.OnClickListen
         setSupportActionBar(toolbar);
 
         backSummer = findViewById(R.id.backSummer);
+        backSummerWeb = findViewById(R.id.backSummerWeb);
         clock = findViewById(R.id.clock);
         formula = findViewById(R.id.formula);
         summer = findViewById(R.id.summer);
@@ -47,10 +50,17 @@ public class SummerClock extends AppCompatActivity implements View.OnClickListen
         noon2 = findViewById(R.id.noon2);
         noon3 = findViewById(R.id.noon3);
         evening3 = findViewById(R.id.evening3);
+        myLinear = findViewById(R.id.myLinear);
+        webView = findViewById(R.id.myWebView);
+
+        webView.setVisibility(View.GONE);
+        backSummerWeb.setVisibility(View.GONE);
     }
 
     private void initListeners() {
         backSummer.setOnClickListener(this);
+        backSummerWeb.setOnClickListener(this);
+        sunset.setOnClickListener(this);
     }
 
     private void showUI() {
@@ -58,7 +68,6 @@ public class SummerClock extends AppCompatActivity implements View.OnClickListen
         formula.setText(" נוסח: ספרדי ");
         summer.setText(" שעון קיץ ");
         sunsetText.setText("לינק לבדיקת שעת השקיעה ועוד...");
-        sunset.setMovementMethod(LinkMovementMethod.getInstance());
         simpleDay.setText(" יום חול ");
         morning1.setText("תפילת שחרית(ספר תורה): " + "\n (06:15)06:30" + "\n שישי: " + "\n 07:00");
         noon1.setText("תפילת מנחה: " + "\n 20 דקות לפני השקיעה ");
@@ -76,6 +85,21 @@ public class SummerClock extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.backSummer:
                 onBackPressed();
+                break;
+            case R.id.backSummerWeb:
+                myLinear.setVisibility(View.VISIBLE);
+                backSummer.setVisibility(View.VISIBLE);
+                backSummerWeb.setVisibility(View.GONE);
+                webView.setVisibility(View.GONE);
+                break;
+            case R.id.sunset:
+                myLinear.setVisibility(View.GONE);
+                backSummerWeb.setVisibility(View.VISIBLE);
+                backSummer.setVisibility(View.GONE);
+                webView.setVisibility(View.VISIBLE);
+                webView.getSettings().setJavaScriptEnabled(true);
+                webView.setWebViewClient(new WebViewClient());
+                webView.loadUrl("https://www.kipa.co.il/%D7%96%D7%9E%D7%A0%D7%99-%D7%94%D7%99%D7%95%D7%9D/");
                 break;
         }
     }

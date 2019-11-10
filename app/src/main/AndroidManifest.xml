@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eliorcohen1.synagogue"
-    android:versionCode="72"
+    android:versionCode="73"
     android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,6 +28,7 @@
         android:roundIcon="@drawable/lamp"
         android:supportsRtl="false"
         android:theme="@style/AppTheme2"
+        android:usesCleartextTraffic="true"
         tools:replace="android:supportsRtl">
         <meta-data
             android:name="com.google.android.gms.version"

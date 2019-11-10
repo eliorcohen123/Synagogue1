@@ -29,7 +29,7 @@
                 android:theme="@style/AppTheme.AppBarOverlay" />
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -42,9 +42,22 @@
                 android:layout_height="40dp"
                 android:background="@drawable/ic_arrow_back_white_24dp"
                 android:gravity="center" />
-        </LinearLayout>
+
+            <Button
+                android:id="@+id/backSummerWeb"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_arrow_back_white_24dp"
+                android:gravity="center" />
+        </RelativeLayout>
+
+        <WebView
+            android:id="@+id/myWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <LinearLayout
+            android:id="@+id/myLinear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -167,7 +180,6 @@
                         android:layout_marginTop="3dp"
                         android:layout_marginRight="3dp"
                         android:layout_marginBottom="3dp"
-                        android:autoLink="web"
                         android:background="@color/white"
                         android:gravity="center"
                         android:text="https://www.kipa.co.il/%D7%96%D7%9E%D7%A0%D7%99-%D7%94%D7%99%D7%95%D7%9D/"
