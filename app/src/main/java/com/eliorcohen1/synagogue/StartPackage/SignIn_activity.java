@@ -46,7 +46,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Button btnLogin, btnPhone;
-    private TextView btnSignUp;
+    private TextView btnSignUp, btnForgotPassword;
     private LoginButton loginButtonFacebook;
 
     @Override
@@ -84,6 +84,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
         btnSignUp = findViewById(R.id.sign_up_button);
         btnSignInGoogle = findViewById(R.id.sign_in_google);
         btnPhone = findViewById(R.id.btnPhone);
+        btnForgotPassword = findViewById(R.id.btn_forgot);
 
         mAuthListener = firebaseAuth -> {
             if (firebaseAuth.getCurrentUser() != null) {
@@ -98,6 +99,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
         btnLogin.setOnClickListener(this);
         btnPhone.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
+        btnForgotPassword.setOnClickListener(this);
     }
 
     private void btnLoginGoogle() {
@@ -246,8 +248,10 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
                 startActivity(new Intent(SignIn_activity.this, SignUp_activity.class));
                 break;
             case R.id.btnPhone:
-                Intent intent = new Intent(SignIn_activity.this, SignPhoneActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(SignIn_activity.this, SignPhoneActivity.class));
+                break;
+            case R.id.btn_forgot:
+                startActivity(new Intent(SignIn_activity.this, ForgotPasswordActivity.class));
                 break;
         }
     }
