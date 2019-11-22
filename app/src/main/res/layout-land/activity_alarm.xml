@@ -74,38 +74,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@color/white"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/myHour"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/colorLightBlue"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="2" />
-
-                <TextView
+                <TimePicker
+                    android:id="@+id/timePicker1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:background="@color/colorLightBlue"
-                    android:gravity="center"
-                    android:text=":"
-                    android:textSize="25sp" />
-
-                <EditText
-                    android:id="@+id/myMinute"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/colorLightBlue"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="2" />
+                    android:timePickerMode="spinner" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -115,7 +92,7 @@
                     android:layout_marginLeft="22dp"
                     android:background="@color/colorLightBlueDark"
                     android:gravity="center"
-                    android:text=" זמן ההתראה: "
+                    android:text="זמן ההתראה: "
                     android:textSize="25sp" />
             </LinearLayout>
 

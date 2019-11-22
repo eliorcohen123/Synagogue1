@@ -75,49 +75,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:background="@color/white"
                 android:gravity="center"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/myHour"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/colorLightBlue"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="2" />
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@color/colorLightBlue"
-                    android:gravity="center"
-                    android:text=":"
-                    android:textSize="35sp" />
-
-                <EditText
-                    android:id="@+id/myMinute"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:background="@color/colorLightBlue"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:maxLength="2" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="22dp"
-                    android:layout_marginLeft="22dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@color/colorLightBlueDark"
                     android:gravity="center"
-                    android:text=" זמן ההתראה: "
+                    android:text="זמן ההתראה: "
                     android:textSize="35sp" />
+
+                <TimePicker
+                    android:id="@+id/timePicker1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLightBlue"
+                    android:timePickerMode="spinner" />
             </LinearLayout>
 
             <LinearLayout
@@ -155,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="40dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
