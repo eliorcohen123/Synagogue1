@@ -43,11 +43,6 @@ public class EmailAndPasswordValidatorTest {
         assertFalse(EmailAndPasswordValidator.isValidEmail(""));
     }
 
-    @Test
-    public void emailValidator_NullEmail_ReturnsFalse() {
-        assertFalse(EmailAndPasswordValidator.isValidEmail(null));
-    }
-
     // Test Passwords
     @Test
     public void passwordValidator_CorrectPasswordSimpleNumbers_ReturnsTrue() {
@@ -77,11 +72,6 @@ public class EmailAndPasswordValidatorTest {
     @Test
     public void passwordValidator_InvalidPasswordTooMuch_ReturnsFalse() {
         assertFalse(EmailAndPasswordValidator.isValidPassword("1234567qwertyuQWERTYU"));
-    }
-
-    @Test
-    public void passwordValidator_NullPassword_ReturnsFalse() {
-        assertFalse(EmailAndPasswordValidator.isValidPassword(null));
     }
 
 }
