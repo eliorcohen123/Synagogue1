@@ -40,9 +40,11 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnForgot:
-                String myTextViewForgot = editTextForgot.getText().toString();
-                if (!myTextViewForgot.equals("")) {
-                    FirebaseAuth.getInstance().sendPasswordResetEmail(myTextViewForgot)
+                String myEmailForgot = editTextForgot.getText().toString();
+                if (!EmailAndPasswordValidator.isValidEmail(myEmailForgot)) {
+                    Toast.makeText(this, "האימייל לא חוקי", Toast.LENGTH_SHORT).show();
+                } else {
+                    FirebaseAuth.getInstance().sendPasswordResetEmail(myEmailForgot)
                             .addOnCompleteListener(task -> {
                                 if (task.isSuccessful()) {
                                     Log.d(TAG, "הסיסמא נשלחה");
@@ -52,8 +54,6 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                                     Toast.makeText(this, "המייל לא קיים", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                } else {
-                    Toast.makeText(this, "שדה המייל ריק, נא למלא אותו", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
