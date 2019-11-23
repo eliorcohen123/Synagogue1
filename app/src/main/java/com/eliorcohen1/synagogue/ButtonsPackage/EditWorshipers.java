@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
+import com.eliorcohen1.synagogue.StartPackage.EmailPasswordPhoneValidator;
 import com.eliorcohen1.synagogue.StartPackage.TotalModel;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -65,20 +66,31 @@ public class EditWorshipers extends AppCompatActivity implements View.OnClickLis
             case R.id.textViewOK:
                 String name1 = name.getText().toString();  // GetText of the name
                 String numPhone1 = num_phone.getText().toString();  // GetText of the name
+                StringBuilder s = null;
+                try {
+                    s = new StringBuilder(numPhone1);
+                    s.insert(3, "-");
+                } catch (Exception e) {
 
-                if (TextUtils.isEmpty(name1) && TextUtils.isEmpty(numPhone1)) {  // If the text are empty the textViewNumPhone will not be approved
+                }
+
+                if (TextUtils.isEmpty(name1) && !EmailPasswordPhoneValidator.isValidPhoneNumber(numPhone1)) {  // If the text are empty the textViewNumPhone will not be approved
                     name.setError("דרוש שם");  // Print text of error if the text is empty
-                    num_phone.setError("דרוש מס' נייד");  // Print text of error if the text is empty
+                    num_phone.setError("דרוש מס' נייד חוקי");  // Print text of error if the text is empty
+                    name.requestFocus();
+                    num_phone.requestFocus();
                 } else if (TextUtils.isEmpty(name1)) {  // If the text are empty the textViewNumPhone will not be approved
                     name.setError("דרוש שם");  // Print text of error if the text is empty
-                } else if (TextUtils.isEmpty(numPhone1)) {  // If the text are empty the textViewNumPhone will not be approved
-                    num_phone.setError("דרוש מס' נייד");  // Print text of error if the text is empty
+                    name.requestFocus();
+                } else if (!EmailPasswordPhoneValidator.isValidPhoneNumber(numPhone1)) {  // If the text are empty the textViewNumPhone will not be approved
+                    num_phone.setError("דרוש מס' נייד חוקי");  // Print text of error if the text is empty
+                    num_phone.requestFocus();
                 } else {
                     try {
                         firebase.getRef().child(get_numPhone).removeValue();
 
-                        firebase.child(numPhone1).child("name").setValue(name1);
-                        firebase.child(numPhone1).child("numPhone").setValue(numPhone1);
+                        firebase.child(String.valueOf(s)).child("name").setValue(name1);
+                        firebase.child(String.valueOf(s)).child("numPhone").setValue(s);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
