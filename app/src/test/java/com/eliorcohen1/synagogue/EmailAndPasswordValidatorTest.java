@@ -12,7 +12,9 @@ import static org.junit.Assert.assertTrue;
  */
 public class EmailAndPasswordValidatorTest {
 
-    // Test Emails
+    /**
+     * Test Emails.
+     */
     @Test
     public void emailValidator_CorrectEmailSimple_ReturnsTrue() {
         assertTrue(EmailAndPasswordValidator.isValidEmail("name@email.com"));
@@ -43,7 +45,9 @@ public class EmailAndPasswordValidatorTest {
         assertFalse(EmailAndPasswordValidator.isValidEmail(""));
     }
 
-    // Test Passwords
+    /**
+     * Test Passwords.
+     */
     @Test
     public void passwordValidator_CorrectPasswordSimpleNumbers_ReturnsTrue() {
         assertTrue(EmailAndPasswordValidator.isValidPassword("123456"));
