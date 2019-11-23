@@ -51,6 +51,9 @@ public class EditWorshipers extends AppCompatActivity implements View.OnClickLis
         get_name = getIntent().getStringExtra("worshipers_name");
         get_numPhone = getIntent().getStringExtra("worshipers_numPhone");
 
+        assert get_numPhone != null;
+        get_numPhone = get_numPhone.replace("-", "");
+
         name.setText(get_name);
         num_phone.setText(get_numPhone);
     }
