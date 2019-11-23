@@ -216,32 +216,39 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
             case R.id.btn_login:
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
-                if (!EmailAndPasswordValidator.isValidEmail(email)) {
-                    Toast.makeText(getApplicationContext(), "האימייל לא חוקי", Toast.LENGTH_SHORT).show();
+                if (!EmailPasswordPhoneValidator.isValidEmail(email) && !EmailPasswordPhoneValidator.isValidPassword(password)) {
+                    inputEmail.setError("האימייל לא חוקי");
+                    inputPassword.setError("הסיסמא לא חוקית");
+                    inputEmail.requestFocus();
+                    inputPassword.requestFocus();
                     return;
-                }
-                if (!EmailAndPasswordValidator.isValidPassword(password)) {
-                    Toast.makeText(getApplicationContext(), "הסיסמא לא חוקית", Toast.LENGTH_SHORT).show();
+                } else if (!EmailPasswordPhoneValidator.isValidEmail(email)) {
+                    inputEmail.setError("האימייל לא חוקי");
+                    inputEmail.requestFocus();
                     return;
+                } else if (!EmailPasswordPhoneValidator.isValidPassword(password)) {
+                    inputPassword.setError("הסיסמא לא חוקית");
+                    inputPassword.requestFocus();
+                    return;
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
+
+                    //authenticate user
+                    mAuth.signInWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(SignIn_activity.this, task -> {
+                                progressBar.setVisibility(View.GONE);
+                                if (task.isSuccessful()) {
+                                    // there was an error
+                                    Log.d(TAG, "signInWithEmail:success");
+                                    Intent intent = new Intent(SignIn_activity.this, WelcomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Log.d(TAG, "singInWithEmail:Fail");
+                                    Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_LONG).show();
+                                }
+                            });
                 }
-
-                progressBar.setVisibility(View.VISIBLE);
-
-                //authenticate user
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignIn_activity.this, task -> {
-                            progressBar.setVisibility(View.GONE);
-                            if (task.isSuccessful()) {
-                                // there was an error
-                                Log.d(TAG, "signInWithEmail:success");
-                                Intent intent = new Intent(SignIn_activity.this, WelcomeActivity.class);
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                Log.d(TAG, "singInWithEmail:Fail");
-                                Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_LONG).show();
-                            }
-                        });
                 break;
             case R.id.sign_up_button:
                 startActivity(new Intent(SignIn_activity.this, SignUp_activity.class));

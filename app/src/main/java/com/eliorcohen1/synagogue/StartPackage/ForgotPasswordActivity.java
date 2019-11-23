@@ -41,7 +41,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         switch (v.getId()) {
             case R.id.btnForgot:
                 String myEmailForgot = editTextForgot.getText().toString();
-                if (!EmailAndPasswordValidator.isValidEmail(myEmailForgot)) {
+                if (!EmailPasswordPhoneValidator.isValidEmail(myEmailForgot)) {
                     Toast.makeText(this, "האימייל לא חוקי", Toast.LENGTH_SHORT).show();
                 } else {
                     FirebaseAuth.getInstance().sendPasswordResetEmail(myEmailForgot)

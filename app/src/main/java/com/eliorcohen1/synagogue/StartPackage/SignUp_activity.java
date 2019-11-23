@@ -3,7 +3,6 @@ package com.eliorcohen1.synagogue.StartPackage;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -60,11 +59,11 @@ public class SignUp_activity extends AppCompatActivity implements View.OnClickLi
                 String email = email_id.getText().toString();
                 String password = passwordCheck.getText().toString();
 
-                if (!EmailAndPasswordValidator.isValidEmail(email)) {
+                if (!EmailPasswordPhoneValidator.isValidEmail(email)) {
                     Toast.makeText(getApplicationContext(), "האימייל לא חוקי", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (!EmailAndPasswordValidator.isValidPassword(password)) {
+                if (!EmailPasswordPhoneValidator.isValidPassword(password)) {
                     Toast.makeText(getApplicationContext(), "הסיסמא לא חוקית", Toast.LENGTH_SHORT).show();
                     return;
                 }

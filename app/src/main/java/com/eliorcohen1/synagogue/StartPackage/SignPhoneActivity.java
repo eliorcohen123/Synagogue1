@@ -12,8 +12,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignPhoneActivity extends AppCompatActivity {
 
-    private Spinner spinner;
-    private EditText editText;
+    private Spinner spinnerCountry;
+    private EditText editTextNumPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,25 +36,25 @@ public class SignPhoneActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        editText = findViewById(R.id.editTextPhone);
+        editTextNumPhone = findViewById(R.id.editTextPhone);
 
-        spinner = findViewById(R.id.spinnerCountries);
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
+        spinnerCountry = findViewById(R.id.spinnerCountries);
+        spinnerCountry.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
     }
 
     private void doTasks() {
         findViewById(R.id.buttonContinue).setOnClickListener(v -> {
-            String code = CountryData.countryAreaCodes[spinner.getSelectedItemPosition()];
-            String number = editText.getText().toString().trim();
-            if (number.isEmpty() || number.length() < 10) {
-                editText.setError("דרוש מס' נייד חוקי");
-                editText.requestFocus();
-                return;
+            String code = CountryData.countryAreaCodes[spinnerCountry.getSelectedItemPosition()];
+            String number = editTextNumPhone.getText().toString().trim();
+            if (!EmailPasswordPhoneValidator.isValidPhoneNumber(number)) {
+                editTextNumPhone.setError("דרוש מס' נייד חוקי");
+                editTextNumPhone.requestFocus();
+            } else {
+                String phoneNumber = "+" + code + number;
+                Intent intent = new Intent(SignPhoneActivity.this, VerifyPhoneActivity.class);
+                intent.putExtra("phoneNumber", phoneNumber);
+                startActivity(intent);
             }
-            String phoneNumber = "+" + code + number;
-            Intent intent = new Intent(SignPhoneActivity.this, VerifyPhoneActivity.class);
-            intent.putExtra("phoneNumber", phoneNumber);
-            startActivity(intent);
         });
     }
 
