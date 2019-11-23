@@ -51,6 +51,6 @@
     <string name="continue_with_facebook">Continue with Facebook</string>
     <string name="sms">SMS</string>
     <string name="forgot_password">שכחת סיסמא? לחץ כאן!</string>
-    <string name="hint_forgot">הקלד כאן את המייל המבוקש לשחזור הסיסמא...</string>
+    <string name="hint_forgot">הקלד כאן את המייל המבוקש לשחזור הסיסמא…</string>
     <string name="sendPassword">שלח סיסמא למייל</string>
 </resources>
