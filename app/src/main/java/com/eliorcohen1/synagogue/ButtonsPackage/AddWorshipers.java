@@ -62,7 +62,7 @@ public class AddWorshipers extends AppCompatActivity implements View.OnClickList
 
                 }
 
-                if (TextUtils.isEmpty(name1) && !EmailPasswordPhoneValidator.isValidPhoneNumber(numPhone1)) {  // If the text are empty the textViewNumPhone will not be approved
+                if (TextUtils.isEmpty(name1) && !EmailPasswordPhoneValidator.getInstance().isValidPhoneNumber(numPhone1)) {  // If the text are empty the textViewNumPhone will not be approved
                     name.setError("דרוש שם");  // Print text of error if the text is empty
                     num_phone.setError("דרוש מס' נייד חוקי");  // Print text of error if the text is empty
                     name.requestFocus();
@@ -70,7 +70,7 @@ public class AddWorshipers extends AppCompatActivity implements View.OnClickList
                 } else if (TextUtils.isEmpty(name1)) {  // If the text are empty the textViewNumPhone will not be approved
                     name.setError("דרוש שם");  // Print text of error if the text is empty
                     name.requestFocus();
-                } else if (!EmailPasswordPhoneValidator.isValidPhoneNumber(numPhone1)) {  // If the text are empty the textViewNumPhone will not be approved
+                } else if (!EmailPasswordPhoneValidator.getInstance().isValidPhoneNumber(numPhone1)) {  // If the text are empty the textViewNumPhone will not be approved
                     num_phone.setError("דרוש מס' נייד חוקי");  // Print text of error if the text is empty
                     num_phone.requestFocus();
                 } else {

@@ -216,17 +216,17 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
             case R.id.btn_login:
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
-                if (!EmailPasswordPhoneValidator.isValidEmail(email) && !EmailPasswordPhoneValidator.isValidPassword(password)) {
+                if (!EmailPasswordPhoneValidator.getInstance().isValidEmail(email) && !EmailPasswordPhoneValidator.getInstance().isValidPassword(password)) {
                     inputEmail.setError("האימייל לא חוקי");
                     inputPassword.setError("הסיסמא לא חוקית");
                     inputEmail.requestFocus();
                     inputPassword.requestFocus();
                     return;
-                } else if (!EmailPasswordPhoneValidator.isValidEmail(email)) {
+                } else if (!EmailPasswordPhoneValidator.getInstance().isValidEmail(email)) {
                     inputEmail.setError("האימייל לא חוקי");
                     inputEmail.requestFocus();
                     return;
-                } else if (!EmailPasswordPhoneValidator.isValidPassword(password)) {
+                } else if (!EmailPasswordPhoneValidator.getInstance().isValidPassword(password)) {
                     inputPassword.setError("הסיסמא לא חוקית");
                     inputPassword.requestFocus();
                     return;

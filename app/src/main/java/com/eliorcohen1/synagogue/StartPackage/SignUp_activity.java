@@ -59,11 +59,11 @@ public class SignUp_activity extends AppCompatActivity implements View.OnClickLi
                 String email = email_id.getText().toString();
                 String password = passwordCheck.getText().toString();
 
-                if (!EmailPasswordPhoneValidator.isValidEmail(email)) {
+                if (!EmailPasswordPhoneValidator.getInstance().isValidEmail(email)) {
                     Toast.makeText(getApplicationContext(), "האימייל לא חוקי", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (!EmailPasswordPhoneValidator.isValidPassword(password)) {
+                if (!EmailPasswordPhoneValidator.getInstance().isValidPassword(password)) {
                     Toast.makeText(getApplicationContext(), "הסיסמא לא חוקית", Toast.LENGTH_SHORT).show();
                     return;
                 }

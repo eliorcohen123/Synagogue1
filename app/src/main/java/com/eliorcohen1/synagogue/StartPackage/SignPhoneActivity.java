@@ -46,7 +46,7 @@ public class SignPhoneActivity extends AppCompatActivity {
         findViewById(R.id.buttonContinue).setOnClickListener(v -> {
             String code = CountryData.countryAreaCodes[spinnerCountry.getSelectedItemPosition()];
             String number = editTextNumPhone.getText().toString().trim();
-            if (!EmailPasswordPhoneValidator.isValidPhoneNumber(number)) {
+            if (!EmailPasswordPhoneValidator.getInstance().isValidPhoneNumber(number)) {
                 editTextNumPhone.setError("דרוש מס' נייד חוקי");
                 editTextNumPhone.requestFocus();
             } else {

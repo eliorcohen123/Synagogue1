@@ -5,6 +5,25 @@ import java.util.regex.Pattern;
 
 public class EmailPasswordPhoneValidator {
 
+    private static volatile EmailPasswordPhoneValidator sInstance;
+
+    private EmailPasswordPhoneValidator() {
+
+        if (sInstance != null) {
+            throw new RuntimeException("Use getInstance() method to get the single instance of this class.");
+        }
+    }
+
+    public static EmailPasswordPhoneValidator getInstance() {
+        if (sInstance == null) {
+            synchronized (EmailPasswordPhoneValidator.class) {
+                if (sInstance == null) sInstance = new EmailPasswordPhoneValidator();
+            }
+        }
+
+        return sInstance;
+    }
+
     private static String EMAIL_PATTERN =
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                     "\\@" +
@@ -18,21 +37,21 @@ public class EmailPasswordPhoneValidator {
     private static Pattern pattern;
     private static Matcher matcher;
 
-    public static boolean isValidEmail(final String password) {
+    public  boolean isValidEmail(final String password) {
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(password);
 
         return matcher.matches();
     }
 
-    public static boolean isValidPassword(final String password) {
+    public  boolean isValidPassword(final String password) {
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
 
         return matcher.matches();
     }
 
-    public static boolean isValidPhoneNumber(final String phone_number) {
+    public  boolean isValidPhoneNumber(final String phone_number) {
         pattern = Pattern.compile(PHONE_NUMBER_PATTERN);
         matcher = pattern.matcher(phone_number);
 
