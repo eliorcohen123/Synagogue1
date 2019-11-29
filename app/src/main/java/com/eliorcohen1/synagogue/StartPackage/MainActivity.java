@@ -182,8 +182,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
             if (drawer.isDrawerOpen(GravityCompat.END)) {
                 drawer.closeDrawer(GravityCompat.END);
-            } else
+            } else {
                 drawer.openDrawer(GravityCompat.END);
+            }
         });
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -256,8 +257,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
-        } else
+        } else {
             Toast.makeText(this, "האינטרנט לא מחובר...", Toast.LENGTH_SHORT).show();
+        }
 
         String locationProviders = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
         if (locationProviders == null || locationProviders.equals("")) {
@@ -277,7 +279,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             }
         };
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MainActivity.this);
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
