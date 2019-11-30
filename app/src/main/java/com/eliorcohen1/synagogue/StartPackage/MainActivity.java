@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
         } else {
-            Toast.makeText(this, "Not connected...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "האינטרנט לא מחובר...", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -325,12 +325,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnectionFailed(ConnectionResult arg0) {
-        Toast.makeText(this, "Failed to connect...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ההתחברות לאינטרנט נכשלה...", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onConnectionSuspended(int arg0) {
-        Toast.makeText(this, "Connection suspended...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ההתחברות לאינטרנט מושהית...", Toast.LENGTH_SHORT).show();
     }
 
     // Return whether permissions is needed as boolean value.
