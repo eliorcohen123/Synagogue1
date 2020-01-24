@@ -54,6 +54,7 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
 
         initUI();
         initListeners();
+        initRecyclerView();
         getReadFirebase();
     }
 
@@ -63,7 +64,6 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
 
         backWorshipers = findViewById(R.id.backWorshipers);
         btnWrite = findViewById(R.id.btnWrite);
-
         rv = findViewById(R.id.listWorshipers);
 
         arrayList = new ArrayList<TotalModel>();
@@ -91,10 +91,12 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
         btnWrite.setOnClickListener(this);
     }
 
-    private void getReadFirebase() {
+    private void initRecyclerView() {
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
+    }
 
+    private void getReadFirebase() {
         firebase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

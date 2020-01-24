@@ -1,6 +1,5 @@
 package com.eliorcohen1.synagogue.ButtonsPackage;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,7 +10,6 @@ import android.widget.Button;
 
 import com.eliorcohen1.synagogue.CustomAdapterPackage.AdapterResponsible;
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.StartPackage.MainActivity;
 import com.eliorcohen1.synagogue.StartPackage.TotalModel;
 
 import java.util.ArrayList;
@@ -30,6 +28,7 @@ public class Responsible extends AppCompatActivity implements View.OnClickListen
 
         initUI();
         initListeners();
+        initRecyclerView();
         showUI();
     }
 
@@ -38,16 +37,18 @@ public class Responsible extends AppCompatActivity implements View.OnClickListen
         setSupportActionBar(toolbar);
 
         backResponsible = findViewById(R.id.backResponsible);
-
         rv = findViewById(R.id.listResponsible);
-        rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(this));
 
         arrayList = new ArrayList<TotalModel>();
     }
 
     private void initListeners() {
         backResponsible.setOnClickListener(this);
+    }
+
+    private void initRecyclerView() {
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void showUI() {
