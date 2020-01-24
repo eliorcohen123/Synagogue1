@@ -69,7 +69,6 @@ public class WinterClock extends AppCompatActivity implements View.OnClickListen
         formula.setText(" נוסח: ספרדי ");
         winter.setText(" שעון חורף ");
         sunsetText.setText("לינק לבדיקת שעת השקיעה ועוד...");
-        sunset.setMovementMethod(LinkMovementMethod.getInstance());
         simpleDay.setText(" יום חול ");
         morning1.setText("תפילת שחרית(ספר תורה): " + "\n (06:15)06:30" + "\n שישי: " + "\n 07:00");
         noon1.setText("תפילת מנחה: " + "\n 20 דקות לפני השקיעה ");
