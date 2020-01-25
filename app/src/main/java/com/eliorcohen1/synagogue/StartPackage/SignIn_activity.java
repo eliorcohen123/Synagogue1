@@ -33,9 +33,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Arrays;
+
 public class SignIn_activity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "";
+    private static final String TAG = "Check";
     private EditText inputEmail, inputPassword;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
@@ -71,6 +73,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onStart() {
         super.onStart();
+
         mAuth.addAuthStateListener(mAuthListener);
     }
 
@@ -158,17 +161,17 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
         AppEventsLogger.activateApp(this);
 
         mCallbackManager = CallbackManager.Factory.create();
-        loginButtonFacebook.setReadPermissions("email", "public_profile");
+        loginButtonFacebook.setReadPermissions(Arrays.asList("email", "public_profile"));
         loginButtonFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                Log.i(TAG, "facebook:onSuccess: " + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
             @Override
             public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
+                Log.i(TAG, "facebook:onCancel: ");
                 // [START_EXCLUDE]
 //                updateUI(null);
                 // [END_EXCLUDE]
@@ -176,7 +179,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
+                Log.i(TAG, "facebook:onError: ", error);
                 // [START_EXCLUDE]
 //                updateUI(null);
                 // [END_EXCLUDE]
@@ -186,7 +189,11 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
 
     // [START auth_with_facebook]
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
+        try {
+            Log.i(TAG, "handleFacebookAccessToken: " + token.getToken());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // [START_EXCLUDE silent]
         // [END_EXCLUDE]
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
@@ -194,11 +201,11 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithCredential:success");
+                        Log.i(TAG, "signInWithCredential:success: ");
                         FirebaseUser user = mAuth.getCurrentUser();
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+                        Log.i(TAG, "signInWithCredential:failure: ", task.getException());
                         Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                     }
                 });
