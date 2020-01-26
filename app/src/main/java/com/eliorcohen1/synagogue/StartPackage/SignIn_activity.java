@@ -202,7 +202,6 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.i(TAG, "signInWithCredential:success: ");
-                        FirebaseUser user = mAuth.getCurrentUser();
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.i(TAG, "signInWithCredential:failure: ", task.getException());
