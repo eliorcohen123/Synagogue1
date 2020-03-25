@@ -8,7 +8,6 @@ public class EmailPasswordPhoneValidator {
     private static volatile EmailPasswordPhoneValidator sInstance;
 
     private EmailPasswordPhoneValidator() {
-
         if (sInstance != null) {
             throw new RuntimeException("Use getInstance() method to get the single instance of this class.");
         }
