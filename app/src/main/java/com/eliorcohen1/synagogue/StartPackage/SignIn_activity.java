@@ -53,15 +53,6 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        //check the current user
-        if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(SignIn_activity.this, WelcomeActivity.class));
-            finish();
-        }
-
         setContentView(R.layout.activity_signin_activity);
 
         initUI();
@@ -87,6 +78,8 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
         btnSignInGoogle = findViewById(R.id.sign_in_google);
         btnPhone = findViewById(R.id.btnPhone);
         btnForgotPassword = findViewById(R.id.btn_forgot);
+
+        mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = firebaseAuth -> {
             if (firebaseAuth.getCurrentUser() != null) {
