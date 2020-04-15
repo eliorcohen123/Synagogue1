@@ -90,7 +90,7 @@ public class EditWorshipers extends AppCompatActivity implements View.OnClickLis
                     num_phone.requestFocus();
                 } else {
                     try {
-                        firebase.getRef().child(get_numPhone).removeValue();
+                        firebase.child(get_numPhone).removeValue();
 
                         firebase.child(String.valueOf(s)).child("name").setValue(name1);
                         firebase.child(String.valueOf(s)).child("numPhone").setValue(s);
