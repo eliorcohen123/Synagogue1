@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".StartPackage.FragmentActivityMy">
+    tools:context=".ClassesPackage.FragmentActivityMy">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/myContent"
@@ -104,7 +104,7 @@
 
             <fragment
                 android:id="@+id/fragment"
-                android:name="com.eliorcohen1.synagogue.ButtonsPackage.MapFragment"
+                android:name="com.eliorcohen1.synagogue.ClassesPackage.MapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginTop="20dp" />

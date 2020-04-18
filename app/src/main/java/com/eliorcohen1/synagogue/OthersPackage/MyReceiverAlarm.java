@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.StartPackage;
+package com.eliorcohen1.synagogue.OthersPackage;
 
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -11,7 +11,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
-import com.eliorcohen1.synagogue.ButtonsPackage.MyAlarm;
+import com.eliorcohen1.synagogue.ClassesPackage.MyAlarm;
 import com.eliorcohen1.synagogue.R;
 
 import java.util.Calendar;

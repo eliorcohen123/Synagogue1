@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.StartPackage;
+package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.Manifest;
 import android.content.Intent;
@@ -22,13 +22,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eliorcohen1.synagogue.ButtonsPackage.Donates;
-import com.eliorcohen1.synagogue.ButtonsPackage.Events;
-import com.eliorcohen1.synagogue.ButtonsPackage.MyAlarm;
-import com.eliorcohen1.synagogue.ButtonsPackage.Responsible;
-import com.eliorcohen1.synagogue.ButtonsPackage.SummerClock;
-import com.eliorcohen1.synagogue.ButtonsPackage.WinterClock;
-import com.eliorcohen1.synagogue.ButtonsPackage.Worshipers;
 import com.eliorcohen1.synagogue.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;

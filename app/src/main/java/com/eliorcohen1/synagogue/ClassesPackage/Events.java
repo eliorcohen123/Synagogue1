@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ButtonsPackage;
+package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomViewPagerAdapter;
-import com.eliorcohen1.synagogue.StartPackage.TotalModel;
+import com.eliorcohen1.synagogue.Models.TotalModel;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.StartPackage;
+package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.Manifest;
 import android.app.PendingIntent;
@@ -24,11 +24,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.eliorcohen1.synagogue.ButtonsPackage.MapFragment;
 import com.eliorcohen1.synagogue.GeofencePackage.Constants;
 import com.eliorcohen1.synagogue.GeofencePackage.GeofenceBroadcastReceiver;
 import com.eliorcohen1.synagogue.GeofencePackage.GeofenceErrorMessages;
 import com.eliorcohen1.synagogue.R;
+import com.eliorcohen1.synagogue.OthersPackage.ConApp;
+import com.eliorcohen1.synagogue.OthersPackage.GoogleService;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.location.GeofencingRequest;

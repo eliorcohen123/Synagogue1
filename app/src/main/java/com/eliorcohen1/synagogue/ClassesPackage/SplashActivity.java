@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.StartPackage;
+package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.content.Intent;
 import android.os.Bundle;

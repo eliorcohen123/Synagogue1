@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ButtonsPackage;
+package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.eliorcohen1.synagogue.CustomAdapterPackage.AdapterResponsible;
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.StartPackage.TotalModel;
+import com.eliorcohen1.synagogue.Models.TotalModel;
 
 import java.util.ArrayList;
 

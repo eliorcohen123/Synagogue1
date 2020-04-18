@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.StartPackage;
+package com.eliorcohen1.synagogue.OthersPackage;
 
 import android.app.Application;
 import android.content.Context;

@@ -7,8 +7,6 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.JobIntentService;
 import android.support.v4.app.NotificationCompat;
@@ -16,9 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy;
-import com.eliorcohen1.synagogue.StartPackage.MainActivity;
-import com.eliorcohen1.synagogue.StartPackage.SignIn_activity;
+import com.eliorcohen1.synagogue.ClassesPackage.FragmentActivityMy;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
 

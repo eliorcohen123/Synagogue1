@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ButtonsPackage;
+package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.app.AlarmManager;
 import android.app.NotificationManager;
@@ -19,8 +19,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.StartPackage.MainActivity;
-import com.eliorcohen1.synagogue.StartPackage.MyReceiverAlarm;
+import com.eliorcohen1.synagogue.OthersPackage.MyReceiverAlarm;
 
 import java.util.Calendar;
 

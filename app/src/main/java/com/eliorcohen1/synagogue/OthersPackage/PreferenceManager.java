@@ -1,9 +1,9 @@
-package com.eliorcohen1.synagogue.StartPackage;
+package com.eliorcohen1.synagogue.OthersPackage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-class PreferenceManager {
+public class PreferenceManager {
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
@@ -15,17 +15,17 @@ class PreferenceManager {
 
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
 
-    PreferenceManager(Context context) {
+    public PreferenceManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 
-    void setFirstTimeLaunch() {
+    public void setFirstTimeLaunch() {
         editor.putBoolean(IS_FIRST_TIME_LAUNCH, false).commit();
     }
 
-    boolean isFirstTimeLaunch() {
+    public boolean isFirstTimeLaunch() {
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
 

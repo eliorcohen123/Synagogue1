@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ButtonsPackage;
+package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.Manifest;
 import android.app.Activity;
@@ -30,8 +30,8 @@ import android.widget.Toast;
 
 import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomInfoWindowGoogleMap;
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.StartPackage.FragmentActivityMy;
-import com.eliorcohen1.synagogue.StartPackage.TotalModel;
+import com.eliorcohen1.synagogue.ClassesPackage.FragmentActivityMy;
+import com.eliorcohen1.synagogue.Models.TotalModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;

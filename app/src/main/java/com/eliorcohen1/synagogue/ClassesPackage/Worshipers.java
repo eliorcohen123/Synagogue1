@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ButtonsPackage;
+package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -24,8 +24,7 @@ import android.widget.Toast;
 
 import com.eliorcohen1.synagogue.CustomAdapterPackage.AdapterWorshipers;
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.StartPackage.MainActivity;
-import com.eliorcohen1.synagogue.StartPackage.TotalModel;
+import com.eliorcohen1.synagogue.Models.TotalModel;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;

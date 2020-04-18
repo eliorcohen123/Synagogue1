@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.StartPackage;
+package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

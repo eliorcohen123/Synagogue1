@@ -1,6 +1,6 @@
 package com.eliorcohen1.synagogue;
 
-import com.eliorcohen1.synagogue.StartPackage.EmailPasswordPhoneValidator;
+import com.eliorcohen1.synagogue.OthersPackage.EmailPasswordPhoneValidator;
 
 import org.junit.Test;
 

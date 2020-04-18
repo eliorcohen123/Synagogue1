@@ -19,7 +19,7 @@
         android:required="false" />
 
     <application
-        android:name=".StartPackage.ConApp"
+        android:name=".OthersPackage.ConApp"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@drawable/lamp"
@@ -35,7 +35,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".StartPackage.SignIn_activity"
+            android:name=".ClassesPackage.SignIn_activity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.searchable"
@@ -64,44 +64,44 @@
                 <data android:mimeType="text/*" />
             </intent-filter>
         </activity>
-        <activity android:name=".ButtonsPackage.Responsible" />
-        <activity android:name=".ButtonsPackage.Donates" />
-        <activity android:name=".StartPackage.MainActivity" />
-        <activity android:name=".ButtonsPackage.WinterClock" />
-        <activity android:name=".ButtonsPackage.SummerClock" />
-        <activity android:name=".ButtonsPackage.Worshipers" />
-        <activity android:name=".StartPackage.MyCredits" />
+        <activity android:name=".ClassesPackage.Responsible" />
+        <activity android:name=".ClassesPackage.Donates" />
+        <activity android:name=".ClassesPackage.MainActivity" />
+        <activity android:name=".ClassesPackage.WinterClock" />
+        <activity android:name=".ClassesPackage.SummerClock" />
+        <activity android:name=".ClassesPackage.Worshipers" />
+        <activity android:name=".ClassesPackage.MyCredits" />
         <activity
-            android:name=".StartPackage.ForgotPasswordActivity"
+            android:name=".ClassesPackage.ForgotPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StartPackage.FragmentActivityMy"
+            android:name=".ClassesPackage.FragmentActivityMy"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity android:name=".ButtonsPackage.MyAlarm" />
-        <activity android:name=".ButtonsPackage.Events" />
+        <activity android:name=".ClassesPackage.MyAlarm" />
+        <activity android:name=".ClassesPackage.Events" />
         <activity
-            android:name=".ButtonsPackage.AddWorshipers"
+            android:name=".ClassesPackage.AddWorshipers"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ButtonsPackage.EditWorshipers"
+            android:name=".ClassesPackage.EditWorshipers"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StartPackage.VerifyPhoneActivity"
+            android:name=".ClassesPackage.VerifyPhoneActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StartPackage.SignPhoneActivity"
+            android:name=".ClassesPackage.SignPhoneActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StartPackage.WelcomeActivityTutorial"
+            android:name=".ClassesPackage.WelcomeActivityTutorial"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StartPackage.WelcomeActivity"
+            android:name=".ClassesPackage.WelcomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StartPackage.SignUp_activity"
+            android:name=".ClassesPackage.SignUp_activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".StartPackage.SplashActivity"
+            android:name=".ClassesPackage.SplashActivity"
             android:label="@string/title_activity_welcome" />
 
         <meta-data
@@ -139,7 +139,7 @@
             android:required="false" />
 
         <receiver
-            android:name=".StartPackage.MyReceiverAlarm"
+            android:name=".OthersPackage.MyReceiverAlarm"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />
@@ -152,13 +152,13 @@
             android:name=".GeofencePackage.GeofenceTransitionsJobIntentService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-        <service android:name=".StartPackage.MyFirebaseMessagingService">
+        <service android:name=".OthersPackage.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:name=".StartPackage.GoogleService"
+            android:name=".OthersPackage.GoogleService"
             android:exported="true" />
     </application>
 

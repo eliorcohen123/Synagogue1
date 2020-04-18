@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ButtonsPackage;
+package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,28 +10,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.StartPackage.EmailPasswordPhoneValidator;
-import com.eliorcohen1.synagogue.StartPackage.TotalModel;
-import com.firebase.client.DataSnapshot;
+import com.eliorcohen1.synagogue.OthersPackage.EmailPasswordPhoneValidator;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class EditWorshipers extends AppCompatActivity implements View.OnClickListener {
+public class AddWorshipers extends AppCompatActivity implements View.OnClickListener {
 
     private EditText name, num_phone;
     private TextView textViewOK;
     private Button btnBack;
-    private String get_name, get_numPhone;
     private Firebase firebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_worshipers);
+        setContentView(R.layout.activity_add_worshipers);
 
         initUI();
         initListeners();
@@ -47,15 +39,6 @@ public class EditWorshipers extends AppCompatActivity implements View.OnClickLis
 
         Firebase.setAndroidContext(this);
         firebase = new Firebase(getString(R.string.API_KEY_Firebase));
-
-        get_name = getIntent().getStringExtra("worshipers_name");
-        get_numPhone = getIntent().getStringExtra("worshipers_numPhone");
-
-        assert get_numPhone != null;
-        get_numPhone = get_numPhone.replace("-", "");
-
-        name.setText(get_name);
-        num_phone.setText(get_numPhone);
     }
 
     private void initListeners() {
@@ -89,17 +72,11 @@ public class EditWorshipers extends AppCompatActivity implements View.OnClickLis
                     num_phone.setError("דרוש מס' נייד חוקי");  // Print text of error if the text is empty
                     num_phone.requestFocus();
                 } else {
-                    try {
-                        firebase.child(get_numPhone).removeValue();
-
-                        firebase.child(String.valueOf(s)).child("name").setValue(name1);
-                        firebase.child(String.valueOf(s)).child("numPhone").setValue(s);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    firebase.child(String.valueOf(s)).child("name").setValue(name1);
+                    firebase.child(String.valueOf(s)).child("numPhone").setValue(s);
 
                     // Pass from AddWorshipers to Worshipers
-                    Intent intentAddInternetToMain = new Intent(EditWorshipers.this, Worshipers.class);
+                    Intent intentAddInternetToMain = new Intent(AddWorshipers.this, Worshipers.class);
                     startActivity(intentAddInternetToMain);
 
                     finish();
