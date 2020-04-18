@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.Models;
+package com.eliorcohen1.synagogue.ModelsPackage;
 
 import java.io.Serializable;
 

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.Models.TotalModel;
+import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 
 import java.util.ArrayList;
 

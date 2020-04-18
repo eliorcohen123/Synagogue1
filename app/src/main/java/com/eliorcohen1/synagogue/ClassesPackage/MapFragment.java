@@ -30,8 +30,7 @@ import android.widget.Toast;
 
 import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomInfoWindowGoogleMap;
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.ClassesPackage.FragmentActivityMy;
-import com.eliorcohen1.synagogue.Models.TotalModel;
+import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;

@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.eliorcohen1.synagogue.CustomAdapterPackage.AdapterResponsible;
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.Models.TotalModel;
+import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 
 import java.util.ArrayList;
 

@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.Models.TotalModel;
+import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 
 import java.util.Collections;
 import java.util.List;

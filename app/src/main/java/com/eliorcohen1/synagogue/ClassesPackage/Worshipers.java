@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.eliorcohen1.synagogue.CustomAdapterPackage.AdapterWorshipers;
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.Models.TotalModel;
+import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
