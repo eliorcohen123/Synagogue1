@@ -35,7 +35,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".ClassesPackage.SignIn_activity"
+            android:name=".ClassesPackage.SignInActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.searchable"
@@ -98,7 +98,7 @@
             android:name=".ClassesPackage.WelcomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ClassesPackage.SignUp_activity"
+            android:name=".ClassesPackage.SignUpActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ClassesPackage.SplashActivity"

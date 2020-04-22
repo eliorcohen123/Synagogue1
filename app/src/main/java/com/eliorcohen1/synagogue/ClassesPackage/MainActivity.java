@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             startActivity(intentCredits);
         } else if (id == R.id.logout) {
             mAuth.signOut();
-            startActivity(new Intent(MainActivity.this, SignIn_activity.class));
+            startActivity(new Intent(MainActivity.this, SignInActivity.class));
         } else if (id == R.id.exit) {
             ActivityCompat.finishAffinity(this);
         }

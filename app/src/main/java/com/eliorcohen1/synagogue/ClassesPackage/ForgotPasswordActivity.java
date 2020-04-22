@@ -50,7 +50,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
                                 if (task.isSuccessful()) {
                                     Log.d(TAG, "הסיסמא נשלחה");
                                     Toast.makeText(this, "הסיסמה נשלחה", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(ForgotPasswordActivity.this, SignIn_activity.class));
+                                    startActivity(new Intent(ForgotPasswordActivity.this, SignInActivity.class));
                                 } else {
                                     Toast.makeText(this, "המייל לא קיים", Toast.LENGTH_SHORT).show();
                                 }

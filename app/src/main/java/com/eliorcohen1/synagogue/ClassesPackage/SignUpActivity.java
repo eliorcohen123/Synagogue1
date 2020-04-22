@@ -16,7 +16,7 @@ import com.eliorcohen1.synagogue.OthersPackage.EmailPasswordPhoneValidator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignUp_activity extends AppCompatActivity implements View.OnClickListener {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText email_id, passwordCheck;
     private FirebaseAuth mAuth;
@@ -53,7 +53,7 @@ public class SignUp_activity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_page:
-                Intent intent = new Intent(SignUp_activity.this, SignIn_activity.class);
+                Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btn_signup:
@@ -71,19 +71,19 @@ public class SignUp_activity extends AppCompatActivity implements View.OnClickLi
                 progressBar.setVisibility(View.VISIBLE);
 
                 mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(SignUp_activity.this, task -> {
+                        .addOnCompleteListener(SignUpActivity.this, task -> {
                             progressBar.setVisibility(View.GONE);
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                Intent intent1 = new Intent(SignUp_activity.this, SignIn_activity.class);
+                                Intent intent1 = new Intent(SignUpActivity.this, SignInActivity.class);
                                 startActivity(intent1);
                                 finish();
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(SignUp_activity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                             }
                         });
                 break;

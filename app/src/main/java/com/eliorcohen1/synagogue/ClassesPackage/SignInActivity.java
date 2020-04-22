@@ -36,7 +36,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Arrays;
 
-public class SignIn_activity extends AppCompatActivity implements View.OnClickListener {
+public class SignInActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "Check";
     private EditText inputEmail, inputPassword;
@@ -84,7 +84,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
 
         mAuthListener = firebaseAuth -> {
             if (firebaseAuth.getCurrentUser() != null) {
-                startActivity(new Intent(SignIn_activity.this, WelcomeActivity.class));
+                startActivity(new Intent(SignInActivity.this, WelcomeActivity.class));
                 finish();
             }
         };
@@ -126,7 +126,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
-                Toast.makeText(SignIn_activity.this, "ההתחברות דרך גוגל נכשלה", Toast.LENGTH_LONG).show();
+                Toast.makeText(SignInActivity.this, "ההתחברות דרך גוגל נכשלה", Toast.LENGTH_LONG).show();
                 // ...
             }
         }
@@ -144,7 +144,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
-                        Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                         //updateUI(null);
                     }
                 });
@@ -199,7 +199,7 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.i(TAG, "signInWithCredential:failure: ", task.getException());
-                        Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -235,29 +235,29 @@ public class SignIn_activity extends AppCompatActivity implements View.OnClickLi
 
                     //authenticate user
                     mAuth.signInWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(SignIn_activity.this, task -> {
+                            .addOnCompleteListener(SignInActivity.this, task -> {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     // there was an error
                                     Log.d(TAG, "signInWithEmail:success");
-                                    Intent intent = new Intent(SignIn_activity.this, WelcomeActivity.class);
+                                    Intent intent = new Intent(SignInActivity.this, WelcomeActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
                                     Log.d(TAG, "singInWithEmail:Fail");
-                                    Toast.makeText(SignIn_activity.this, getString(R.string.failed), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(SignInActivity.this, getString(R.string.failed), Toast.LENGTH_LONG).show();
                                 }
                             });
                 }
                 break;
             case R.id.sign_up_button:
-                startActivity(new Intent(SignIn_activity.this, SignUp_activity.class));
+                startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
                 break;
             case R.id.btnPhone:
-                startActivity(new Intent(SignIn_activity.this, SignPhoneActivity.class));
+                startActivity(new Intent(SignInActivity.this, SignPhoneActivity.class));
                 break;
             case R.id.btn_forgot:
-                startActivity(new Intent(SignIn_activity.this, ForgotPasswordActivity.class));
+                startActivity(new Intent(SignInActivity.this, ForgotPasswordActivity.class));
                 break;
         }
     }
