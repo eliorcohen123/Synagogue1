@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -140,7 +143,9 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                     notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                     String id = "1";
                     assert notificationManager != null;
-                    notificationManager.deleteNotificationChannel(id);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        notificationManager.deleteNotificationChannel(id);
+                    }
                 }
 
                 receiver = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
