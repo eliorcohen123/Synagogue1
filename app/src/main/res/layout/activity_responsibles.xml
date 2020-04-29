@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".ClassesPackage.Responsible">
+    tools:context=".ClassesPackage.Responsibles">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,9 +54,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_marginTop="20dp"
+                android:background="@color/navy"
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="150dp"
@@ -69,13 +69,13 @@
                     android:gravity="center"
                     android:text="גבאים"
                     android:textColor="@color/red"
-                    android:textSize="40sp" />
+                    android:textSize="30sp" />
             </LinearLayout>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/line2" />
 
@@ -100,8 +100,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="40dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -111,4 +109,4 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

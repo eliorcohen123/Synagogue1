@@ -14,7 +14,7 @@ import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 
 import java.util.ArrayList;
 
-public class Responsible extends AppCompatActivity implements View.OnClickListener {
+public class Responsibles extends AppCompatActivity implements View.OnClickListener {
 
     private Button backResponsible;
     private ArrayList<TotalModel> arrayList;
@@ -24,7 +24,7 @@ public class Responsible extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_responsible);
+        setContentView(R.layout.activity_responsibles);
 
         initUI();
         initListeners();

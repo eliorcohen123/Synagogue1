@@ -64,7 +64,7 @@
                 <data android:mimeType="text/*" />
             </intent-filter>
         </activity>
-        <activity android:name=".ClassesPackage.Responsible" />
+        <activity android:name=".ClassesPackage.Responsibles" />
         <activity android:name=".ClassesPackage.Donates" />
         <activity android:name=".ClassesPackage.MainActivity" />
         <activity android:name=".ClassesPackage.WinterClock" />

@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 startActivity(intent2);
                 break;
             case R.id.responsible:
-                Intent intent3 = new Intent(MainActivity.this, Responsible.class);
+                Intent intent3 = new Intent(MainActivity.this, Responsibles.class);
                 startActivity(intent3);
                 break;
             case R.id.worshipers:
