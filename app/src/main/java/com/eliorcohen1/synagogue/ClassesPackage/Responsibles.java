@@ -8,7 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-import com.eliorcohen1.synagogue.CustomAdapterPackage.AdapterResponsible;
+import com.eliorcohen1.synagogue.CustomAdapterPackage.AdapterResponsibles;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 
@@ -19,7 +19,7 @@ public class Responsibles extends AppCompatActivity implements View.OnClickListe
     private Button backResponsible;
     private ArrayList<TotalModel> arrayList;
     private RecyclerView rv;
-    private AdapterResponsible adapter;
+    private AdapterResponsibles adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class Responsibles extends AppCompatActivity implements View.OnClickListe
         arrayList.add(new TotalModel("אבי קריאף", "054-4807328"));
         arrayList.add(new TotalModel("שלום נסים", "052-9426607"));
         arrayList.add(new TotalModel("מוטי כהן", "054-4917147"));
-        adapter = new AdapterResponsible(arrayList, this);
+        adapter = new AdapterResponsibles(arrayList, this);
         adapter.setNames(arrayList);
         rv.setAdapter(adapter);
     }

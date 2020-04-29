@@ -24,7 +24,7 @@ import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 import java.util.Collections;
 import java.util.List;
 
-public class AdapterResponsible extends RecyclerView.Adapter<AdapterResponsible.ViewHolder> {
+public class AdapterResponsibles extends RecyclerView.Adapter<AdapterResponsibles.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
 
@@ -69,7 +69,7 @@ public class AdapterResponsible extends RecyclerView.Adapter<AdapterResponsible.
     private Context context;
     private final LayoutInflater mInflater;
 
-    public AdapterResponsible(List<TotalModel> list_data, Context context) {
+    public AdapterResponsibles(List<TotalModel> list_data, Context context) {
         this.list_data = list_data;
         this.context = context;
         mInflater = LayoutInflater.from(context);
@@ -77,7 +77,7 @@ public class AdapterResponsible extends RecyclerView.Adapter<AdapterResponsible.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.responsible_adapter, parent, false);
+        View view = mInflater.inflate(R.layout.responsibles_adapter, parent, false);
         return new ViewHolder(view);
     }
 
