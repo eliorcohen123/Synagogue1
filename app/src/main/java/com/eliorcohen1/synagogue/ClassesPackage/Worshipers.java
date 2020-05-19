@@ -10,12 +10,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.ItemTouchHelper;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,12 +27,11 @@ import android.widget.Toast;
 import com.eliorcohen1.synagogue.CustomAdapterPackage.AdapterWorshipers;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -43,8 +44,9 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
     private AdapterWorshipers adapter;
     private SearchView searchView;
     private Paint p;
-    private Firebase firebase;
     private FirebaseUser currentFirebaseUser;
+    private FirebaseFirestore fireStoreDB;
+    private ListenerRegistration fireStoreListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,15 +72,14 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
 
         btnWrite.setVisibility(View.GONE);
 
-        Firebase.setAndroidContext(this);
-        firebase = new Firebase(getString(R.string.API_KEY_Firebase));
-
         currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        fireStoreDB = FirebaseFirestore.getInstance();
 
         assert currentFirebaseUser != null;
         if (Objects.requireNonNull(currentFirebaseUser.getEmail()).equals(getString(R.string.API_KEY_Email1)) ||
                 currentFirebaseUser.getEmail().equals(getString(R.string.API_KEY_Email2)) ||
-                currentFirebaseUser.getEmail().equals(getString(R.string.API_KEY_Email3))) {
+                currentFirebaseUser.getEmail().equals(getString(R.string.API_KEY_Email3)) ||
+                currentFirebaseUser.getEmail().equals(getString(R.string.API_KEY_Email4))) {
             enableSwipe();
 
             btnWrite.setVisibility(View.VISIBLE);
@@ -96,28 +97,47 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
     }
 
     private void getReadFirebase() {
-        firebase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                arrayList.clear();
-                try {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        TotalModel totalModel = snapshot.getValue(TotalModel.class);
-                        arrayList.add(totalModel);
+        fireStoreDB.collection("synagogue")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        arrayList.clear();
+
+                        for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
+                            TotalModel note = doc.toObject(TotalModel.class);
+                            assert note != null;
+                            note.setId(doc.getId());
+                            arrayList.add(note);
+                        }
+
+                        adapter = new AdapterWorshipers(arrayList, Worshipers.this);
+                        adapter.setNames(arrayList);
+                        rv.setAdapter(adapter);
+                    } else {
+                        Toast.makeText(Worshipers.this, "שגיאה בקבלת המידע", Toast.LENGTH_SHORT).show();
                     }
+                });
+
+        // Listener FireStore
+        fireStoreListener = fireStoreDB.collection("synagogue")
+                .addSnapshotListener((documentSnapshots, e) -> {
+                    if (e != null) {
+                        Toast.makeText(Worshipers.this, "רשימת הלייב נכשלה" + e, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    arrayList.clear();
+
+                    assert documentSnapshots != null;
+                    for (DocumentSnapshot doc : documentSnapshots) {
+                        TotalModel note = doc.toObject(TotalModel.class);
+                        assert note != null;
+                        note.setId(doc.getId());
+                        arrayList.add(note);
+                    }
+
                     adapter = new AdapterWorshipers(arrayList, Worshipers.this);
-                    adapter.setNames(arrayList);
                     rv.setAdapter(adapter);
-                } catch (Exception e) {
-
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
+                });
     }
 
     private void enableSwipe() {
@@ -141,9 +161,10 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
                     intent.putExtra(getString(R.string.worshipers_numPhone), totalModel.getNumPhone());
                     startActivity(intent);
                 } else {
-                    Toast.makeText(Worshipers.this, "מוחק: " + totalModel.getName(), Toast.LENGTH_LONG).show();
-
-                    firebase.getRef().child(totalModel.getNumPhone()).removeValue();
+                    fireStoreDB.collection("synagogue").document(totalModel.getNumPhone())
+                            .delete()
+                            .addOnSuccessListener(aVoid -> Toast.makeText(Worshipers.this, "מוחק: " + totalModel.getName(), Toast.LENGTH_LONG).show())
+                            .addOnFailureListener(e -> Toast.makeText(Worshipers.this, "שגיאה בעדכון משתשמש: " + e, Toast.LENGTH_LONG).show());
                 }
             }
 
@@ -228,6 +249,13 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        fireStoreListener.remove();
     }
 
 }

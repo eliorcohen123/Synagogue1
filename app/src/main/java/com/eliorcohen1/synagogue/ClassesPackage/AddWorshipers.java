@@ -2,23 +2,29 @@ package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.OthersPackage.EmailPasswordPhoneValidator;
-import com.firebase.client.Firebase;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddWorshipers extends AppCompatActivity implements View.OnClickListener {
 
     private EditText name, num_phone;
     private TextView textViewOK;
     private Button btnBack;
-    private Firebase firebase;
+    private FirebaseFirestore fireStoreDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +43,7 @@ public class AddWorshipers extends AppCompatActivity implements View.OnClickList
 
         btnBack = findViewById(R.id.btnBack);
 
-        Firebase.setAndroidContext(this);
-        firebase = new Firebase(getString(R.string.API_KEY_Firebase));
+        fireStoreDB = FirebaseFirestore.getInstance();
     }
 
     private void initListeners() {
@@ -72,14 +77,21 @@ public class AddWorshipers extends AppCompatActivity implements View.OnClickList
                     num_phone.setError("דרוש מס' נייד חוקי");  // Print text of error if the text is empty
                     num_phone.requestFocus();
                 } else {
-                    firebase.child(String.valueOf(s)).child("name").setValue(name1);
-                    firebase.child(String.valueOf(s)).child("numPhone").setValue(s);
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("name", name1);
+                    assert s != null;
+                    user.put("numPhone", s.toString());
 
-                    // Pass from AddWorshipers to Worshipers
-                    Intent intentAddInternetToMain = new Intent(AddWorshipers.this, Worshipers.class);
-                    startActivity(intentAddInternetToMain);
+                    fireStoreDB.collection("synagogue")
+                            .document(s.toString())
+                            .set(user)
+                            .addOnSuccessListener(aVoid -> {
+                                Intent intentAddInternetToMain = new Intent(AddWorshipers.this, Worshipers.class);
+                                startActivity(intentAddInternetToMain);
 
-                    finish();
+                                finish();
+                            })
+                            .addOnFailureListener(e -> Toast.makeText(AddWorshipers.this, "שגיאה בהוספת משתמש: " + e, Toast.LENGTH_SHORT).show());
                 }
                 break;
             case R.id.btnBack:

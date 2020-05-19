@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class TotalModel implements Serializable {
 
+    private String id;
     private String name;
     private String numPhone;
     private String distance;
@@ -17,6 +18,14 @@ public class TotalModel implements Serializable {
 
     public TotalModel() {
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
