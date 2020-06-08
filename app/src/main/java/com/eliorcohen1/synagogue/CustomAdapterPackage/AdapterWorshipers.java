@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -109,7 +111,6 @@ public class AdapterWorshipers extends RecyclerView.Adapter<AdapterWorshipers.Vi
         Collections.sort(adapterListFiltered, (obj1, obj2) -> obj1.getName().compareToIgnoreCase(obj2.getName()));
         notifyDataSetChanged();
     }
-
 
     @Override
     public int getItemCount() {
