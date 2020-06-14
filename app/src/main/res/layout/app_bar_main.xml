@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -145,13 +145,22 @@
                 android:textColor="@color/white" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/chat"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button1"
+            android:text="צ'אט מתפללים"
+            android:textColor="@color/white" />
+
         <LinearLayout
             android:id="@+id/container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="2dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="2dp"
             android:layout_marginBottom="2dp"
             android:background="@drawable/animation_list"

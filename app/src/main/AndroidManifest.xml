@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.eliorcohen1.synagogue"
-    android:versionCode="83"
+    android:versionCode="84"
     android:versionName="1.0.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -100,6 +100,7 @@
         <activity
             android:name=".ClassesPackage.SignUpActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ClassesPackage.ChatActivity" />
         <activity
             android:name=".ClassesPackage.SplashActivity"
             android:label="@string/title_activity_welcome" />

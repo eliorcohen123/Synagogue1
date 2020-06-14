@@ -7,13 +7,16 @@ import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.location.Location;
 import android.os.Bundle;
+
 import com.google.android.material.navigation.NavigationView;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private TextView stripe;
-    private Button responsible, worshipers, donates, winterClock, summerClock, mapMe, alarms, events;
+    private Button responsible, worshipers, donates, winterClock, summerClock, mapMe, alarms, events, chat;
     private LinearLayout container;
     private AnimationDrawable anim;
     private Toolbar toolbar;
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mapMe = findViewById(R.id.mapMe);
         alarms = findViewById(R.id.alarms);
         events = findViewById(R.id.events);
+        chat = findViewById(R.id.chat);
 
         container = findViewById(R.id.container);
 
@@ -129,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mapMe.setOnClickListener(this);
         alarms.setOnClickListener(this);
         events.setOnClickListener(this);
+        chat.setOnClickListener(this);
     }
 
     private void initAppRater() {
@@ -218,6 +223,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             case R.id.events:
                 Intent intent8 = new Intent(MainActivity.this, Events.class);
                 startActivity(intent8);
+                break;
+            case R.id.chat:
+                Intent intent9 = new Intent(MainActivity.this, ChatActivity.class);
+                startActivity(intent9);
                 break;
         }
     }
@@ -332,6 +341,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful() && task.getResult() != null) {
                         mLastLocation = task.getResult();
+                        Log.i(TAG, "Latitude: " + mLastLocation.getLatitude() + ", Longitude: " + mLastLocation.getLongitude());
                     } else {
                         Log.i(TAG, "Inside getLocation function. Error while getting location");
                         System.out.println(TAG + task.getException());

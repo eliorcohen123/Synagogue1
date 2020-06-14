@@ -31,26 +31,26 @@ public class EmailPasswordPhoneValidator {
                     "\\." +
                     "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
                     ")+";
-    private static String PASSWORD_PATTERN = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,20}";
     private static String PHONE_NUMBER_PATTERN = "[0-9]{10}$";
     private static Pattern pattern;
     private static Matcher matcher;
 
-    public  boolean isValidEmail(final String password) {
+    public boolean isValidEmail(final String password) {
         pattern = Pattern.compile(EMAIL_PATTERN);
         matcher = pattern.matcher(password);
 
         return matcher.matches();
     }
 
-    public  boolean isValidPassword(final String password) {
-        pattern = Pattern.compile(PASSWORD_PATTERN);
-        matcher = pattern.matcher(password);
-
-        return matcher.matches();
+    public boolean isValidPassword(final String password) {
+        if (password.length() < 8) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    public  boolean isValidPhoneNumber(final String phone_number) {
+    public boolean isValidPhoneNumber(final String phone_number) {
         pattern = Pattern.compile(PHONE_NUMBER_PATTERN);
         matcher = pattern.matcher(phone_number);
 
