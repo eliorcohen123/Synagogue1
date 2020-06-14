@@ -2,7 +2,9 @@ package com.eliorcohen1.synagogue.ClassesPackage;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -48,7 +50,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Button btnLogin, btnPhone;
-    private TextView btnSignUp;
+    private TextView btnSignUp, btnForgotPassword;
     private LoginButton loginButtonFacebook;
 
     @Override
@@ -78,6 +80,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         btnSignUp = findViewById(R.id.sign_up_button);
         btnSignInGoogle = findViewById(R.id.sign_in_google);
         btnPhone = findViewById(R.id.btnPhone);
+        btnForgotPassword = findViewById(R.id.btn_forgot);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -94,6 +97,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         btnLogin.setOnClickListener(this);
         btnPhone.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
+        btnForgotPassword.setOnClickListener(this);
     }
 
     private void btnLoginGoogle() {
@@ -253,6 +257,9 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btnPhone:
                 startActivity(new Intent(SignInActivity.this, SignPhoneActivity.class));
+                break;
+            case R.id.btn_forgot:
+                startActivity(new Intent(SignInActivity.this, ForgotPasswordActivity.class));
                 break;
         }
     }
