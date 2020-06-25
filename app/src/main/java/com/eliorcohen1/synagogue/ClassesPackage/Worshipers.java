@@ -164,7 +164,7 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
                     fireStoreDB.collection("synagogue").document(totalModel.getNumPhone())
                             .delete()
                             .addOnSuccessListener(aVoid -> Toast.makeText(Worshipers.this, "מוחק: " + totalModel.getName(), Toast.LENGTH_LONG).show())
-                            .addOnFailureListener(e -> Toast.makeText(Worshipers.this, "שגיאה בעדכון משתשמש: " + e, Toast.LENGTH_LONG).show());
+                            .addOnFailureListener(e -> Toast.makeText(Worshipers.this, "שגיאה במחיקת משתשמש: " + e, Toast.LENGTH_LONG).show());
                 }
             }
 
