@@ -59,6 +59,13 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
         getReadFirebase();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        fireStoreListener.remove();
+    }
+
     private void initUI() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -249,13 +256,6 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        fireStoreListener.remove();
     }
 
 }
