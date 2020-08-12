@@ -240,7 +240,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                             .addOnCompleteListener(SignInActivity.this, task -> {
                                 progressBar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
-                                    // there was an error
                                     Log.d(TAG, "signInWithEmail:success");
                                     Intent intent = new Intent(SignInActivity.this, WelcomeActivity.class);
                                     startActivity(intent);
