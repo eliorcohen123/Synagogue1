@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomViewPagerAdapter;
+import com.eliorcohen1.synagogue.CustomAdaptersPackage.CustomViewPagerAdapter;
 import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 import com.viewpagerindicator.CirclePageIndicator;
 

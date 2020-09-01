@@ -24,7 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomAdapterWorshipers;
+import com.eliorcohen1.synagogue.CustomAdaptersPackage.CustomAdapterWorshipers;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 import com.google.firebase.auth.FirebaseAuth;

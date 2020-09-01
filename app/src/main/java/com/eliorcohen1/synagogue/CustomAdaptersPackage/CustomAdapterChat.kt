@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.CustomAdapterPackage
+package com.eliorcohen1.synagogue.CustomAdaptersPackage
 
 import android.view.LayoutInflater
 import android.view.View

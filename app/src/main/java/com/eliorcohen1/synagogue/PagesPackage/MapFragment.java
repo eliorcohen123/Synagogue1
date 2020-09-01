@@ -28,7 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomInfoWindowGoogleMap;
+import com.eliorcohen1.synagogue.CustomAdaptersPackage.CustomInfoWindowGoogleMap;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 import com.google.android.gms.maps.CameraUpdateFactory;

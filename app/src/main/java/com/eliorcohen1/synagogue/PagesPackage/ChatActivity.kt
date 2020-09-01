@@ -3,7 +3,7 @@ package com.eliorcohen1.synagogue.PagesPackage
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomAdapterChat
+import com.eliorcohen1.synagogue.CustomAdaptersPackage.CustomAdapterChat
 import com.eliorcohen1.synagogue.ModelsPackage.ChatModel
 import com.eliorcohen1.synagogue.R
 import com.google.firebase.Timestamp

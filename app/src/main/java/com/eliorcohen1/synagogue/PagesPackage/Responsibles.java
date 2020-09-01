@@ -8,7 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomAdapterResponsibles;
+import com.eliorcohen1.synagogue.CustomAdaptersPackage.CustomAdapterResponsibles;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 
