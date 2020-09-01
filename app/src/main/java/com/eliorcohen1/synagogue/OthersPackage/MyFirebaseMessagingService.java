@@ -11,7 +11,7 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import android.util.Log;
 
-import com.eliorcohen1.synagogue.ClassesPackage.WelcomeActivity;
+import com.eliorcohen1.synagogue.PagesPackage.WelcomeActivity;
 import com.eliorcohen1.synagogue.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;

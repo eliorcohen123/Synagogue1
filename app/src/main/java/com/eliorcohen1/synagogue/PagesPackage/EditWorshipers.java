@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ClassesPackage;
+package com.eliorcohen1.synagogue.PagesPackage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,17 +19,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddWorshipers extends AppCompatActivity implements View.OnClickListener {
+public class EditWorshipers extends AppCompatActivity implements View.OnClickListener {
 
     private EditText name, num_phone;
     private TextView textViewOK;
     private Button btnBack;
+    private String get_name, get_numPhone;
     private FirebaseFirestore fireStoreDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_worshipers);
+        setContentView(R.layout.activity_edit_worshipers);
 
         initUI();
         initListeners();
@@ -42,6 +43,15 @@ public class AddWorshipers extends AppCompatActivity implements View.OnClickList
         textViewOK = findViewById(R.id.textViewOK);
 
         btnBack = findViewById(R.id.btnBack);
+
+        get_name = getIntent().getStringExtra("worshipers_name");
+        get_numPhone = getIntent().getStringExtra("worshipers_numPhone");
+
+        assert get_numPhone != null;
+        get_numPhone = get_numPhone.replace("-", "");
+
+        name.setText(get_name);
+        num_phone.setText(get_numPhone);
 
         fireStoreDB = FirebaseFirestore.getInstance();
     }
@@ -77,21 +87,30 @@ public class AddWorshipers extends AppCompatActivity implements View.OnClickList
                     num_phone.setError("דרוש מס' נייד חוקי");  // Print text of error if the text is empty
                     num_phone.requestFocus();
                 } else {
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("name", name1);
-                    assert s != null;
-                    user.put("numPhone", s.toString());
+                    try {
+                        Map<String, Object> user = new HashMap<>();
+                        user.put("name", name1);
+                        assert s != null;
+                        user.put("numPhone", s.toString());
+                        fireStoreDB.collection("synagogue")
+                                .document(s.toString())
+                                .update(user)
+                                .addOnSuccessListener(aVoid -> {
+                                    Intent intentAddInternetToMain = new Intent(EditWorshipers.this, Worshipers.class);
+                                    startActivity(intentAddInternetToMain);
 
-                    fireStoreDB.collection("synagogue")
-                            .document(s.toString())
-                            .set(user)
-                            .addOnSuccessListener(aVoid -> {
-                                Intent intentAddInternetToMain = new Intent(AddWorshipers.this, Worshipers.class);
-                                startActivity(intentAddInternetToMain);
+                                    finish();
+                                })
+                                .addOnFailureListener(e -> Toast.makeText(EditWorshipers.this, "שגיאה בעדכון משתשמש: " + e, Toast.LENGTH_SHORT).show());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
-                                finish();
-                            })
-                            .addOnFailureListener(e -> Toast.makeText(AddWorshipers.this, "שגיאה בהוספת משתמש: " + e, Toast.LENGTH_SHORT).show());
+                    // Pass from AddWorshipers to Worshipers
+                    Intent intentAddInternetToMain = new Intent(EditWorshipers.this, Worshipers.class);
+                    startActivity(intentAddInternetToMain);
+
+                    finish();
                 }
                 break;
             case R.id.btnBack:

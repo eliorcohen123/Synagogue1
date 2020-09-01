@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ClassesPackage
+package com.eliorcohen1.synagogue.PagesPackage
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

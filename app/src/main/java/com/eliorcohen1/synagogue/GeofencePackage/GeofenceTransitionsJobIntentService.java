@@ -14,7 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.ClassesPackage.FragmentActivityMy;
+import com.eliorcohen1.synagogue.PagesPackage.FragmentActivityMy;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
 

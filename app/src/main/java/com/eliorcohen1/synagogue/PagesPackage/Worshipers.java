@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ClassesPackage;
+package com.eliorcohen1.synagogue.PagesPackage;
 
 import android.app.SearchManager;
 import android.content.Context;

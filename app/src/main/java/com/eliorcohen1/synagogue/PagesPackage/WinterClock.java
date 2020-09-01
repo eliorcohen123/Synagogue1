@@ -1,8 +1,9 @@
-package com.eliorcohen1.synagogue.ClassesPackage;
+package com.eliorcohen1.synagogue.PagesPackage;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -12,17 +13,17 @@ import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 
-public class SummerClock extends AppCompatActivity implements View.OnClickListener {
+public class WinterClock extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView shabat, summer, morning1, noon1, evening1, morning2, noon2, evening2, clock, noon3, evening3, formula, simpleDay, sunset, sunsetText;
-    private Button backSummer, backSummerWeb;
+    private TextView shabat, winter, morning1, noon1, evening1, morning2, noon2, evening2, clock, noon3, evening3, formula, simpleDay, sunset, sunsetText;
+    private Button backWinter, backWinterWeb;
     private LinearLayout myLinear;
     private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_summer);
+        setContentView(R.layout.activity_winter);
 
         initUI();
         initListeners();
@@ -33,11 +34,11 @@ public class SummerClock extends AppCompatActivity implements View.OnClickListen
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        backSummer = findViewById(R.id.backSummer);
-        backSummerWeb = findViewById(R.id.backSummerWeb);
+        backWinter = findViewById(R.id.backWinter);
+        backWinterWeb = findViewById(R.id.backWinterWeb);
         clock = findViewById(R.id.clock);
         formula = findViewById(R.id.formula);
-        summer = findViewById(R.id.summer);
+        winter = findViewById(R.id.winter);
         sunsetText = findViewById(R.id.sunsetText);
         sunset = findViewById(R.id.sunset);
         simpleDay = findViewById(R.id.simpleDay);
@@ -54,19 +55,19 @@ public class SummerClock extends AppCompatActivity implements View.OnClickListen
         webView = findViewById(R.id.myWebView);
 
         webView.setVisibility(View.GONE);
-        backSummerWeb.setVisibility(View.GONE);
+        backWinterWeb.setVisibility(View.GONE);
     }
 
     private void initListeners() {
-        backSummer.setOnClickListener(this);
-        backSummerWeb.setOnClickListener(this);
+        backWinter.setOnClickListener(this);
+        backWinterWeb.setOnClickListener(this);
         sunset.setOnClickListener(this);
     }
 
     private void showUI() {
         clock.setText("שעות תפילה נווה צדק");
         formula.setText(" נוסח: ספרדי ");
-        summer.setText(" שעון קיץ ");
+        winter.setText(" שעון חורף ");
         sunsetText.setText("לינק לבדיקת שעת השקיעה ועוד...");
         simpleDay.setText(" יום חול ");
         morning1.setText("תפילת שחרית(ספר תורה): " + "\n (06:15)06:30" + "\n שישי: " + "\n 07:00");
@@ -75,7 +76,7 @@ public class SummerClock extends AppCompatActivity implements View.OnClickListen
         shabat.setText(" שבת קודש ");
         evening2.setText(" מנחה וערבית של שבת: " + "\n 5 דקות לפני כניסת השבת ");
         morning2.setText(" שחרית של שבת: " + "\n 08:00 ");
-        noon2.setText(" מנחה גדולה: " + "\n 13:15 ");
+        noon2.setText(" מנחה גדולה: " + "\n 12:30 ");
         noon3.setText(" מנחה קטנה: " + "\n שעה וחצי לפני ערבית של מוצ''ש ");
         evening3.setText(" ערבית של מוצ''ש: " + "\n 6 דקות לפני צאת השבת ");
     }
@@ -83,19 +84,19 @@ public class SummerClock extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.backSummer:
+            case R.id.backWinter:
                 onBackPressed();
                 break;
-            case R.id.backSummerWeb:
+            case R.id.backWinterWeb:
                 myLinear.setVisibility(View.VISIBLE);
-                backSummer.setVisibility(View.VISIBLE);
-                backSummerWeb.setVisibility(View.GONE);
+                backWinter.setVisibility(View.VISIBLE);
+                backWinterWeb.setVisibility(View.GONE);
                 webView.setVisibility(View.GONE);
                 break;
             case R.id.sunset:
                 myLinear.setVisibility(View.GONE);
-                backSummerWeb.setVisibility(View.VISIBLE);
-                backSummer.setVisibility(View.GONE);
+                backWinterWeb.setVisibility(View.VISIBLE);
+                backWinter.setVisibility(View.GONE);
                 webView.setVisibility(View.VISIBLE);
                 webView.getSettings().setJavaScriptEnabled(true);
                 webView.setWebViewClient(new WebViewClient());

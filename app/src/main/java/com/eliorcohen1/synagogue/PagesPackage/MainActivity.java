@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ClassesPackage;
+package com.eliorcohen1.synagogue.PagesPackage;
 
 import android.Manifest;
 import android.content.Intent;

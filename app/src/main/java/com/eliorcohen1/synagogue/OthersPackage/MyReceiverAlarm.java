@@ -11,7 +11,7 @@ import android.content.Intent;
 import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
-import com.eliorcohen1.synagogue.ClassesPackage.MyAlarm;
+import com.eliorcohen1.synagogue.PagesPackage.MyAlarm;
 import com.eliorcohen1.synagogue.R;
 
 import java.util.Calendar;

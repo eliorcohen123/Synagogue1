@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.ClassesPackage;
+package com.eliorcohen1.synagogue.PagesPackage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.OthersPackage.EmailPasswordPhoneValidator;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
