@@ -3,8 +3,8 @@ package com.eliorcohen1.synagogue.PagesPackage
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.eliorcohen1.synagogue.CustomAdapterPackage.ChatAdapter
-import com.eliorcohen1.synagogue.ModelsPackage.ChatMessage
+import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomAdapterChat
+import com.eliorcohen1.synagogue.ModelsPackage.ChatModel
 import com.eliorcohen1.synagogue.R
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -17,7 +17,7 @@ class ChatActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
     private val user = auth.currentUser
     private val firestore = FirebaseFirestore.getInstance()
-    private val chatMessages = ArrayList<ChatMessage>()
+    private val chatMessages = ArrayList<ChatModel>()
     private var chatRegistration: ListenerRegistration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +45,7 @@ class ChatActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.reverseLayout = true
         recyclerView.layoutManager = layoutManager
-        val adapter = ChatAdapter(chatMessages, user.uid)
+        val adapter = CustomAdapterChat(chatMessages, user.uid)
         recyclerView.adapter = adapter
 
         listenForChatMessages()
@@ -62,7 +62,7 @@ class ChatActivity : AppCompatActivity() {
 
                     for (messageDocument in messageSnapshot.documents) {
                         chatMessages.add(
-                                ChatMessage(
+                                ChatModel(
                                         messageDocument["text"] as String,
                                         messageDocument["email"] as String,
                                         messageDocument["user"] as String,

@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.eliorcohen1.synagogue.ModelsPackage.ChatMessage
+import com.eliorcohen1.synagogue.ModelsPackage.ChatModel
 import com.eliorcohen1.synagogue.R
 import kotlinx.android.synthetic.main.list_item_chat.view.*
 
-class ChatAdapter(private val chatMessages: List<ChatMessage>, private val uid: String) : RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
+class CustomAdapterChat(private val chatModels: List<ChatModel>, private val uid: String) : RecyclerView.Adapter<CustomAdapterChat.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -16,11 +16,11 @@ class ChatAdapter(private val chatMessages: List<ChatMessage>, private val uid: 
     }
 
     override fun getItemCount(): Int {
-        return chatMessages.size
+        return chatModels.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val chatMessage = chatMessages[position]
+        val chatMessage = chatModels[position]
 
         if (chatMessage.user == uid) {
             holder.itemView.textview_chat_sent.text = chatMessage.text

@@ -24,7 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.eliorcohen1.synagogue.CustomAdapterPackage.AdapterWorshipers;
+import com.eliorcohen1.synagogue.CustomAdapterPackage.CustomAdapterWorshipers;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,7 +41,7 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
     private Button backWorshipers, btnWrite;
     private ArrayList<TotalModel> arrayList;
     private RecyclerView rv;
-    private AdapterWorshipers adapter;
+    private CustomAdapterWorshipers adapter;
     private SearchView searchView;
     private Paint p;
     private FirebaseUser currentFirebaseUser;
@@ -117,7 +117,7 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
                             arrayList.add(note);
                         }
 
-                        adapter = new AdapterWorshipers(arrayList, Worshipers.this);
+                        adapter = new CustomAdapterWorshipers(arrayList, Worshipers.this);
                         adapter.setNames(arrayList);
                         rv.setAdapter(adapter);
                     } else {
@@ -142,7 +142,7 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
                         arrayList.add(note);
                     }
 
-                    adapter = new AdapterWorshipers(arrayList, Worshipers.this);
+                    adapter = new CustomAdapterWorshipers(arrayList, Worshipers.this);
                     rv.setAdapter(adapter);
                 });
     }

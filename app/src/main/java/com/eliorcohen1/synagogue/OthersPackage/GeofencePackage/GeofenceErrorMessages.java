@@ -1,4 +1,4 @@
-package com.eliorcohen1.synagogue.GeofencePackage;
+package com.eliorcohen1.synagogue.OthersPackage.GeofencePackage;
 
 import android.content.Context;
 import android.content.res.Resources;

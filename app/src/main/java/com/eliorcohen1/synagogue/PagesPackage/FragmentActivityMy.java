@@ -24,9 +24,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.eliorcohen1.synagogue.GeofencePackage.Constants;
-import com.eliorcohen1.synagogue.GeofencePackage.GeofenceBroadcastReceiver;
-import com.eliorcohen1.synagogue.GeofencePackage.GeofenceErrorMessages;
+import com.eliorcohen1.synagogue.OthersPackage.GeofencePackage.Constants;
+import com.eliorcohen1.synagogue.OthersPackage.GeofencePackage.GeofenceBroadcastReceiver;
+import com.eliorcohen1.synagogue.OthersPackage.GeofencePackage.GeofenceErrorMessages;
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.OthersPackage.ConApp;
 import com.eliorcohen1.synagogue.OthersPackage.GoogleService;

@@ -35,7 +35,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".ClassesPackage.SignInActivity"
+            android:name=".PagesPackage.SignInActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.searchable"
@@ -64,45 +64,45 @@
                 <data android:mimeType="text/*" />
             </intent-filter>
         </activity>
-        <activity android:name=".ClassesPackage.Responsibles" />
-        <activity android:name=".ClassesPackage.Donates" />
-        <activity android:name=".ClassesPackage.MainActivity" />
-        <activity android:name=".ClassesPackage.WinterClock" />
-        <activity android:name=".ClassesPackage.SummerClock" />
-        <activity android:name=".ClassesPackage.Worshipers" />
-        <activity android:name=".ClassesPackage.MyCredits" />
+        <activity android:name=".PagesPackage.Responsibles" />
+        <activity android:name=".PagesPackage.Donates" />
+        <activity android:name=".PagesPackage.MainActivity" />
+        <activity android:name=".PagesPackage.WinterClock" />
+        <activity android:name=".PagesPackage.SummerClock" />
+        <activity android:name=".PagesPackage.Worshipers" />
+        <activity android:name=".PagesPackage.MyCredits" />
         <activity
-            android:name=".ClassesPackage.ForgotPasswordActivity"
+            android:name=".PagesPackage.ForgotPasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ClassesPackage.FragmentActivityMy"
+            android:name=".PagesPackage.FragmentActivityMy"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity android:name=".ClassesPackage.MyAlarm" />
-        <activity android:name=".ClassesPackage.Events" />
+        <activity android:name=".PagesPackage.MyAlarm" />
+        <activity android:name=".PagesPackage.Events" />
         <activity
-            android:name=".ClassesPackage.AddWorshipers"
+            android:name=".PagesPackage.AddWorshipers"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ClassesPackage.EditWorshipers"
+            android:name=".PagesPackage.EditWorshipers"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ClassesPackage.VerifyPhoneActivity"
+            android:name=".PagesPackage.VerifyPhoneActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ClassesPackage.SignPhoneActivity"
+            android:name=".PagesPackage.SignPhoneActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ClassesPackage.WelcomeActivityTutorial"
+            android:name=".PagesPackage.WelcomeActivityTutorial"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ClassesPackage.WelcomeActivity"
+            android:name=".PagesPackage.WelcomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ClassesPackage.SignUpActivity"
+            android:name=".PagesPackage.SignUpActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ClassesPackage.ChatActivity" />
+        <activity android:name=".PagesPackage.ChatActivity" />
         <activity
-            android:name=".ClassesPackage.SplashActivity"
+            android:name=".PagesPackage.SplashActivity"
             android:label="@string/title_activity_welcome" />
 
         <meta-data
@@ -145,12 +145,12 @@
             android:exported="true"
             android:process=":remote" />
         <receiver
-            android:name=".GeofencePackage.GeofenceBroadcastReceiver"
+            android:name=".OthersPackage.GeofencePackage.GeofenceBroadcastReceiver"
             android:enabled="true"
             android:exported="true" />
 
         <service
-            android:name=".GeofencePackage.GeofenceTransitionsJobIntentService"
+            android:name=".OthersPackage.GeofencePackage.GeofenceTransitionsJobIntentService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service android:name=".OthersPackage.MyFirebaseMessagingService">

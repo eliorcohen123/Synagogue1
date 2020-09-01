@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,16 +17,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AdapterResponsibles extends RecyclerView.Adapter<AdapterResponsibles.ViewHolder> {
+public class CustomAdapterWorshipers extends RecyclerView.Adapter<CustomAdapterWorshipers.ViewHolder> implements Filterable {
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
 
@@ -42,7 +47,7 @@ public class AdapterResponsibles extends RecyclerView.Adapter<AdapterResponsible
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("בחר פעילות");
-            MenuItem share = menu.add(Menu.NONE, 1, 1, "שתף פרטי גבאי");
+            MenuItem share = menu.add(Menu.NONE, 1, 1, "שתף פרטי מתפלל");
 
             share.setOnMenuItemClickListener(onChange);
         }
@@ -50,7 +55,7 @@ public class AdapterResponsibles extends RecyclerView.Adapter<AdapterResponsible
         private final MenuItem.OnMenuItemClickListener onChange = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                TotalModel current = list_data.get(getAdapterPosition());
+                TotalModel current = adapterListFiltered.get(getAdapterPosition());
                 if (item.getItemId() == 1) {
                     String name = current.getName();
                     String phone = current.getNumPhone();
@@ -68,27 +73,29 @@ public class AdapterResponsibles extends RecyclerView.Adapter<AdapterResponsible
     private List<TotalModel> list_data;
     private Context context;
     private final LayoutInflater mInflater;
+    private List<TotalModel> adapterListFiltered;
 
-    public AdapterResponsibles(List<TotalModel> list_data, Context context) {
+    public CustomAdapterWorshipers(List<TotalModel> list_data, Context context) {
         this.list_data = list_data;
         this.context = context;
+        this.adapterListFiltered = list_data;
         mInflater = LayoutInflater.from(context);
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.responsibles_adapter, parent, false);
+        View view = mInflater.inflate(R.layout.worshipers_adapter, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final TotalModel listData = list_data.get(position);
+        final TotalModel listData = adapterListFiltered.get(position);
         holder.textName.setText(listData.getName());
         holder.textPhone.setText(listData.getNumPhone());
         holder.relativeLayout.setOnClickListener(v -> {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                String phone = "tel:" + list_data.get(position).getNumPhone();
+                String phone = "tel:" + listData.getNumPhone();
                 Intent i = new Intent(Intent.ACTION_CALL, Uri.parse(phone));
                 context.startActivity(i);
             } else {
@@ -100,14 +107,51 @@ public class AdapterResponsibles extends RecyclerView.Adapter<AdapterResponsible
     }
 
     public void setNames(List<TotalModel> names) {
-        list_data = names;
-        Collections.sort(list_data, (obj1, obj2) -> obj1.getName().compareToIgnoreCase(obj2.getName()));
+        adapterListFiltered = names;
+        Collections.sort(adapterListFiltered, (obj1, obj2) -> obj1.getName().compareToIgnoreCase(obj2.getName()));
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return list_data.size();
+        return adapterListFiltered.size();
+    }
+
+    public TotalModel getPlaceAtPosition(int position) {
+        return adapterListFiltered.get(position);
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    adapterListFiltered = list_data;
+                } else {
+                    List<TotalModel> filteredList = new ArrayList<>();
+                    for (TotalModel row : list_data) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.getName().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+                    adapterListFiltered = filteredList;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = adapterListFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                adapterListFiltered = (ArrayList<TotalModel>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     private void setFadeAnimation(View view) {
