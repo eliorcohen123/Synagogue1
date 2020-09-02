@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditWorshipers extends AppCompatActivity implements View.OnClickListener {
+public class EditWorshipersActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText name, num_phone;
     private TextView textViewOK;
@@ -96,18 +96,18 @@ public class EditWorshipers extends AppCompatActivity implements View.OnClickLis
                                 .document(s.toString())
                                 .update(user)
                                 .addOnSuccessListener(aVoid -> {
-                                    Intent intentAddInternetToMain = new Intent(EditWorshipers.this, Worshipers.class);
+                                    Intent intentAddInternetToMain = new Intent(EditWorshipersActivity.this, WorshipersActivity.class);
                                     startActivity(intentAddInternetToMain);
 
                                     finish();
                                 })
-                                .addOnFailureListener(e -> Toast.makeText(EditWorshipers.this, "שגיאה בעדכון משתשמש: " + e, Toast.LENGTH_SHORT).show());
+                                .addOnFailureListener(e -> Toast.makeText(EditWorshipersActivity.this, "שגיאה בעדכון משתשמש: " + e, Toast.LENGTH_SHORT).show());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                     // Pass from AddWorshipers to Worshipers
-                    Intent intentAddInternetToMain = new Intent(EditWorshipers.this, Worshipers.class);
+                    Intent intentAddInternetToMain = new Intent(EditWorshipersActivity.this, WorshipersActivity.class);
                     startActivity(intentAddInternetToMain);
 
                     finish();

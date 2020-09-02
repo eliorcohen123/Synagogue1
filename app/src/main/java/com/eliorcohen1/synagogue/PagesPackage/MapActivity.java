@@ -44,7 +44,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-public class FragmentActivityMy extends AppCompatActivity implements View.OnClickListener, OnCompleteListener<Void> {
+public class MapActivity extends AppCompatActivity implements View.OnClickListener, OnCompleteListener<Void> {
 
     private static final String TAG = "MyLocation";
     private Button backMap;
@@ -121,8 +121,8 @@ public class FragmentActivityMy extends AppCompatActivity implements View.OnClic
 
     private void fn_permission() {
         if ((ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-            if ((!ActivityCompat.shouldShowRequestPermissionRationale(FragmentActivityMy.this, Manifest.permission.ACCESS_FINE_LOCATION))) {
-                ActivityCompat.requestPermissions(FragmentActivityMy.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);
+            if ((!ActivityCompat.shouldShowRequestPermissionRationale(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION))) {
+                ActivityCompat.requestPermissions(MapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_ACCESS_COARSE_LOCATION);
             }
         } else {
             boolean_permission = true;
@@ -157,7 +157,7 @@ public class FragmentActivityMy extends AppCompatActivity implements View.OnClic
 
     //Start the permission request dialog
     private void startLocationPermissionRequest() {
-        ActivityCompat.requestPermissions(FragmentActivityMy.this,
+        ActivityCompat.requestPermissions(MapActivity.this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 MY_PERMISSIONS_REQUEST_LOCATION);
     }
@@ -328,7 +328,7 @@ public class FragmentActivityMy extends AppCompatActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.backMap:
-                Intent intent = new Intent(FragmentActivityMy.this, MainActivity.class);
+                Intent intent = new Intent(MapActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
         }

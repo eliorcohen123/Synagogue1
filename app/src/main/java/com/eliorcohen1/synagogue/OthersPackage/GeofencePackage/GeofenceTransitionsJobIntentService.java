@@ -14,7 +14,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.eliorcohen1.synagogue.R;
-import com.eliorcohen1.synagogue.PagesPackage.FragmentActivityMy;
+import com.eliorcohen1.synagogue.PagesPackage.MapActivity;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
 
@@ -71,9 +71,9 @@ public class GeofenceTransitionsJobIntentService extends JobIntentService {
             mNotificationManager.createNotificationChannel(mChannel);
         }
 
-        Intent notificationIntent = new Intent(getApplicationContext(), FragmentActivityMy.class);
+        Intent notificationIntent = new Intent(getApplicationContext(), MapActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-        stackBuilder.addParentStack(FragmentActivityMy.class);
+        stackBuilder.addParentStack(MapActivity.class);
         stackBuilder.addNextIntent(notificationIntent);
         PendingIntent notificationPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);

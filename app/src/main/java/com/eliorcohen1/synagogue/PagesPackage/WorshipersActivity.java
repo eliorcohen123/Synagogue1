@@ -36,7 +36,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Worshipers extends AppCompatActivity implements View.OnClickListener {
+public class WorshipersActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button backWorshipers, btnWrite;
     private ArrayList<TotalModel> arrayList;
@@ -117,11 +117,11 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
                             arrayList.add(note);
                         }
 
-                        adapter = new CustomAdapterWorshipers(arrayList, Worshipers.this);
+                        adapter = new CustomAdapterWorshipers(arrayList, WorshipersActivity.this);
                         adapter.setNames(arrayList);
                         rv.setAdapter(adapter);
                     } else {
-                        Toast.makeText(Worshipers.this, "שגיאה בקבלת המידע", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WorshipersActivity.this, "שגיאה בקבלת המידע", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -129,7 +129,7 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
         fireStoreListener = fireStoreDB.collection("synagogue")
                 .addSnapshotListener((documentSnapshots, e) -> {
                     if (e != null) {
-                        Toast.makeText(Worshipers.this, "רשימת הלייב נכשלה" + e, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WorshipersActivity.this, "רשימת הלייב נכשלה" + e, Toast.LENGTH_SHORT).show();
                         return;
                     }
                     arrayList.clear();
@@ -142,7 +142,7 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
                         arrayList.add(note);
                     }
 
-                    adapter = new CustomAdapterWorshipers(arrayList, Worshipers.this);
+                    adapter = new CustomAdapterWorshipers(arrayList, WorshipersActivity.this);
                     rv.setAdapter(adapter);
                 });
     }
@@ -161,17 +161,17 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
                 TotalModel totalModel = adapter.getPlaceAtPosition(position);
 
                 if (direction == ItemTouchHelper.LEFT) {
-                    Toast.makeText(Worshipers.this, "עורך: " + totalModel.getName(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(WorshipersActivity.this, "עורך: " + totalModel.getName(), Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent(Worshipers.this, EditWorshipers.class);
+                    Intent intent = new Intent(WorshipersActivity.this, EditWorshipersActivity.class);
                     intent.putExtra(getString(R.string.worshipers_name), totalModel.getName());
                     intent.putExtra(getString(R.string.worshipers_numPhone), totalModel.getNumPhone());
                     startActivity(intent);
                 } else {
                     fireStoreDB.collection("synagogue").document(totalModel.getNumPhone())
                             .delete()
-                            .addOnSuccessListener(aVoid -> Toast.makeText(Worshipers.this, "מוחק: " + totalModel.getName(), Toast.LENGTH_LONG).show())
-                            .addOnFailureListener(e -> Toast.makeText(Worshipers.this, "שגיאה במחיקת משתשמש: " + e, Toast.LENGTH_LONG).show());
+                            .addOnSuccessListener(aVoid -> Toast.makeText(WorshipersActivity.this, "מוחק: " + totalModel.getName(), Toast.LENGTH_LONG).show())
+                            .addOnFailureListener(e -> Toast.makeText(WorshipersActivity.this, "שגיאה במחיקת משתשמש: " + e, Toast.LENGTH_LONG).show());
                 }
             }
 
@@ -212,7 +212,7 @@ public class Worshipers extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnWrite:
-                Intent intent = new Intent(this, AddWorshipers.class);
+                Intent intent = new Intent(this, AddWorshipersActivity.class);
                 startActivity(intent);
                 break;
             case R.id.backWorshipers:

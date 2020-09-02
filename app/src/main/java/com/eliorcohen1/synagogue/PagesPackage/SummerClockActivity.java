@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 
-public class SummerClock extends AppCompatActivity implements View.OnClickListener {
+public class SummerClockActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView shabat, summer, morning1, noon1, evening1, morning2, noon2, evening2, clock, noon3, evening3, formula, simpleDay, sunset, sunsetText;
     private Button backSummer, backSummerWeb;

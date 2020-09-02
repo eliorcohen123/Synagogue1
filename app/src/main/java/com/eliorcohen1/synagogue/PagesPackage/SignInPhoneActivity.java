@@ -12,7 +12,7 @@ import com.eliorcohen1.synagogue.OthersPackage.CountryData;
 import com.eliorcohen1.synagogue.OthersPackage.EmailPasswordPhoneValidator;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class SignPhoneActivity extends AppCompatActivity {
+public class SignInPhoneActivity extends AppCompatActivity {
 
     private Spinner spinnerCountry;
     private EditText editTextNumPhone;
@@ -20,7 +20,7 @@ public class SignPhoneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_phone);
+        setContentView(R.layout.activity_sign_in_phone);
 
         initUI();
         doTasks();
@@ -53,7 +53,7 @@ public class SignPhoneActivity extends AppCompatActivity {
                 editTextNumPhone.requestFocus();
             } else {
                 String phoneNumber = "+" + code + number;
-                Intent intent = new Intent(SignPhoneActivity.this, VerifyPhoneActivity.class);
+                Intent intent = new Intent(SignInPhoneActivity.this, VerifyPhoneActivity.class);
                 intent.putExtra("phoneNumber", phoneNumber);
                 startActivity(intent);
             }

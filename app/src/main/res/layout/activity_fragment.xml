@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".PagesPackage.FragmentActivityMy">
+    tools:context=".PagesPackage.MapActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/myContent"

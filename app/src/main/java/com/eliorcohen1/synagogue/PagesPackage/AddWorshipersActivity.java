@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddWorshipers extends AppCompatActivity implements View.OnClickListener {
+public class AddWorshipersActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText name, num_phone;
     private TextView textViewOK;
@@ -86,12 +86,12 @@ public class AddWorshipers extends AppCompatActivity implements View.OnClickList
                             .document(s.toString())
                             .set(user)
                             .addOnSuccessListener(aVoid -> {
-                                Intent intentAddInternetToMain = new Intent(AddWorshipers.this, Worshipers.class);
+                                Intent intentAddInternetToMain = new Intent(AddWorshipersActivity.this, WorshipersActivity.class);
                                 startActivity(intentAddInternetToMain);
 
                                 finish();
                             })
-                            .addOnFailureListener(e -> Toast.makeText(AddWorshipers.this, "שגיאה בהוספת משתמש: " + e, Toast.LENGTH_SHORT).show());
+                            .addOnFailureListener(e -> Toast.makeText(AddWorshipersActivity.this, "שגיאה בהוספת משתמש: " + e, Toast.LENGTH_SHORT).show());
                 }
                 break;
             case R.id.btnBack:

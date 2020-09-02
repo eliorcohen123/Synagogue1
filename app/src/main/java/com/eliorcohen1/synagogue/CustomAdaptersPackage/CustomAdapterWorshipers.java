@@ -38,9 +38,11 @@ public class CustomAdapterWorshipers extends RecyclerView.Adapter<CustomAdapterW
 
         public ViewHolder(View itemView) {
             super(itemView);
+
             textName = itemView.findViewById(R.id.name);
             textPhone = itemView.findViewById(R.id.numPhone);
             relativeLayout = itemView.findViewById(R.id.relative1);
+
             itemView.setOnCreateContextMenuListener(this);
         }
 
@@ -84,7 +86,7 @@ public class CustomAdapterWorshipers extends RecyclerView.Adapter<CustomAdapterW
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.worshipers_adapter, parent, false);
+        View view = mInflater.inflate(R.layout.adapter_worshipers, parent, false);
         return new ViewHolder(view);
     }
 

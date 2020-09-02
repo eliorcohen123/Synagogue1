@@ -74,7 +74,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_map, container, false);
+        mView = inflater.inflate(R.layout.map_fragment, container, false);
 
         initUI();
         initListeners();
@@ -302,7 +302,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, View.On
     }
 
     public static void setButtonsEnabledState() {
-        if (FragmentActivityMy.getGeofencesAdded()) {
+        if (MapActivity.getGeofencesAdded()) {
             linearLayoutYes.setVisibility(View.GONE);
             linearLayoutNo.setVisibility(View.VISIBLE);
         } else {

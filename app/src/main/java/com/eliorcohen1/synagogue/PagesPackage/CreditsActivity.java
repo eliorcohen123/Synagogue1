@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 
-public class MyCredits extends AppCompatActivity implements View.OnClickListener {
+public class CreditsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView textMe;
     private Button btnBack;

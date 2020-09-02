@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 
-public class Donates extends AppCompatActivity implements View.OnClickListener {
+public class DonatesActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button backDonates;
     private TextView phone, textWant;

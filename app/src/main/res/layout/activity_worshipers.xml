@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".PagesPackage.Responsibles">
+    tools:context=".PagesPackage.ResponsiblesActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

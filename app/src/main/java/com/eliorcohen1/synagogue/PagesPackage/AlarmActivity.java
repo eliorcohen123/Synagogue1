@@ -26,7 +26,7 @@ import com.eliorcohen1.synagogue.OthersPackage.MyReceiverAlarm;
 
 import java.util.Calendar;
 
-public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
+public class AlarmActivity extends AppCompatActivity implements View.OnClickListener {
 
     private PendingIntent pendingIntent;
     private Button okAlarm, cancelAlarm, backAlarm;
@@ -97,17 +97,17 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                 editor.putInt("idHour", myHourMy).putInt("idMinute", myMinuteMy).apply();
 
                 if (myHourMy <= 9 && myMinuteMy <= 9) {
-                    Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf("0" + myHourMy) + ":" + String.valueOf("0" + myMinuteMy), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + String.valueOf("0" + myHourMy) + ":" + String.valueOf("0" + myMinuteMy), Toast.LENGTH_SHORT).show();
                 } else if (myHourMy <= 9 && myMinuteMy > 9) {
-                    Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf("0" + myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + String.valueOf("0" + myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
                 } else if (myHourMy > 9 && myMinuteMy > 9) {
-                    Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
                 } else if (myHourMy > 9 && myMinuteMy <= 9) {
-                    Toast.makeText(MyAlarm.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf("0" + myMinuteMy), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf("0" + myMinuteMy), Toast.LENGTH_SHORT).show();
                 }
 
-                alarmIntent = new Intent(MyAlarm.this, MyReceiverAlarm.class); // AlarmReceiver1 = broadcast receiver
-                pendingIntent = PendingIntent.getBroadcast(MyAlarm.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmIntent = new Intent(AlarmActivity.this, MyReceiverAlarm.class); // AlarmReceiver1 = broadcast receiver
+                pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                 alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
@@ -121,7 +121,7 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                 }
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmStartTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
-                receiver = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
+                receiver = new ComponentName(AlarmActivity.this, MyReceiverAlarm.class);
                 pm = getPackageManager();
 
                 pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
@@ -132,8 +132,8 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
             case R.id.cancelAlarm:
                 editor.putInt("idHour", 0).putInt("idMinute", 0).apply();
 
-                alarmIntent = new Intent(MyAlarm.this, MyReceiverAlarm.class);
-                pendingIntent = PendingIntent.getBroadcast(MyAlarm.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmIntent = new Intent(AlarmActivity.this, MyReceiverAlarm.class);
+                pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
                 assert alarmManager != null;
@@ -148,18 +148,18 @@ public class MyAlarm extends AppCompatActivity implements View.OnClickListener {
                     }
                 }
 
-                receiver = new ComponentName(MyAlarm.this, MyReceiverAlarm.class);
+                receiver = new ComponentName(AlarmActivity.this, MyReceiverAlarm.class);
                 pm = getPackageManager();
 
                 pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 
-                Toast.makeText(MyAlarm.this, "ההתראה שלך בוטלה.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AlarmActivity.this, "ההתראה שלך בוטלה.", Toast.LENGTH_SHORT).show();
 
                 finish();
                 startActivity(getIntent());
                 break;
             case R.id.backAlarm:
-                Intent intent = new Intent(MyAlarm.this, MainActivity.class);
+                Intent intent = new Intent(AlarmActivity.this, MainActivity.class);
                 startActivity(intent);
         }
     }

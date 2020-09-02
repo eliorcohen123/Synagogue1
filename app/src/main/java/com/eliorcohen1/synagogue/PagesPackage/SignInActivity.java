@@ -255,7 +255,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
                 break;
             case R.id.btnPhone:
-                startActivity(new Intent(SignInActivity.this, SignPhoneActivity.class));
+                startActivity(new Intent(SignInActivity.this, SignInPhoneActivity.class));
                 break;
             case R.id.btn_forgot:
                 startActivity(new Intent(SignInActivity.this, ForgotPasswordActivity.class));

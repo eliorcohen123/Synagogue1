@@ -193,35 +193,35 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.summerClock:
-                Intent intent = new Intent(MainActivity.this, SummerClock.class);
+                Intent intent = new Intent(MainActivity.this, SummerClockActivity.class);
                 startActivity(intent);
                 break;
             case R.id.winterClock:
-                Intent intent2 = new Intent(MainActivity.this, WinterClock.class);
+                Intent intent2 = new Intent(MainActivity.this, WinterClockActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.responsible:
-                Intent intent3 = new Intent(MainActivity.this, Responsibles.class);
+                Intent intent3 = new Intent(MainActivity.this, ResponsiblesActivity.class);
                 startActivity(intent3);
                 break;
             case R.id.worshipers:
-                Intent intent4 = new Intent(MainActivity.this, Worshipers.class);
+                Intent intent4 = new Intent(MainActivity.this, WorshipersActivity.class);
                 startActivity(intent4);
                 break;
             case R.id.donates:
-                Intent intent5 = new Intent(MainActivity.this, Donates.class);
+                Intent intent5 = new Intent(MainActivity.this, DonatesActivity.class);
                 startActivity(intent5);
                 break;
             case R.id.mapMe:
-                Intent intent6 = new Intent(MainActivity.this, FragmentActivityMy.class);
+                Intent intent6 = new Intent(MainActivity.this, MapActivity.class);
                 startActivity(intent6);
                 break;
             case R.id.alarms:
-                Intent intent7 = new Intent(MainActivity.this, MyAlarm.class);
+                Intent intent7 = new Intent(MainActivity.this, AlarmActivity.class);
                 startActivity(intent7);
                 break;
             case R.id.events:
-                Intent intent8 = new Intent(MainActivity.this, Events.class);
+                Intent intent8 = new Intent(MainActivity.this, EventsActivity.class);
                 startActivity(intent8);
                 break;
             case R.id.chat:
@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         int id = item.getItemId();
 
         if (id == R.id.tutorial) {
-            Intent intentTutorial = new Intent(MainActivity.this, WelcomeActivityTutorial.class);
+            Intent intentTutorial = new Intent(MainActivity.this, WelcomeutorialActivity.class);
             startActivity(intentTutorial);
         } else if (id == R.id.shareIntent) {
             Intent sendIntent = new Intent();
@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
         } else if (id == R.id.credits) {
-            Intent intentCredits = new Intent(MainActivity.this, MyCredits.class);
+            Intent intentCredits = new Intent(MainActivity.this, CreditsActivity.class);
             startActivity(intentCredits);
         } else if (id == R.id.logout) {
             mAuth.signOut();

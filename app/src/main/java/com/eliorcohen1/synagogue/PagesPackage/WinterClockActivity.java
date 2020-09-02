@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 
-public class WinterClock extends AppCompatActivity implements View.OnClickListener {
+public class WinterClockActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView shabat, winter, morning1, noon1, evening1, morning2, noon2, evening2, clock, noon3, evening3, formula, simpleDay, sunset, sunsetText;
     private Button backWinter, backWinterWeb;

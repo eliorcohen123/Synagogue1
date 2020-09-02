@@ -14,7 +14,7 @@ import com.eliorcohen1.synagogue.ModelsPackage.TotalModel;
 
 import java.util.ArrayList;
 
-public class Responsibles extends AppCompatActivity implements View.OnClickListener {
+public class ResponsiblesActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button backResponsible;
     private ArrayList<TotalModel> arrayList;

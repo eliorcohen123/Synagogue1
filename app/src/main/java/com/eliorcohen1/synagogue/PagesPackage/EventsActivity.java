@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Events extends AppCompatActivity implements View.OnClickListener {
+public class EventsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button backEvents;
     private TextView phone, textWant;
@@ -107,7 +107,7 @@ public class Events extends AppCompatActivity implements View.OnClickListener {
 
     private void getViewPager() {
         mPager = findViewById(R.id.viewPager);
-        mPager.setAdapter(new CustomViewPagerAdapter(Events.this, imageModelArrayList));
+        mPager.setAdapter(new CustomViewPagerAdapter(EventsActivity.this, imageModelArrayList));
 
         CirclePageIndicator indicator = findViewById(R.id.indicator);
         indicator.setViewPager(mPager);

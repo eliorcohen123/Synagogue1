@@ -11,7 +11,7 @@ import android.content.Intent;
 import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
-import com.eliorcohen1.synagogue.PagesPackage.MyAlarm;
+import com.eliorcohen1.synagogue.PagesPackage.AlarmActivity;
 import com.eliorcohen1.synagogue.R;
 
 import java.util.Calendar;
@@ -59,7 +59,7 @@ public class MyReceiverAlarm extends BroadcastReceiver {
 
     private void getBuilder(Context context, String id) {
         builder = new NotificationCompat.Builder(context, id);
-        Intent intent = new Intent(context, MyAlarm.class);
+        Intent intent = new Intent(context, AlarmActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         pendingIntent = PendingIntent.getActivity(context, 1, intent, 0);
         builder.setContentTitle("תפילה")
