@@ -35,9 +35,9 @@ public class EmailPasswordPhoneValidator {
     private static Pattern pattern;
     private static Matcher matcher;
 
-    public boolean isValidEmail(final String password) {
+    public boolean isValidEmail(final String email) {
         pattern = Pattern.compile(EMAIL_PATTERN);
-        matcher = pattern.matcher(password);
+        matcher = pattern.matcher(email);
 
         return matcher.matches();
     }
