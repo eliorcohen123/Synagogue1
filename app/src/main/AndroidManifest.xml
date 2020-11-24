@@ -92,7 +92,7 @@
             android:name=".PagesPackage.SignInPhoneActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".PagesPackage.WelcomeutorialActivity"
+            android:name=".PagesPackage.WelcomeTutorialActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".PagesPackage.WelcomeActivity"

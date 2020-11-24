@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.eliorcohen1.synagogue.R;
 
-public class WelcomeutorialActivity extends AppCompatActivity implements View.OnClickListener {
+public class WelcomeTutorialActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
@@ -85,7 +85,7 @@ public class WelcomeutorialActivity extends AppCompatActivity implements View.On
     }
 
     private void launchHomeScreen() {
-        startActivity(new Intent(WelcomeutorialActivity.this, MainActivity.class));
+        startActivity(new Intent(WelcomeTutorialActivity.this, MainActivity.class));
         finish();
     }
 
