@@ -214,15 +214,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             inputPassword.setError("הסיסמא לא חוקית");
             inputEmail.requestFocus();
             inputPassword.requestFocus();
-            return;
         } else if (!EmailPasswordPhoneValidator.getInstance().isValidEmail(email)) {
             inputEmail.setError("האימייל לא חוקי");
             inputEmail.requestFocus();
-            return;
         } else if (!EmailPasswordPhoneValidator.getInstance().isValidPassword(password)) {
             inputPassword.setError("הסיסמא לא חוקית");
             inputPassword.requestFocus();
-            return;
         } else {
             progressBar.setVisibility(View.VISIBLE);
 
