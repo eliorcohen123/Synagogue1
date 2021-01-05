@@ -66,13 +66,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 .addOnCompleteListener(SignUpActivity.this, task -> {
                     progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success");
                         Intent intent1 = new Intent(SignUpActivity.this, SignInActivity.class);
                         startActivity(intent1);
                         finish();
                     } else {
-                        // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
                         Toast.makeText(SignUpActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
                     }
