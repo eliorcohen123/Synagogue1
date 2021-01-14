@@ -63,7 +63,7 @@ public class MyReceiverAlarm extends BroadcastReceiver {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         pendingIntent = PendingIntent.getActivity(context, 1, intent, 0);
         builder.setContentTitle("תפילה")
-                .setContentText("היי מתפלל יקר, הגיע הזמן לצאת לתפילה :)")  // required
+                .setContentText(context.getString(R.string.snooze))  // required
                 .setSmallIcon(R.drawable.lamp)  // required
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setAutoCancel(true)
