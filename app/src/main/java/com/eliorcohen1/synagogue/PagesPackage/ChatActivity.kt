@@ -76,7 +76,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun sendChatMessage() {
-        val message = edittext_chat.text.toString()
+        val message = edit_text_chat.text.toString()
         if (message != "") {
             firestore.collection("messages")
                     .add(mapOf(
@@ -85,7 +85,7 @@ class ChatActivity : AppCompatActivity() {
                             Pair("user", user?.uid),
                             Pair("timestamp", Timestamp.now())
                     ))
-            edittext_chat.setText("")
+            edit_text_chat.setText("")
         }
     }
 

@@ -24,7 +24,7 @@
         android:paddingEnd="16dp">
 
         <EditText
-            android:id="@+id/edittext_chat"
+            android:id="@+id/edit_text_chat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
