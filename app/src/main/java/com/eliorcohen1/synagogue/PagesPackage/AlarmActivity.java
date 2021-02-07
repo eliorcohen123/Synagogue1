@@ -109,7 +109,7 @@ public class AlarmActivity extends AppCompatActivity implements View.OnClickList
                 alarmIntent = new Intent(AlarmActivity.this, MyReceiverAlarm.class); // AlarmReceiver1 = broadcast receiver
                 pendingIntent = PendingIntent.getBroadcast(AlarmActivity.this, 1, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                alarmIntent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
+                alarmIntent.setData(Uri.parse("custom://" + System.currentTimeMillis()));
 
                 alarmStartTime = Calendar.getInstance();
                 Calendar now = Calendar.getInstance();
