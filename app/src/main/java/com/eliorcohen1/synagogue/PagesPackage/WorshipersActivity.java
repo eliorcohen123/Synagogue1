@@ -143,6 +143,7 @@ public class WorshipersActivity extends AppCompatActivity implements View.OnClic
                     }
 
                     adapter = new CustomAdapterWorshipers(arrayList, WorshipersActivity.this);
+                    adapter.setNames(arrayList);
                     rv.setAdapter(adapter);
                 });
     }
