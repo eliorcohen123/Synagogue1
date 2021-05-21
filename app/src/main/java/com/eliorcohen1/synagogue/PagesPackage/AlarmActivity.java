@@ -35,6 +35,7 @@ public class AlarmActivity extends AppCompatActivity implements View.OnClickList
     private TimePicker timePicker1;
     private Calendar alarmStartTime;
     private TextView myText;
+    private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
     private ComponentName receiver;
     private PackageManager pm;
@@ -62,6 +63,7 @@ public class AlarmActivity extends AppCompatActivity implements View.OnClickList
 
         timePicker1.setIs24HourView(true);
 
+        prefs = getSharedPreferences("textTime", MODE_PRIVATE);
         editor = getSharedPreferences("textTime", MODE_PRIVATE).edit();
     }
 
@@ -72,18 +74,17 @@ public class AlarmActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void tasks() {
-        SharedPreferences prefs = getSharedPreferences("textTime", MODE_PRIVATE);
         int idHour = prefs.getInt("idHour", 0);
         int idMinute = prefs.getInt("idMinute", 0);
 
         if (idHour <= 9 && idMinute <= 9) {
-            myText.setText(String.valueOf("0" + idHour + ":" + String.valueOf("0" + idMinute)));
-        } else if (idHour <= 9 && idMinute > 9) {
-            myText.setText(String.valueOf("0" + idHour + ":" + String.valueOf(idMinute)));
-        } else if (idHour > 9 && idMinute > 9) {
-            myText.setText(String.valueOf(idHour + ":" + String.valueOf(idMinute)));
-        } else if (idHour > 9 && idMinute <= 9) {
-            myText.setText(String.valueOf(idHour + ":" + String.valueOf("0" + idMinute)));
+            myText.setText("0" + idHour + ":" + "0" + idMinute);
+        } else if (idHour <= 9) {
+            myText.setText("0" + idHour + ":" + idMinute);
+        } else if (idMinute > 9) {
+            myText.setText(idHour + ":" + idMinute);
+        } else {
+            myText.setText(idHour + ":" + "0" + idMinute);
         }
     }
 
@@ -91,19 +92,19 @@ public class AlarmActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.okAlarm:
-                int myHourMy = timePicker1.getCurrentHour();
-                int myMinuteMy = timePicker1.getCurrentMinute();
+                int myHourMy = timePicker1.getHour();
+                int myMinuteMy = timePicker1.getMinute();
 
                 editor.putInt("idHour", myHourMy).putInt("idMinute", myMinuteMy).apply();
 
                 if (myHourMy <= 9 && myMinuteMy <= 9) {
-                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + String.valueOf("0" + myHourMy) + ":" + String.valueOf("0" + myMinuteMy), Toast.LENGTH_SHORT).show();
-                } else if (myHourMy <= 9 && myMinuteMy > 9) {
-                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + String.valueOf("0" + myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
-                } else if (myHourMy > 9 && myMinuteMy > 9) {
-                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf(myMinuteMy), Toast.LENGTH_SHORT).show();
-                } else if (myHourMy > 9 && myMinuteMy <= 9) {
-                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + String.valueOf(myHourMy) + ":" + String.valueOf("0" + myMinuteMy), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + "0" + myHourMy + ":" + "0" + myMinuteMy, Toast.LENGTH_SHORT).show();
+                } else if (myHourMy <= 9) {
+                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + "0" + myHourMy + ":" + myMinuteMy, Toast.LENGTH_SHORT).show();
+                } else if (myMinuteMy > 9) {
+                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + myHourMy + ":" + myMinuteMy, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AlarmActivity.this, "השעה שבחרת לתזכורת היא: " + myHourMy + ":" + "0" + myMinuteMy, Toast.LENGTH_SHORT).show();
                 }
 
                 alarmIntent = new Intent(AlarmActivity.this, MyReceiverAlarm.class); // AlarmReceiver1 = broadcast receiver
