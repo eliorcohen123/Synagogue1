@@ -44,11 +44,11 @@ public class DonatesActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void tasks() {
-        SpannableString str = new SpannableString("054-4917147");
+        SpannableString str = new SpannableString("052-9426607");
         str.setSpan(new BackgroundColorSpan(Color.WHITE), 0, 11, 0);
         phone.setText(str);
 
-        textWant.setText("לאחר ההעברה נא לעדכן בהודעה את הגזבר\n - \nמוטי כהן");
+        textWant.setText("לאחר ההעברה נא לעדכן בהודעה את הגזבר\n - \nשלום ניסים");
     }
 
     @Override
@@ -65,8 +65,8 @@ public class DonatesActivity extends AppCompatActivity implements View.OnClickLi
 
     private void openWhatsApp() {
         try {
-            String text = "היי מוטי, ברצוני לדווח על העברה בנקאית עבור נדר/תרומה על סך *** שקלים לכבוד בית הכנסת";// Replace with your message.
-            String toNumber = "+9720544917147"; // Replace with mobile phone number without +Sign or leading zeros.
+            String text = "היי שלום, ברצוני לדווח על העברה בנקאית עבור נדר/תרומה על סך *** שקלים לכבוד בית הכנסת";
+            String toNumber = "+9720529426607";
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=" + toNumber + "&text=" + text));
             startActivity(intent);
